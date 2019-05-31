@@ -1,0 +1,21 @@
+
+server:
+  port: 9999
+
+spring:
+  profiles:
+    active: native
+  application:
+    name: config-web
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/service/,classpath:/web/
+      override-none: true
+  security:
+    basic:
+      enabled: true
+    user:
+      name: abc
+      password: 123
