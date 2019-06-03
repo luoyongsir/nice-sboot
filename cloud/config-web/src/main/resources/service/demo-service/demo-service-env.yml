@@ -1,0 +1,32 @@
+
+spring:
+  datasource:
+    druid:
+      url: jdbc:h2:mem:foo
+      username: sa
+      password: n/z7PyA5cvcXvs8px8FVmBVpaRyNsvJb3X7YfS38DJrIg25EbZaZGvH4aHcnc97Om0islpCAPc3MqsGvsrxVJw==
+      public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALS8ng1XvgHrdOgm4pxrnUdt3sXtu/E8My9KzX8sXlz+mXRZQCop7NVQLne25pXHtZoDYuMh3bzoGj6v5HvvAQ8CAwEAAQ==
+      initial-size: 5
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      test-on-borrow: true
+      test-on-return: true
+      test-while-idle: true
+      filters: conn,config,stat,slf4j,wall
+      filter:
+        wall:
+          enabled: true
+          db-type: h2
+          config:
+            delete-allow: false
+            drop-table-allow: false
+        stat:
+          enabled: true
+          db-type: h2
+          log-slow-sql: true
+          slow-sql-millis: 2000
+
