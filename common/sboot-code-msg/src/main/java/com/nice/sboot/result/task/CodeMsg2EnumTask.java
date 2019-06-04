@@ -134,7 +134,9 @@ public class CodeMsg2EnumTask extends Task {
 		Comparator comparator = new Comparator<String>() {
 			@Override
 			public int compare(String k1, String k2) {
-				return k1.compareTo(k2);
+				Integer code1 = Integer.parseInt(k1.substring(k1.indexOf("_") + 1));
+				Integer code2 = Integer.parseInt(k2.substring(k2.indexOf("_") + 1));
+				return code1.compareTo(code2);
 			}
 		};
 		Map<String, String> map = new TreeMap<>(comparator);
