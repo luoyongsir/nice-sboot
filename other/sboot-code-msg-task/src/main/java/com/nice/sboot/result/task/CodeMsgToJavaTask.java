@@ -66,8 +66,8 @@ public class CodeMsgToJavaTask extends Task {
 
 	private void createFile() {
 		StringBuilder bud = new StringBuilder(10240);
-		bud.append("package com.nice.sboot.result;");
-		bud.append(System.lineSeparator()).append(System.lineSeparator());
+		bud.append("package com.nice.sboot.result;").append(System.lineSeparator());
+		bud.append("// @formatter:off").append(System.lineSeparator());
 		bud.append("/**").append(System.lineSeparator());
 		bud.append(" * 该类在 maven clean 阶段自动生成").append(System.lineSeparator());
 		bud.append(" * 如果有修改 code-msg.properties 请执行 maven clean").append(System.lineSeparator());
@@ -123,7 +123,7 @@ public class CodeMsgToJavaTask extends Task {
 		bud.append("		return null;").append(System.lineSeparator());
 		bud.append("	}").append(System.lineSeparator());
 
-		bud.append("}").append(System.lineSeparator()).append(System.lineSeparator());
+		bud.append("}// @formatter:on").append(System.lineSeparator());
 		File outFile = new File(this.outputDirString + File.separator + "CodeMsgEnum.java");
 		try (BufferedWriter writer = Files.newBufferedWriter(outFile.toPath(), StandardCharsets.UTF_8)) {
 			writer.append(bud);
