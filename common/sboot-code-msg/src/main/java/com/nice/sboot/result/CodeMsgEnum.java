@@ -1,4 +1,4 @@
-package com.nice.sboot.result.code;
+package com.nice.sboot.result;
 
 /**
  * @author luoyong

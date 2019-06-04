@@ -16,15 +16,6 @@
         <java.version>1.7</java.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.ant</groupId>
-            <artifactId>ant</artifactId>
-            <version>1.9.9</version>
-            <optional>true</optional>
-        </dependency>
-    </dependencies>
-
     <build>
 
         <resources>
@@ -50,23 +41,23 @@
                         </goals>
                         <configuration>
                             <target name="delete" description="删除java代码">
-                                <delete dir="src/main/java/com/nice/sboot/result/code"/>
+                                <delete file="src/main/java/com/nice/sboot/result/CodeMsgEnum.java"/>
                             </target>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>code2java</id>
+                        <id>codeMsgToJava</id>
                         <phase>clean</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target name="code2java">
-                                <taskdef name="code2java" classname="com.nice.sboot.result.task.CodeMsg2EnumTask"
+                            <target name="codeMsgToJava">
+                                <taskdef name="codeMsgToJava" classname="com.nice.sboot.result.task.CodeMsgToJavaTask"
                                          classpathref="maven.plugin.classpath"/>
-                                <code2java outputdir="src/main/java/com/nice/sboot/result/code">
+                                <codeMsgToJava outputdir="src/main/java/com/nice/sboot/result">
                                     <fileset dir="src/main/resources" includes="**/*.properties"/>
-                                </code2java>
+                                </codeMsgToJava>
                             </target>
                         </configuration>
                     </execution>
@@ -74,8 +65,8 @@
                 <dependencies>
                     <dependency>
                         <groupId>com.nice.sboot</groupId>
-                        <artifactId>sboot-code-msg</artifactId>
-                        <version>${cur.version}</version>
+                        <artifactId>sboot-code-msg-task</artifactId>
+                        <version>${code-msg-task.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>

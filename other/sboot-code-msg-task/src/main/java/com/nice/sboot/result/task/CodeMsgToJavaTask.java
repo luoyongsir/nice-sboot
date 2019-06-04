@@ -15,7 +15,7 @@ import java.util.*;
  * @author luoyong
  * @date 2019/6/4 20:49
  */
-public class CodeMsg2JavaTask extends Task {
+public class CodeMsgToJavaTask extends Task {
 
 	private String outputDirString = null;
 	private List<FileSet> fileSets = new LinkedList<>();

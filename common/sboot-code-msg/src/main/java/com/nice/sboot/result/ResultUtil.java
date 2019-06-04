@@ -1,7 +1,5 @@
 package com.nice.sboot.result;
 
-import com.nice.sboot.result.code.CodeMsgEnum;
-
 /**
  * Result 封装
  * @author luoyong
