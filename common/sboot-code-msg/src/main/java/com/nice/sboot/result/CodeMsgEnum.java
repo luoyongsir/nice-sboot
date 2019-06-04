@@ -1,6 +1,8 @@
 package com.nice.sboot.result;
 
 /**
+ * 该类在 maven clean 阶段自动生成
+ * 如果有修改 code-msg.properties 请执行 maven clean
  * @author luoyong
  */
 public enum CodeMsgEnum {

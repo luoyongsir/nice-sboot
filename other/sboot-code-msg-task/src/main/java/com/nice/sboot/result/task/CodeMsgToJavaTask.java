@@ -69,6 +69,8 @@ public class CodeMsgToJavaTask extends Task {
 		bud.append("package com.nice.sboot.result;");
 		bud.append(System.lineSeparator()).append(System.lineSeparator());
 		bud.append("/**").append(System.lineSeparator());
+		bud.append(" * 该类在 maven clean 阶段自动生成").append(System.lineSeparator());
+		bud.append(" * 如果有修改 code-msg.properties 请执行 maven clean").append(System.lineSeparator());
 		bud.append(" * @author luoyong").append(System.lineSeparator());
 		bud.append(" */").append(System.lineSeparator());
 		bud.append("public enum CodeMsgEnum {").append(System.lineSeparator());
