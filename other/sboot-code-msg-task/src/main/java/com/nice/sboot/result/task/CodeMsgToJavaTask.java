@@ -133,13 +133,10 @@ public class CodeMsgToJavaTask extends Task {
 	}
 
 	private Map<String, String> buildTreeMap() {
-		Comparator comparator = new Comparator<String>() {
-			@Override
-			public int compare(String k1, String k2) {
-				Integer code1 = Integer.parseInt(k1.substring(k1.indexOf("_") + 1));
-				Integer code2 = Integer.parseInt(k2.substring(k2.indexOf("_") + 1));
-				return code1.compareTo(code2);
-			}
+		Comparator comparator = (Comparator<String>) (k1, k2) -> {
+			Integer code1 = Integer.parseInt(k1.substring(k1.indexOf("_") + 1));
+			Integer code2 = Integer.parseInt(k2.substring(k2.indexOf("_") + 1));
+			return code1.compareTo(code2);
 		};
 		Map<String, String> map = new TreeMap<>(comparator);
 		for (Map.Entry<Object, Object> entry : getProperties().entrySet()) {
