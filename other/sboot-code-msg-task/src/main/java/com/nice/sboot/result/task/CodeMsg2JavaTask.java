@@ -11,11 +11,11 @@ import java.nio.file.Files;
 import java.util.*;
 
 /**
- * 根据配置文件生成Java代码 ResCode
+ * 根据配置文件生成Java代码
  * @author luoyong
  * @date 2019/6/4 20:49
  */
-public class CodeMsg2EnumTask extends Task {
+public class CodeMsg2JavaTask extends Task {
 
 	private String outputDirString = null;
 	private List<FileSet> fileSets = new LinkedList<>();
@@ -66,7 +66,7 @@ public class CodeMsg2EnumTask extends Task {
 
 	private void createFile() {
 		StringBuilder bud = new StringBuilder(10240);
-		bud.append("package com.nice.sboot.result.code;");
+		bud.append("package com.nice.sboot.result;");
 		bud.append(System.lineSeparator()).append(System.lineSeparator());
 		bud.append("/**").append(System.lineSeparator());
 		bud.append(" * @author luoyong").append(System.lineSeparator());
