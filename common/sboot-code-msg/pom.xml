@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.nice.sboot</groupId>
+        <artifactId>sboot-dependency</artifactId>
+        <version>0.0.1</version>
+    </parent>
+    <artifactId>sboot-code-msg</artifactId>
+    <version>${cur.version}</version>
+
+    <!-- 为了兼容旧系统，这里改成1.7 -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.7</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.9.9</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>deleteJavaCode</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="delete" description="删除java代码">
+                                <delete dir="src/main/java/com/nice/sboot/result/code"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>code2java</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="code2java">
+                                <taskdef name="code2java" classname="com.nice.sboot.result.task.CodeMsg2EnumTask"
+                                         classpathref="maven.plugin.classpath"/>
+                                <code2java outputdir="src/main/java/com/nice/sboot/result/code">
+                                    <fileset dir="src/main/resources" includes="**/*.properties"/>
+                                </code2java>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.nice.sboot</groupId>
+                        <artifactId>sboot-code-msg</artifactId>
+                        <version>${cur.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>
