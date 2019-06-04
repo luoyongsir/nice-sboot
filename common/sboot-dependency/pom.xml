@@ -25,6 +25,9 @@
 
         <nice-config.version>0.0.1-${repo}</nice-config.version>
 
+
+        <code-msg-task.version>0.0.1</code-msg-task.version>
+
         <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <dubbo.version>2.7.0</dubbo.version>
