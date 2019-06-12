@@ -1,11 +1,14 @@
 package com.nice.sboot.demo.service;
 
+import com.github.pagehelper.PageInfo;
+import com.nice.sboot.demo.entity.Coffee;
+import com.nice.sboot.demo.mapper.CoffeeMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.List;
 
 /**
  * 测试
@@ -15,17 +18,18 @@ import java.sql.SQLException;
 @Service
 public class DemoService {
 
-	@Autowired
-	private DataSource dataSource;
+	private static final Logger LOG = LoggerFactory.getLogger(DemoService.class.getName());
 
-	public void showConnection (){
-		Connection connection = null;
-		try {
-			connection = dataSource.getConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		System.out.println(connection.toString());
+	@Autowired
+	private CoffeeMapper coffeeMapper;
+
+	public void findAllWithParam() {
+		List<Coffee> list = coffeeMapper.findAllWithParam(1, 3);
+		list.forEach(c -> LOG.info("Page(1) Coffee {}", c));
+
+		list = coffeeMapper.findAllWithParam(2, 3);
+		PageInfo page = new PageInfo(list);
+		LOG.info("PageInfo: {}", page);
 	}
 
 }

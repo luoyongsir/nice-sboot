@@ -15,7 +15,7 @@ public class DemoServiceTest extends BaseTest {
 	private DemoService demoService;
 
 	@Test
-	public void test() {
-		demoService.showConnection();
+	public void findAllWithParam() {
+		demoService.findAllWithParam();
 	}
 }

@@ -1,7 +1,8 @@
 
 spring:
   datasource:
-    schema: classpath:schema.sql
+    schema: classpath:db/schema.sql
+    data: classpath:db/data.sql
     initialization-mode: always
     druid:
       connection-properties: "config.decrypt=true;config.decrypt.key=${spring.datasource.druid.public-key}"
@@ -25,4 +26,12 @@ mybatis:
   type-aliases-package: com.nice.sboot.demo.entity
   type-handlers-package: com.nice.sboot.demo.handler
   configuration:
+    call-setters-on-nulls: true
     map-underscore-to-camel-case: true
+
+pagehelper:
+  helper-dialect: h2
+#  reasonable: true
+#  page-size-zero: true
+#  offset-as-page-num: true
+  support-methods-arguments: true
