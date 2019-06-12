@@ -38,6 +38,16 @@
     <!-- 统一依赖管理 -->
     <dependencyManagement>
         <dependencies>
+            <!-- 项目包 begin -->
+
+            <dependency>
+                <groupId>com.nice.sboot</groupId>
+                <artifactId>demo-common</artifactId>
+                <version>${cur.version}</version>
+            </dependency>
+
+            <!-- 项目包 end -->
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
