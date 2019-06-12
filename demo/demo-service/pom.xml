@@ -10,6 +10,12 @@
     <version>${cur.version}</version>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.nice.sboot</groupId>
+            <artifactId>demo-common</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -47,6 +53,10 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
 
     </dependencies>
 
@@ -67,6 +77,7 @@
                         <includes>
                             <include>config/bootstrap.yml</include>
                             <include>xml/logback-spring.xml</include>
+                            <include>schema.sql</include>
                         </includes>
                         <filtering>true</filtering>
                     </resource>
@@ -153,6 +164,32 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- generator插件 -->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.7</version>
+                <configuration>
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>1.4.199</version>
+                    </dependency>
+
+                    <!-- 自定义插件 -->
+                    <dependency>
+                        <groupId>com.mybatis.generator</groupId>
+                        <artifactId>mybatis-generator-ext</artifactId>
+                        <version>1.0.0-RELEASE</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
         </plugins>

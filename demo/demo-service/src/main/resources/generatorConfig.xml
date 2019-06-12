@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="H2Tables" targetRuntime="MyBatis3">
+        <!-- 自定义xml格式 -->
+        <property name="xmlFormatter" value="com.mybatis.generator.api.dom.DefXmlFormatter" />
+
+        <!--<plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin" />-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <!-- 自定义序列化 -->
+        <plugin type="com.mybatis.generator.plugins.DefSerializablePlugin" />
+        <!--<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />-->
+
+        <!-- 自定义实体类注释 -->
+        <commentGenerator type="com.mybatis.generator.internal.DefCommentGenerator">
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="org.h2.Driver" connectionURL="jdbc:h2:~/testdb;AUTO_SERVER=TRUE"
+                        userId="sa" password="123456a">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.nice.sboot.demo.entity" targetProject="../demo-common/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格  -->
+            <property name="trimStrings" value="false"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.nice.sboot.demo.mapper.h2" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- type="MIXEDMAPPER" -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.nice.sboot.demo.mapper" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--<table tableName="t_coffee" domainObjectName="Coffee" >-->
+        <table tableName="t_coffee" domainObjectName="Coffee" enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="fasle" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="CALL IDENTITY()" identity="true" />
+            <columnOverride column="price" javaType="org.joda.money.Money" jdbcType="BIGINT"
+                            typeHandler="com.nice.sboot.demo.handler.MoneyTypeHandler"/>
+        </table>
+    </context>
+</generatorConfiguration>

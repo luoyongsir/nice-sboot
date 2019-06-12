@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nice.sboot.demo.mapper.CoffeeMapper">
+    <resultMap id="BaseResultMap" type="com.nice.sboot.demo.entity.Coffee">
+        <id column="ID" jdbcType="BIGINT" property="id" />
+        <result column="NAME" jdbcType="VARCHAR" property="name" />
+        <result column="PRICE" jdbcType="BIGINT" property="price" typeHandler="com.nice.sboot.demo.handler.MoneyTypeHandler" />
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID, NAME, PRICE, CREATE_TIME, UPDATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select 
+        <include refid="Base_Column_List" />
+        from T_COFFEE
+        where ID = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from T_COFFEE
+        where ID = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.nice.sboot.demo.entity.Coffee">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            CALL IDENTITY()
+        </selectKey>
+        insert into T_COFFEE (NAME, PRICE, 
+            CREATE_TIME, UPDATE_TIME)
+        values (#{name,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT,typeHandler=com.nice.sboot.demo.handler.MoneyTypeHandler}, 
+            #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.nice.sboot.demo.entity.Coffee">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            CALL IDENTITY()
+        </selectKey>
+        insert into T_COFFEE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                NAME,
+            </if>
+            <if test="price != null">
+                PRICE,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=BIGINT,typeHandler=com.nice.sboot.demo.handler.MoneyTypeHandler},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.nice.sboot.demo.entity.Coffee">
+        update T_COFFEE
+        <set>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                PRICE = #{price,jdbcType=BIGINT,typeHandler=com.nice.sboot.demo.handler.MoneyTypeHandler},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.nice.sboot.demo.entity.Coffee">
+        update T_COFFEE
+        set NAME = #{name,jdbcType=VARCHAR},
+            PRICE = #{price,jdbcType=BIGINT,typeHandler=com.nice.sboot.demo.handler.MoneyTypeHandler},
+            CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+        where ID = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
