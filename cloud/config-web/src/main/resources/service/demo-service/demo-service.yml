@@ -1,6 +1,8 @@
 
 spring:
   datasource:
+    schema: classpath:schema.sql
+    initialization-mode: always
     druid:
       connection-properties: "config.decrypt=true;config.decrypt.key=${spring.datasource.druid.public-key}"
       initial-size: 5
@@ -17,3 +19,10 @@ spring:
       min-evictable-idle-time-millis: 300000
       filters: config,stat,slf4j
 
+mybatis:
+  mapper-locations: classpath*:com/nice/sboot/**/*.xml
+#  config-location: classpath:xml/mybatis-config.xml
+  type-aliases-package: com.nice.sboot.demo.entity
+  type-handlers-package: com.nice.sboot.demo.handler
+  configuration:
+    map-underscore-to-camel-case: true
