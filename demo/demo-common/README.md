@@ -1,12 +1,8 @@
-# 项目功能
+# demo-common
 
-1. 提供 dubbo 接口定义
-2. service 和 web 共用的相关 POJO
-
-# 规范说明
-
-### POJO（Plain Ordinary Java Object）:
-  - POJO专指只有setter / getter / toString的简单类，包括DO/DTO/BO/VO等。
+### 项目功能
+  1. 提供 dubbo 接口定义
+  2. service 和 web 共用的相关 POJO
 
 ### 分层领域模型规约
   - DO（Data Object）：与数据库表结构一一对应，通过DAO层向上传输数据源对象。
@@ -16,7 +12,7 @@
   - VO（View Object）：显示层对象，通常是Web向模板渲染引擎层传输的对象。
   - Query：数据查询对象，各层接收上层的查询请求。注意超过2个参数的查询封装，禁止使用Map类来传输。
 
-### 命名规约参考：
+### 命名规约
 #### A) Service/DAO层方法命名规约
         1） 获取单个对象的方法用get作前缀。
         2） 获取多个对象的方法用list作前缀。
@@ -30,3 +26,6 @@
         3） POJO是DO/DTO/BO/VO的统称，禁止命名成xxxPOJO。
 
 ### 详细规则参考：[https://github.com/alibaba/p3c](https://github.com/alibaba/p3c "《阿里巴巴Java开发手册》")
+
+
+<font color=gray size=4>*说明：POJO（Plain Ordinary Java Object），专指只有setter / getter / toString的简单类，包括DO/DTO/BO/VO等*</font>
