@@ -1,6 +1,7 @@
 package com.nice.sboot.demo.service;
 
 import com.github.pagehelper.PageInfo;
+import com.mongodb.client.result.UpdateResult;
 import com.nice.sboot.demo.comm.MoneyReadConverter;
 import com.nice.sboot.demo.entity.Coffee;
 import com.nice.sboot.demo.mapper.CoffeeMapper;
@@ -15,6 +16,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -46,23 +48,19 @@ public class DemoService {
 	}
 
 	@Bean
-	public MongoCustomConversions mongoCustomConversions(){
+	public MongoCustomConversions mongoCustomConversions() {
 		return new MongoCustomConversions(Arrays.asList(new MoneyReadConverter()));
 	}
 
 	public void testMongo() {
-		CoffeeBO espresso = CoffeeBO.newBuilder()
-				.name("espresso")
-				.price(Money.of(CurrencyUnit.of("CNY"), 20.0))
-				.createTime(new Date())
-				.updateTime(new Date()).build();
+		CoffeeBO espresso = CoffeeBO.newBuilder().name("espresso").price(Money.of(CurrencyUnit.of("CNY"), 20.0))
+				.createTime(new Date()).updateTime(new Date()).build();
 		CoffeeBO saved = mongoTemplate.save(espresso);
-		LOG.info("Coffee {}", saved);
+		LOG.info("CoffeeBO {}", saved);
 
-		List<CoffeeBO> list = mongoTemplate.find(
-				Query.query(Criteria.where("name").is("espresso")), CoffeeBO.class);
-		LOG.info("Find {} Coffee", list.size());
-		list.forEach(c -> LOG.info("Coffee {}", c));
+		List<CoffeeBO> list = mongoTemplate.find(Query.query(Criteria.where("name").is("espresso")), CoffeeBO.class);
+		LOG.info("Find {} CoffeeBO", list.size());
+		list.forEach(c -> LOG.info("CoffeeBO {}", c));
 
 		try {
 			// 为了看更新时间
@@ -70,11 +68,10 @@ public class DemoService {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		//		UpdateResult result = mongoTemplate.updateFirst(query(where("name").is("espresso")),
-//				new Update().set("price", Money.ofMajor(CurrencyUnit.of("CNY"), 30))
-//						.currentDate("updateTime"),
-//				Coffee.class);
-//		LOG.info("Update Result: {}", result.getModifiedCount());
+		UpdateResult result = mongoTemplate.updateFirst(Query.query(Criteria.where("name").is("espresso")),
+				new Update().set("price", Money.ofMajor(CurrencyUnit.of("CNY"), 30)).currentDate("updateTime"),
+				CoffeeBO.class);
+		LOG.info("Update Result: {}", result.getModifiedCount());
 		CoffeeBO updateOne = mongoTemplate.findById(saved.getId(), CoffeeBO.class);
 		LOG.info("Update Result: {}", updateOne);
 
