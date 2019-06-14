@@ -18,4 +18,9 @@ public class DemoServiceTest extends BaseTest {
 	public void findAllWithParam() {
 		demoService.findAllWithParam();
 	}
+
+	@Test
+	public void testMongo() {
+		demoService.testMongo();
+	}
 }

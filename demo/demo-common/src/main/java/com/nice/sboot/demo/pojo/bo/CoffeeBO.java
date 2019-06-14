@@ -108,28 +108,28 @@ public class CoffeeBO implements Serializable {
 		private Builder() {
 		}
 
-		public Builder id(String val) {
-			id = val;
+		public Builder id(String id) {
+			this.id = id;
 			return this;
 		}
 
-		public Builder name(String val) {
-			name = val;
+		public Builder name(String name) {
+			this.name = name;
 			return this;
 		}
 
-		public Builder price(Money val) {
-			price = val;
+		public Builder price(Money price) {
+			this.price = price;
 			return this;
 		}
 
-		public Builder createTime(Date val) {
-			createTime = val;
+		public Builder createTime(Date createTime) {
+			this.createTime = createTime;
 			return this;
 		}
 
-		public Builder updateTime(Date val) {
-			updateTime = val;
+		public Builder updateTime(Date updateTime) {
+			this.updateTime = updateTime;
 			return this;
 		}
 

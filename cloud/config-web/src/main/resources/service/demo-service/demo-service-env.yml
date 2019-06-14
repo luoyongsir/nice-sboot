@@ -35,3 +35,6 @@ spring:
           log-slow-sql: true
           slow-sql-millis: 2000
 
+  data:
+    mongodb:
+      uri: mongodb://testdb:123456a@localhost:27017/testdb
