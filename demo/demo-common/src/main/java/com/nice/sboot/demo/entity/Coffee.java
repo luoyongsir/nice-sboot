@@ -1,9 +1,14 @@
 package com.nice.sboot.demo.entity;
 
-import java.io.Serializable;
-import java.util.Date;
 import org.joda.money.Money;
 
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * @author luoyong
+ * @date 2019/6/14 10:49
+ */
 public class Coffee implements Serializable {
     private Long id;
 
