@@ -26,6 +26,7 @@
         <nice-config.version>0.0.1-${repo}</nice-config.version>
 
 
+        <nice-base.version>0.0.1</nice-base.version>
         <code-msg-task.version>0.0.1</code-msg-task.version>
 
         <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
@@ -44,6 +45,12 @@
                 <groupId>com.nice.sboot</groupId>
                 <artifactId>demo-common</artifactId>
                 <version>${cur.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.nice.sboot</groupId>
+                <artifactId>sboot-base</artifactId>
+                <version>${nice-base.version}</version>
             </dependency>
 
             <!-- 项目包 end -->
@@ -140,6 +147,12 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
                 <scope>${scope.type}</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>27.1-jre</version>
             </dependency>
 
             <!--<dependency>-->
