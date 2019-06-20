@@ -89,17 +89,31 @@ public final class HttpUtil {
 				.register("https", SSLConnectionSocketFactory.getSocketFactory()).build();
 	}
 
-	/** Create global request configuration */
+	/** Create global default request configuration */
 	private static RequestConfig defaultRequestConfig = RequestConfig.custom().setCookieSpec(CookieSpecs.DEFAULT)
-			.setExpectContinueEnabled(true)
 			.setTargetPreferredAuthSchemes(Arrays.asList(AuthSchemes.NTLM, AuthSchemes.DIGEST))
-			.setProxyPreferredAuthSchemes(Arrays.asList(AuthSchemes.BASIC))
-			// 传输超时时间
-			.setSocketTimeout(10000)
-			// 连接超时时间
-			.setConnectTimeout(10000)
-			// 连接请求超时
-			.setConnectionRequestTimeout(10000).build();
+			.setProxyPreferredAuthSchemes(Arrays.asList(AuthSchemes.BASIC)).setExpectContinueEnabled(true)
+			.setConnectionRequestTimeout(30000).setConnectTimeout(30000).setSocketTimeout(30000).build();
+
+	/**
+	 * 超时设置（单位毫秒）默认30秒
+	 * @param connectionRequestTimeout 连接请求超时
+	 * @param connectTimeout 连接超时时间
+	 * @param socketTimeout 传输超时时间
+	 */
+	public static void initConfig(Integer connectionRequestTimeout, Integer connectTimeout, Integer socketTimeout) {
+		RequestConfig.Builder builder = RequestConfig.copy(defaultRequestConfig);
+		if (connectionRequestTimeout != null) {
+			builder.setConnectionRequestTimeout(connectionRequestTimeout);
+		}
+		if (connectTimeout != null) {
+			builder.setConnectTimeout(connectTimeout);
+		}
+		if (socketTimeout != null) {
+			builder.setSocketTimeout(socketTimeout);
+		}
+		HttpUtil.defaultRequestConfig = builder.build();
+	}
 
 	public static CloseableHttpClient getHttpClient() {
 		return HttpClients.custom().setConnectionManager(connManager).setConnectionManagerShared(true)
