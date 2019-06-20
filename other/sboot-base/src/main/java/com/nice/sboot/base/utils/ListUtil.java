@@ -2,9 +2,9 @@ package com.nice.sboot.base.utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
+ * see com.google.common.collect.Lists
  * @author luoyong
  * @date 2019/6/19 18:34
  */
@@ -27,14 +27,14 @@ public final class ListUtil {
 	/**
 	 * 根据等号左边的类型, 构造类型正确的ArrayList.
 	 */
-	public static <E> List<E> newArrayList() {
+	public static <E> ArrayList<E> newArrayList() {
 		return new ArrayList<>();
 	}
 
 	/**
 	 * 根据等号左边的类型和预期的size, 构造类型正确的ArrayList.
 	 */
-	public static <E> List<E> newArrayList(int initialCapacity) {
+	public static <E> ArrayList<E> newArrayList(int initialCapacity) {
 		return new ArrayList<>(initialCapacity);
 	}
 
