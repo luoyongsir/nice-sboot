@@ -1,4 +1,4 @@
-package com.nice.sboot.base.utils;
+package com.nice.sboot.base.utils.concurrent;
 
 import com.nice.sboot.base.comm.Const;
 import com.nice.sboot.base.utils.text.StringBud;

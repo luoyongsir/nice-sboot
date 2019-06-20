@@ -1,7 +1,8 @@
-package com.nice.sboot.base.utils;
+package com.nice.sboot.base.utils.net;
 
 import com.nice.sboot.base.comm.Const;
 import com.nice.sboot.base.comm.MediaTypes;
+import com.nice.sboot.base.utils.collect.MapUtil;
 import com.nice.sboot.base.utils.text.Charsets;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;

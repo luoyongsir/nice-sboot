@@ -1,4 +1,4 @@
-package com.nice.sboot.base.utils;
+package com.nice.sboot.base.utils.io;
 
 import com.nice.sboot.base.exception.RunException;
 import com.nice.sboot.base.utils.text.Charsets;

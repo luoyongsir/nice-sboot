@@ -1,5 +1,5 @@
 
-package com.nice.sboot.base.utils;
+package com.nice.sboot.base.utils.num;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;

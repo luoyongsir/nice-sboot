@@ -1,7 +1,7 @@
-package com.nice.sboot.base.utils;
+package com.nice.sboot.base.utils.collect;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * see com.google.common.collect.Lists
@@ -13,15 +13,15 @@ public final class ListUtil {
 	/**
 	 * 判断是否为空.
 	 */
-	public static boolean isEmpty(Collection<?> collection) {
-		return (collection == null) || collection.isEmpty();
+	public static boolean isEmpty(List<?> list) {
+		return (list == null) || list.isEmpty();
 	}
 
 	/**
 	 * 判断是否不为空.
 	 */
-	public static boolean isNotEmpty(Collection<?> collection) {
-		return !isEmpty(collection);
+	public static boolean isNotEmpty(List<?> list) {
+		return !isEmpty(list);
 	}
 
 	/**

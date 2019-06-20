@@ -1,4 +1,4 @@
-package com.nice.sboot.base.utils;
+package com.nice.sboot.base.utils.time;
 
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.lang3.time.FastDateFormat;

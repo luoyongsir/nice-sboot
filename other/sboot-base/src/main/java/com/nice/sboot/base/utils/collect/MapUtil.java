@@ -1,4 +1,4 @@
-package com.nice.sboot.base.utils;
+package com.nice.sboot.base.utils.collect;
 
 import com.google.common.primitives.Ints;
 

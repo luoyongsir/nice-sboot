@@ -2,7 +2,7 @@ package com.nice.sboot.base.utils.security;
 
 import com.nice.sboot.base.exception.RunException;
 import com.nice.sboot.base.utils.text.Charsets;
-import com.nice.sboot.base.utils.RandomUtil;
+import com.nice.sboot.base.utils.num.RandomUtil;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
