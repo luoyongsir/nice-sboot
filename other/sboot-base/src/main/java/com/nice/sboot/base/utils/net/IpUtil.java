@@ -18,58 +18,59 @@ import java.util.Enumeration;
  */
 public final class IpUtil {
 
-    private static String hostAddress;
-    static {
-        init();
-    }
+	private static String hostAddress;
 
-    /**
-     * int ip 还原成字符串
-     * 
-     * @param ip
-     * @return
-     */
-    public static String toString(final int ip) {
-        final StringBuilder buf = StringBud.current();
-        int tmp;
+	static {
+		init();
+	}
 
-        tmp = (ip >> 24) & 0x000000FF;
-        buf.append(tmp);
-        buf.append(Const.DOT);
+	/**
+	 * int ip 还原成字符串
+	 *
+	 * @param ip
+	 * @return
+	 */
+	public static String toString(final int ip) {
+		final StringBuilder buf = StringBud.current();
+		int tmp;
 
-        tmp = (ip >> 16) & 0x000000FF;
-        buf.append(tmp);
-        buf.append(Const.DOT);
+		tmp = (ip >> 24) & 0x000000FF;
+		buf.append(tmp);
+		buf.append(Const.DOT);
 
-        tmp = (ip >> 8) & 0x000000FF;
-        buf.append(tmp);
-        buf.append(Const.DOT);
+		tmp = (ip >> 16) & 0x000000FF;
+		buf.append(tmp);
+		buf.append(Const.DOT);
 
-        tmp = ip & 0x000000FF;
-        buf.append(tmp);
+		tmp = (ip >> 8) & 0x000000FF;
+		buf.append(tmp);
+		buf.append(Const.DOT);
 
-        return buf.toString();
-    }
+		tmp = ip & 0x000000FF;
+		buf.append(tmp);
 
-    /**
-     * ip字符串转成int
-     * 
-     * @param ip
-     *            字符串ip
-     * @return
-     */
-    public static int parseInt(final String ip) {
-        int result = 0;
-        if (ip == null) {
-            return result;
-        }
+		return buf.toString();
+	}
 
-        // ip地址长度
-        int len = ip.length();
-        // 临时存储数字
-        int num = 0;
-        // 点号间256进制
-        int offset = 24;
+	/**
+	 * ip字符串转成int
+	 *
+	 * @param ip
+	 *            字符串ip
+	 * @return
+	 */
+	public static int parseInt(final String ip) {
+		int result = 0;
+		if (ip == null) {
+			return result;
+		}
+
+		// ip地址长度
+		int len = ip.length();
+		// 临时存储数字
+		int num = 0;
+		// 点号间256进制
+		int offset = 24;
 		for (int i = 0; i < len; i++) {
 			char c = ip.charAt(i);
 			if (c == '.') {
@@ -90,46 +91,46 @@ public final class IpUtil {
 			}
 		}
 
-        // ip必须包含3个"." 并且ip的最后位必须大于等于0小于256
-        if (offset == 0 && num > -1 && num < 256) {
-            result += num;
-        } else {
-            throw new RunException("ip地址格式错误！");
-        }
+		// ip必须包含3个"." 并且ip的最后位必须大于等于0小于256
+		if (offset == 0 && num > -1 && num < 256) {
+			result += num;
+		} else {
+			throw new RunException("ip地址格式错误！");
+		}
 
-        return result;
-    }
+		return result;
+	}
 
-    /**
-     * 获取本地ip地址
-     * 
-     * @return
-     */
-    public static String getHostAddress() {
-        return hostAddress;
-    }
+	/**
+	 * 获取本地ip地址
+	 *
+	 * @return
+	 */
+	public static String getHostAddress() {
+		return hostAddress;
+	}
 
-    private static void init() {
-        String osName = System.getProperty("os.name");
-        if (osName != null && osName.contains("Windows")) {
-            IpUtil.hostAddress = getIpForWindows();
-        } else {
-            IpUtil.hostAddress = getIpForLinux();
-        }
-    }
+	private static void init() {
+		String osName = System.getProperty("os.name");
+		if (osName != null && osName.contains("Windows")) {
+			IpUtil.hostAddress = getIpForWindows();
+		} else {
+			IpUtil.hostAddress = getIpForLinux();
+		}
+	}
 
-    /**
-     * Windows系统获取本机ip
-     * 
-     * @return
-     */
-    private static String getIpForWindows() {
-        try {
-            return InetAddress.getLocalHost().getHostAddress();
-        } catch (Exception e) {
-            throw new RunException("getIpForWindows:", e);
-        }
-    }
+	/**
+	 * Windows系统获取本机ip
+	 *
+	 * @return
+	 */
+	private static String getIpForWindows() {
+		try {
+			return InetAddress.getLocalHost().getHostAddress();
+		} catch (Exception e) {
+			throw new RunException("getIpForWindows:", e);
+		}
+	}
 
 	// @formatter:off
     /**
@@ -195,44 +196,45 @@ public final class IpUtil {
             "X-Cluster-Client-IP", "X-Forwarded", "Forwarded-For", "Forwarded" };
 	// @formatter:on
 
-    /**
-     * 从request对象中获取用户IP地址
-     * 
-     * @param request
-     * @return IP地址
-     */
-    public static String getRequestIp(final HttpServletRequest request) {
-        String ips = null;
-        for (int i = 0; i < HEADERS.length; i++) {
-            if (i != 4) {
-                ips = request.getHeader(HEADERS[i]);
-            } else {
-                ips = request.getRemoteAddr();
-            }
-            if (!isEmpty(ips)) {
-                break;
-            }
-        }
-        if (ips != null) {
-            String[] arr = ips.split(Const.COMMA);
-            for (String s : arr) {
-                if (!isEmpty(s)) {
-                    return s;
-                }
-            }
-        }
-        return ips;
-    }
+	/**
+	 * 从request对象中获取用户IP地址
+	 *
+	 * @param request
+	 * @return IP地址
+	 */
+	public static String getRequestIp(final HttpServletRequest request) {
+		String ips = null;
+		for (int i = 0; i < HEADERS.length; i++) {
+			if (i != 4) {
+				ips = request.getHeader(HEADERS[i]);
+			} else {
+				ips = request.getRemoteAddr();
+			}
+			if (!isEmpty(ips)) {
+				break;
+			}
+		}
+		if (ips != null) {
+			String[] arr = ips.split(Const.COMMA);
+			for (String s : arr) {
+				if (!isEmpty(s)) {
+					return s;
+				}
+			}
+		}
+		return ips;
+	}
 
-    /**
-     * 判断ip是否为空
-     * 
-     * @param ip
-     * @return
-     */
-    private static boolean isEmpty(String ip) {
-        return ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip);
-    }
+	/**
+	 * 判断ip是否为空
+	 *
+	 * @param ip
+	 * @return
+	 */
+	private static boolean isEmpty(String ip) {
+		return ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip);
+	}
 
-    private IpUtil() {}
+	private IpUtil() {
+	}
 }

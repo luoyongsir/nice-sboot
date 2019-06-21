@@ -10,9 +10,6 @@ import java.net.URLEncoder;
  */
 public final class UrlUtil {
 
-	private UrlUtil() {
-	}
-
 	/**
 	 * 默认 UTF-8编码
 	 * @param s
@@ -37,5 +34,8 @@ public final class UrlUtil {
 		} catch (UnsupportedEncodingException e) {
 			return s;
 		}
+	}
+
+	private UrlUtil() {
 	}
 }

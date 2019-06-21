@@ -145,4 +145,7 @@ public final class FileUtil {
 	private static Path getPath(String filePath) {
 		return Paths.get(filePath);
 	}
+
+	private FileUtil() {
+	}
 }

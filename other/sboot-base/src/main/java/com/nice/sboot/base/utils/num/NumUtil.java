@@ -14,9 +14,6 @@ import java.util.Locale;
  */
 public final class NumUtil {
 
-	private NumUtil() {
-	}
-
 	/**
 	 * Entry points of {@link NumUtil} <br/>
 	 * <br/>
@@ -168,5 +165,8 @@ public final class NumUtil {
 		} catch (Exception e) {
 			return 0;
 		}
+	}
+
+	private NumUtil() {
 	}
 }
