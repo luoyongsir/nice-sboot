@@ -3,7 +3,7 @@ package com.nice.sboot.result;
 import java.io.Serializable;
 
 /**
- * 支付返回结果
+ * 返回结果
  * @author luoyong
  * @date 2019/6/4 20:52
  * @param <T>
