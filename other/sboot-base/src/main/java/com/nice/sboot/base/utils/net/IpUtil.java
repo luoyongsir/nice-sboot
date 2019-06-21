@@ -131,6 +131,7 @@ public final class IpUtil {
         }
     }
 
+	// @formatter:off
     /**
      * Linux系统获取本机ip
      * 
@@ -178,19 +179,21 @@ public final class IpUtil {
         }
     }
 
-    // X-Client-IP
-    // X-Forwarded-For header may return multiple IP addresses in the format:
-    // "client IP, proxy 1 IP, proxy 2 IP", so we take the the first one.
-    // X-Real-IP (nginx proxy/FastCGI)
-    // X-Cluster-Client-IP (Rackspace LB, Riverbed Stingray)
-    // Permuations of #2 such as: X-Forwarded, Forwarded-For and Forwarded
-    // req.connection.remoteAddress
-    // req.socket.remoteAddress
-    // req.connection.socket.remoteAddress
-    // req.info.remoteAddress
-
+	/**
+	 * X-Client-IP
+	 * X-Forwarded-For header may return multiple IP addresses in the format:
+	 * "client IP, proxy 1 IP, proxy 2 IP", so we take the the first one.
+	 * X-Real-IP (nginx proxy/FastCGI)
+	 * X-Cluster-Client-IP (Rackspace LB, Riverbed Stingray)
+	 * Permuations of #2 such as: X-Forwarded, Forwarded-For and Forwarded
+	 * req.connection.remoteAddress
+	 * req.socket.remoteAddress
+	 * req.connection.socket.remoteAddress
+	 * req.info.remoteAddress
+	 */
     private static final String[] HEADERS = { "X-Forwarded-For", "Proxy-Client-IP", "WL-Proxy-Client-IP", "X-Real-IP", "", "X-Client-IP",
             "X-Cluster-Client-IP", "X-Forwarded", "Forwarded-For", "Forwarded" };
+	// @formatter:on
 
     /**
      * 从request对象中获取用户IP地址

@@ -22,7 +22,6 @@ public final class CollectionUtil {
 		return !isEmpty(collection);
 	}
 
-
 	private CollectionUtil() {
 	}
 }
