@@ -4,6 +4,7 @@
 
 <generatorConfiguration>
     <context id="H2Tables" targetRuntime="MyBatis3">
+        <property name="javaFileEncoding" value="UTF-8"/>
         <!-- 自定义xml格式 -->
         <property name="xmlFormatter" value="com.mybatis.generator.api.dom.DefXmlFormatter" />
 
@@ -13,10 +14,14 @@
         <plugin type="com.mybatis.generator.plugins.DefSerializablePlugin" />
         <!--<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />-->
 
-        <!-- 自定义实体类注释 -->
-        <commentGenerator type="com.mybatis.generator.internal.DefCommentGenerator">
+        <plugin type="com.mybatis.generator.plugins.DefCommentPlugin" >
+            <property name="author" value="luoyong" />
+            <property name="dateFormat" value="yyyy/MM/dd HH:mm" />
+        </plugin>
+
+        <commentGenerator type="org.mybatis.generator.internal.DefaultCommentGenerator">
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="true"/>
+            <property name="suppressAllComments" value="true" />
         </commentGenerator>
 
         <jdbcConnection driverClass="org.h2.Driver" connectionURL="jdbc:h2:~/testdb;AUTO_SERVER=TRUE"

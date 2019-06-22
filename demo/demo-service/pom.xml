@@ -189,7 +189,7 @@
                     <dependency>
                         <groupId>com.mybatis.generator</groupId>
                         <artifactId>mybatis-generator-ext</artifactId>
-                        <version>1.0.0-RELEASE</version>
+                        <version>1.0.1-RELEASE</version>
                     </dependency>
                 </dependencies>
             </plugin>

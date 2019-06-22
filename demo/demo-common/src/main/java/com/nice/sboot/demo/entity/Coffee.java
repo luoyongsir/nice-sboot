@@ -6,8 +6,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * This class corresponds to the database table T_COFFEE
  * @author luoyong
- * @date 2019/6/14 10:49
+ * @date 2019/06/22 17:40
  */
 public class Coffee implements Serializable {
     private Long id;
@@ -22,7 +23,7 @@ public class Coffee implements Serializable {
 
     private Date updateTime;
 
-    private static final long serialVersionUID = -511033618087422784L;
+    private static final long serialVersionUID = -717111033660533872L;
 
     public Long getId() {
         return id;
