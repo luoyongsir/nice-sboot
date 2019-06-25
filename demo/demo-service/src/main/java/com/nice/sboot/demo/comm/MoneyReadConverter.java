@@ -7,7 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 
 /**
  * Money 对象转换
- * @author luoyong-014
+ * @author luoyong
  * @date 2019/6/13 11:22
  */
 public class MoneyReadConverter implements Converter<Document, Money> {

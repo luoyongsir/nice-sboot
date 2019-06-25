@@ -3,7 +3,7 @@ package com.nice.sboot.base.utils.collect;
 import com.google.common.collect.ObjectArrays;
 
 /**
- * @author luoyong-014
+ * @author luoyong
  * @date 2019/6/20 11:12
  */
 public final class ArrayUtil {

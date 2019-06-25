@@ -2,7 +2,7 @@ package com.nice.sboot.demo.web.comm;
 
 /**
  * 缓存key常量
- * @author luoyong-014
+ * @author luoyong
  * @date 2019/6/25 15:08
  */
 public final class CacheConst {
