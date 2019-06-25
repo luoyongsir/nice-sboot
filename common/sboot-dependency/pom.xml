@@ -27,7 +27,9 @@
 
 
         <nice-base.version>0.0.1</nice-base.version>
+        <code-msg.version>0.0.1</code-msg.version>
         <code-msg-task.version>0.0.1</code-msg-task.version>
+        <swagger-module.version>0.0.1</swagger-module.version>
 
         <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
@@ -51,6 +53,19 @@
                 <groupId>com.nice.sboot</groupId>
                 <artifactId>sboot-base</artifactId>
                 <version>${nice-base.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.nice.sboot</groupId>
+                <artifactId>sboot-code-msg</artifactId>
+                <version>${code-msg.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.nice.sboot</groupId>
+                <artifactId>swagger-module</artifactId>
+                <version>${swagger-module.version}</version>
+                <scope>${scope.type}</scope>
             </dependency>
 
             <!-- 项目包 end -->
