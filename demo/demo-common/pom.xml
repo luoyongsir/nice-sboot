@@ -10,6 +10,12 @@
     <version>${cur.version}</version>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.nice.sboot</groupId>
+            <artifactId>sboot-code-msg</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.joda</groupId>
             <artifactId>joda-money</artifactId>
