@@ -1,0 +1,14 @@
+
+spring:
+  profiles: env
+  dubbo:
+    registry:
+      address: zookeeper://localhost:2181
+
+swagger:
+  api:
+    title: 接口文档-demo
+    description: demo接口文档，包括PC,H5,APP相关的接口
+    base-package: com.nice.sboot
+  mapping:
+    path: /

@@ -1,6 +1,4 @@
 
-# 所有web项目公用配置
-
 spring:
   profiles: pro
   dubbo:
