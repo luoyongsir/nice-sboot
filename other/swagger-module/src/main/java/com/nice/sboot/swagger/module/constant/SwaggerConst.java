@@ -7,5 +7,5 @@ package com.nice.sboot.swagger.module.constant;
  */
 public class SwaggerConst {
 
-	public static final String AUTHOR_luoyong = " @author: 罗勇";
+	public static final String AUTHOR_LUOYONG = " @author: 罗勇";
 }

@@ -55,7 +55,7 @@ public class SwaggerConfig {
 	private String title;
 	@Value("${swagger.api.description:}")
 	private String description;
-	@Value("${swagger.api.base-package:com.ybf}")
+	@Value("${swagger.api.base-package:com.nice}")
 	private String basePackage;
 	@Value("${swagger.mapping.path:/}")
 	private String mappingPath;
