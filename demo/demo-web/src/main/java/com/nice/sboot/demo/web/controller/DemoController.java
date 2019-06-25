@@ -28,8 +28,9 @@ public class DemoController {
 
 	@GetMapping("/test")
 	@ApiOperation(value = "测试接口" + SwaggerConst.AUTHOR_LUOYONG, notes = "测试接口notes")
-	@ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "pageNum", value = "页码数，从1开始", dataType = "int"),
-			@ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页数量", dataType = "int")})
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "query", name = "pageNum", value = "页码数，从1开始", dataType = "int", example = "1"),
+			@ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页数量", dataType = "int", example = "10")})
 	public Result test(@RequestParam(name = "pageNum", required = false) Integer pageNum,
 			@RequestParam(name = "pageSize", required = false) Integer pageSize) {
 		return demoConsumer.test(pageNum, pageSize);
