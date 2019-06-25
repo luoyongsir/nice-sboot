@@ -7,7 +7,7 @@
         <version>0.0.1</version>
     </parent>
     <artifactId>sboot-code-msg</artifactId>
-    <version>${cur.version}</version>
+    <version>${code-msg.version}</version>
 
     <build>
 
