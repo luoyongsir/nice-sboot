@@ -5,6 +5,19 @@ spring:
     registry:
       address: zookeeper://localhost:2181
 
+  redis:
+    password: pwd
+    timeout: 3000
+    cluster:
+      max-redirects: 3
+      nodes: 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005,127.0.0.1:7006
+    lettuce:
+      pool:
+        min-idle: 2
+        max-idle: 8
+        max-active: 32
+        max-wait: 600000ms
+
 swagger:
   api:
     title: 接口文档-demo

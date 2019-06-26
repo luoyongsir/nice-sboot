@@ -53,6 +53,11 @@
             <artifactId>swagger-module</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.nice.sboot</groupId>
+            <artifactId>sboot-redis</artifactId>
+        </dependency>
+
     </dependencies>
 
     <profiles>
