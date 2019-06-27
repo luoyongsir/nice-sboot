@@ -1,7 +1,9 @@
 package com.nice.sboot.demo.web.consumers;
 
+import com.nice.sboot.demo.pojo.bo.PageParamBO;
+import com.nice.sboot.demo.provider.DemoProvider;
 import com.nice.sboot.result.Result;
-import com.nice.sboot.result.ResultUtil;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +13,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class DemoConsumer {
 
+	@Reference
+	private DemoProvider demoProvider;
+
 	/**
 	 * 测试
 	 * @param pageNum
@@ -18,7 +23,7 @@ public class DemoConsumer {
 	 * @return
 	 */
 	public Result test(Integer pageNum, Integer pageSize) {
-		return ResultUtil.ok("请求pageNum是" + pageNum + " ，请求pageSize是" + pageSize);
+		return demoProvider.findAllWithParam(new PageParamBO(pageNum, pageSize));
 	}
 
 }

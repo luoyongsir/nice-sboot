@@ -1,5 +1,6 @@
 package com.nice.sboot.demo.service.demo;
 
+import com.nice.sboot.demo.pojo.bo.PageParamBO;
 import com.nice.sboot.demo.service.BaseTest;
 import com.nice.sboot.demo.service.DemoService;
 import org.junit.Test;
@@ -16,7 +17,8 @@ public class DemoServiceTest extends BaseTest {
 
 	@Test
 	public void findAllWithParam() {
-		demoService.findAllWithParam();
+		PageParamBO bo = new PageParamBO(1, 3);
+		demoService.findAllWithParam(bo);
 	}
 
 	@Test

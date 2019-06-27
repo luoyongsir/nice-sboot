@@ -2,10 +2,14 @@ package com.nice.sboot.demo.service;
 
 import com.github.pagehelper.PageInfo;
 import com.mongodb.client.result.UpdateResult;
+import com.nice.sboot.base.utils.concurrent.ThreadUtil;
 import com.nice.sboot.demo.comm.MoneyReadConverter;
 import com.nice.sboot.demo.entity.Coffee;
 import com.nice.sboot.demo.mapper.CoffeeMapper;
 import com.nice.sboot.demo.pojo.bo.CoffeeBO;
+import com.nice.sboot.demo.pojo.bo.PageParamBO;
+import com.nice.sboot.result.Result;
+import com.nice.sboot.result.ResultUtil;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 import org.slf4j.Logger;
@@ -38,13 +42,14 @@ public class DemoService {
 	@Autowired
 	private MongoTemplate mongoTemplate;
 
-	public void findAllWithParam() {
-		List<Coffee> list = coffeeMapper.findAllWithParam(1, 3);
+	public Result findAllWithParam(PageParamBO param) {
+		List<Coffee> list = coffeeMapper.findAllWithParam(param.getPageNum(), param.getPageSize());
 		list.forEach(c -> LOG.info("Page(1) Coffee {}", c));
 
-		list = coffeeMapper.findAllWithParam(2, 3);
+		list = coffeeMapper.findAllWithParam(param.getPageNum(), param.getPageSize());
 		PageInfo page = new PageInfo(list);
 		LOG.info("PageInfo: {}", page);
+		return ResultUtil.ok(page);
 	}
 
 	@Bean
@@ -62,12 +67,9 @@ public class DemoService {
 		LOG.info("Find {} CoffeeBO", list.size());
 		list.forEach(c -> LOG.info("CoffeeBO {}", c));
 
-		try {
-			// 为了看更新时间
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		// 为了看更新时间
+		ThreadUtil.sleep(1000L);
+
 		UpdateResult result = mongoTemplate.updateFirst(Query.query(Criteria.where("name").is("espresso")),
 				new Update().set("price", Money.ofMajor(CurrencyUnit.of("CNY"), 30)).currentDate("updateTime"),
 				CoffeeBO.class);
