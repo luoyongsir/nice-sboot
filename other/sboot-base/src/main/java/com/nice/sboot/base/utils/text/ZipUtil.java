@@ -16,20 +16,20 @@ import java.util.zip.GZIPOutputStream;
 public final class ZipUtil {
 
 	/**
-	 * 压缩GZip
+	 * 压缩Gzip
 	 *
 	 * @return
 	 */
-	public static String gZip(final String input) {
-		return EncodeUtil.encodeBase64(gZipBytes(input));
+	public static String gzip(final String input) {
+		return EncodeUtil.encodeBase64(gzipBytes(input));
 	}
 
 	/**
-	 * 压缩GZip
+	 * 压缩Gzip
 	 *
 	 * @return
 	 */
-	public static byte[] gZipBytes(final String input) {
+	public static byte[] gzipBytes(final String input) {
 		try (ByteArrayOutputStream bos = new ByteArrayOutputStream(); GZIPOutputStream gzip = new GZIPOutputStream(bos)) {
 			gzip.write(input.getBytes(Charsets.UTF_8));
 			gzip.finish();
@@ -40,20 +40,20 @@ public final class ZipUtil {
 	}
 
 	/**
-	 * 解压GZip
+	 * 解压Gzip
 	 * 
 	 * @return
 	 */
-	public static String unGZip(final String input) {
-		return unGZipBytes(EncodeUtil.decodeBase64(input));
+	public static String unGzip(final String input) {
+		return unGzipBytes(EncodeUtil.decodeBase64(input));
 	}
 
 	/**
-	 * 解压GZip
+	 * 解压Gzip
 	 *
 	 * @return
 	 */
-	public static String unGZipBytes(final byte[] inputBytes) {
+	public static String unGzipBytes(final byte[] inputBytes) {
 		try (ByteArrayInputStream bis = new ByteArrayInputStream(inputBytes);
 				GZIPInputStream gzip = new GZIPInputStream(bis);
 				ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
