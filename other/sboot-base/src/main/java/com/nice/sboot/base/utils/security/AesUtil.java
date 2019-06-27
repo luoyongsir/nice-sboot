@@ -134,7 +134,7 @@ public final class AesUtil {
 	/**
 	 * 生成随机向量,默认大小为cipher.getBlockSize(), 16字节.
 	 */
-	public static byte[] generateIV() {
+	public static byte[] generateIv() {
 		byte[] bytes = new byte[DEFAULT_IV_SIZE];
 		random.nextBytes(bytes);
 		return bytes;
