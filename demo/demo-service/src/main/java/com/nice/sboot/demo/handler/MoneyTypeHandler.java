@@ -12,10 +12,13 @@ import java.sql.SQLException;
 
 /**
  * 在 Money 与 Long 之间转换的 TypeHandler，处理 CNY 人民币
+ * @author luoyong
+ * @date 2019/6/12 17:05
  */
 public class MoneyTypeHandler extends BaseTypeHandler<Money> {
 	@Override
-	public void setNonNullParameter(PreparedStatement ps, int i, Money parameter, JdbcType jdbcType) throws SQLException {
+	public void setNonNullParameter(PreparedStatement ps, int i, Money parameter, JdbcType jdbcType)
+			throws SQLException {
 		ps.setLong(i, parameter.getAmountMinorLong());
 	}
 

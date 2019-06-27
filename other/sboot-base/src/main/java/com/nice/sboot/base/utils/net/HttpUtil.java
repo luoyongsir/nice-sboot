@@ -279,7 +279,7 @@ public final class HttpUtil {
 				InputStream is = response.getEntity().getContent();
 				FileOutputStream fos = new FileOutputStream(localFile)) {
 			int status = response.getStatusLine().getStatusCode();
-			if (status >= 200 && status < 300) {
+			if (status >= HttpStatus.SC_OK && status < HttpStatus.SC_MULTIPLE_CHOICES) {
 				byte[] bytes = new byte[4096];
 				int len;
 				while ((len = is.read(bytes)) != -1) {
