@@ -177,7 +177,8 @@ public final class RandomUtil {
 		Validate.isTrue(max >= min, "Start value must be smaller or equal to end value.");
 		Validate.isTrue(min >= 0, "Both range values must be non-negative.");
 
-		if (min == max) {
+		double diff = 1e-6f;
+		if (Math.abs(max - min) < diff) {
 			return min;
 		}
 		return min + ((max - min) * random.nextDouble());
