@@ -112,7 +112,8 @@ public final class IpUtil {
 
 	private static void init() {
 		String osName = System.getProperty("os.name");
-		if (osName != null && osName.contains("Windows")) {
+		String windows = "Windows";
+		if (osName != null && osName.contains(windows)) {
 			IpUtil.hostAddress = getIpForWindows();
 		} else {
 			IpUtil.hostAddress = getIpForLinux();

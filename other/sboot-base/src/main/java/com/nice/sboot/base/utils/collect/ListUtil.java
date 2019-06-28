@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * see com.google.common.collect.Lists
+ * @see com.google.common.collect.Lists
  * @author luoyong
  * @date 2019/6/19 18:34
  */
