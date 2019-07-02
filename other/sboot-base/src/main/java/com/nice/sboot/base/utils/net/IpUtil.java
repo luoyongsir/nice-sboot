@@ -57,7 +57,7 @@ public final class IpUtil {
 	 *
 	 * @param ip
 	 *            字符串ip
-	 * @return
+	 * @return ip切割后的byte数组，转成int
 	 */
 	public static int parseInt(final String ip) {
 		int result = 0;
