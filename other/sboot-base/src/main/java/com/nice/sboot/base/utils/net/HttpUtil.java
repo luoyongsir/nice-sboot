@@ -4,10 +4,7 @@ import com.nice.sboot.base.comm.Const;
 import com.nice.sboot.base.comm.MediaTypes;
 import com.nice.sboot.base.utils.collect.MapUtil;
 import com.nice.sboot.base.utils.text.Charsets;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHeaders;
-import org.apache.http.HttpStatus;
-import org.apache.http.NameValuePair;
+import org.apache.http.*;
 import org.apache.http.client.config.AuthSchemes;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
@@ -23,7 +20,11 @@ import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -216,10 +217,55 @@ public final class HttpUtil {
 	 *            MediaTypes.XML_UTF_8 / MediaTypes.JSON_UTF_8
 	 * @return
 	 */
-	public static String post(final String url, final String s, String contentType) {
+	public static String post(final String url, final String s, final String contentType) {
 		HttpPost httpPost = new HttpPost(url);
 		httpPost.addHeader(HttpHeaders.CONTENT_TYPE, contentType);
 		httpPost.setEntity(new StringEntity(s, Charsets.UTF_8));
+		return execute(httpPost);
+	}
+
+	/**
+	 * 上传文件
+	 *
+	 * @param url
+	 *            服务器地址
+	 * @param localPath
+	 *            本地文件路径
+	 * @return
+	 */
+	public static String postFile(final String url, final String localPath) {
+		HttpPost httpPost = new HttpPost(url);
+		FileBody file = new FileBody(new File(localPath));
+
+		HttpEntity reqEntity = MultipartEntityBuilder.create().addPart("file", file).build();
+		httpPost.setEntity(reqEntity);
+		return execute(httpPost);
+	}
+
+	/**
+	 * 上传文件
+	 *
+	 * @param url
+	 *            服务器地址
+	 * @param localPath
+	 *            本地文件路径
+	 * @param username
+	 *            用户名
+	 * @param pwd
+	 *            密码
+	 * @return
+	 */
+	public static String postFile(final String url, final String localPath, final String username, final String pwd) {
+		HttpPost httpPost = new HttpPost(url);
+		FileBody file = new FileBody(new File(localPath));
+
+		ContentType textContentType = ContentType.create(MediaTypes.TEXT_PLAIN, Consts.UTF_8);
+		StringBody nameBody = new StringBody(username, textContentType);
+		StringBody pwdBody = new StringBody(pwd, textContentType);
+
+		HttpEntity reqEntity = MultipartEntityBuilder.create().addPart("file", file).addPart("username", nameBody)
+				.addPart("password", pwdBody).build();
+		httpPost.setEntity(reqEntity);
 		return execute(httpPost);
 	}
 
