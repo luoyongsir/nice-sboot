@@ -35,6 +35,10 @@ public class PageParamBO implements Serializable {
 		this.pageSize = pageSize == null ? 10 : pageSize;
 	}
 
+	public static Builder newBuilder() {
+		return new Builder();
+	}
+
 	public Integer getPageNum() {
 		return pageNum;
 	}
@@ -75,5 +79,27 @@ public class PageParamBO implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(pageNum, pageSize);
+	}
+
+	public static final class Builder {
+		private Integer pageNum;
+		private Integer pageSize;
+
+		private Builder() {
+		}
+
+		public Builder pageNum(Integer pageNum) {
+			this.pageNum = pageNum;
+			return this;
+		}
+
+		public Builder pageSize(Integer pageSize) {
+			this.pageSize = pageSize;
+			return this;
+		}
+
+		public PageParamBO build() {
+			return new PageParamBO(this.pageNum, this.pageSize);
+		}
 	}
 }
