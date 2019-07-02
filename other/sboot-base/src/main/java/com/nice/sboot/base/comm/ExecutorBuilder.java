@@ -11,8 +11,8 @@ import java.util.concurrent.ThreadPoolExecutor.AbortPolicy;
  * 使用示例：
  *
  * <pre>
- * ExecutorService executorService = new FixedThreadPool().setPoolSize(10).build();
- * ExecutorService executorService = ExecutorBuilder.newFixedThreadPool().setPoolSize(10).build();
+ * ExecutorService executorService = new FixedThreadPool().poolSize(10).build();
+ * ExecutorService executorService = ExecutorBuilder.newFixedThreadPool().poolSize(10).build();
  * </pre>
  *
  * @author luoyong
@@ -58,29 +58,29 @@ public final class ExecutorBuilder {
 		private ThreadFactory threadFactory = null;
 		private RejectedExecutionHandler rejectHandler;
 
-		public FixedThreadPool setPoolSize(int poolSize) {
+		public FixedThreadPool poolSize(int poolSize) {
 			this.poolSize = poolSize;
 			return this;
 		}
 
-		public FixedThreadPool setQueueSize(int queueSize) {
+		public FixedThreadPool queueSize(int queueSize) {
 			this.queueSize = queueSize;
 			return this;
 		}
 
-		public FixedThreadPool setThreadFactory(ThreadFactory threadFactory) {
+		public FixedThreadPool threadFactory(ThreadFactory threadFactory) {
 			this.threadFactory = threadFactory;
 			return this;
 		}
 
-		public FixedThreadPool setRejectHanlder(RejectedExecutionHandler rejectHandler) {
+		public FixedThreadPool rejectHandler(RejectedExecutionHandler rejectHandler) {
 			this.rejectHandler = rejectHandler;
 			return this;
 		}
 
 		public ExecutorService build() {
 			if (poolSize < 1) {
-				throw new IllegalArgumentException("queue size not set");
+				throw new IllegalArgumentException("pool size not set");
 			}
 
 			BlockingQueue<Runnable> queue;
@@ -128,27 +128,27 @@ public final class ExecutorBuilder {
 		private ThreadFactory threadFactory = null;
 		private RejectedExecutionHandler rejectHandler;
 
-		public CachedThreadPool setMinSize(int minSize) {
+		public CachedThreadPool minSize(int minSize) {
 			this.minSize = minSize;
 			return this;
 		}
 
-		public CachedThreadPool setMaxSize(int maxSize) {
+		public CachedThreadPool maxSize(int maxSize) {
 			this.maxSize = maxSize;
 			return this;
 		}
 
-		public CachedThreadPool setKeepAliveSecs(int keepAliveSecs) {
+		public CachedThreadPool keepAliveSecs(int keepAliveSecs) {
 			this.keepAliveSecs = keepAliveSecs;
 			return this;
 		}
 
-		public CachedThreadPool setThreadFactory(ThreadFactory threadFactory) {
+		public CachedThreadPool threadFactory(ThreadFactory threadFactory) {
 			this.threadFactory = threadFactory;
 			return this;
 		}
 
-		public CachedThreadPool setRejectHanlder(RejectedExecutionHandler rejectHandler) {
+		public CachedThreadPool rejectHandler(RejectedExecutionHandler rejectHandler) {
 			this.rejectHandler = rejectHandler;
 			return this;
 		}
@@ -185,32 +185,32 @@ public final class ExecutorBuilder {
 		private ThreadFactory threadFactory = null;
 		private RejectedExecutionHandler rejectHandler;
 
-		public ConfigurableThreadPool setMinSize(int minSize) {
+		public ConfigurableThreadPool minSize(int minSize) {
 			this.minSize = minSize;
 			return this;
 		}
 
-		public ConfigurableThreadPool setMaxSize(int maxSize) {
+		public ConfigurableThreadPool maxSize(int maxSize) {
 			this.maxSize = maxSize;
 			return this;
 		}
 
-		public ConfigurableThreadPool setQueueSize(int queueSize) {
+		public ConfigurableThreadPool queueSize(int queueSize) {
 			this.queueSize = queueSize;
 			return this;
 		}
 
-		public ConfigurableThreadPool setKeepAliveSecs(int keepAliveSecs) {
+		public ConfigurableThreadPool keepAliveSecs(int keepAliveSecs) {
 			this.keepAliveSecs = keepAliveSecs;
 			return this;
 		}
 
-		public ConfigurableThreadPool setThreadFactory(ThreadFactory threadFactory) {
+		public ConfigurableThreadPool threadFactory(ThreadFactory threadFactory) {
 			this.threadFactory = threadFactory;
 			return this;
 		}
 
-		public ConfigurableThreadPool setRejectHanlder(RejectedExecutionHandler rejectHandler) {
+		public ConfigurableThreadPool rejectHandler(RejectedExecutionHandler rejectHandler) {
 			this.rejectHandler = rejectHandler;
 			return this;
 		}
