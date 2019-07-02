@@ -167,6 +167,31 @@ public final class NumUtil {
 		}
 	}
 
+	/**
+	 * 将int数值转换为占四个字节的byte数组，本方法适用于(高位在前，低位在后)的顺序
+	 *
+	 * @param num
+	 * @return
+	 */
+	public static byte[] intToByteArray(final int num) {
+		byte[] arr = new byte[4];
+		arr[0] = (byte) ((num >> 24) & 0xFF);
+		arr[1] = (byte) ((num >> 16) & 0xFF);
+		arr[2] = (byte) ((num >> 8) & 0xFF);
+		arr[3] = (byte) (num & 0xFF);
+		return arr;
+	}
+
+	/**
+	 * byte数组中取int数值，本方法适用于(高位在前，低位在后)的顺序
+	 *
+	 * @param arr
+	 * @return
+	 */
+	public static int byteArrayToInt(final byte[] arr) {
+		return ((arr[0] & 0xFF) << 24) | ((arr[1] & 0xFF) << 16) | ((arr[2] & 0xFF) << 8) | (arr[3] & 0xFF);
+	}
+
 	private NumUtil() {
 	}
 }
