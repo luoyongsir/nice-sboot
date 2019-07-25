@@ -15,4 +15,11 @@ public interface AuthProvider {
 	 * @return
 	 */
 	Result loadUserByUsername(String username);
+
+	/**
+	 * 根据客户端id，查询客户端详情
+	 * @param clientId
+	 * @return
+	 */
+	Result loadClientByClientId(String clientId);
 }

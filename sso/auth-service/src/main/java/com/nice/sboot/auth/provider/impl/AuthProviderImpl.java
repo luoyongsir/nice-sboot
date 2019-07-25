@@ -1,7 +1,8 @@
 package com.nice.sboot.auth.provider.impl;
 
 import com.nice.sboot.auth.provider.AuthProvider;
-import com.nice.sboot.auth.service.impl.UserDetailsServiceImpl;
+import com.nice.sboot.auth.service.OauthClientDetailsService;
+import com.nice.sboot.auth.service.UserService;
 import com.nice.sboot.result.Result;
 import com.nice.sboot.result.ResultUtil;
 import org.apache.dubbo.config.annotation.Service;
@@ -16,10 +17,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class AuthProviderImpl implements AuthProvider {
 
 	@Autowired
-	private UserDetailsServiceImpl userDetailsService;
+	private UserService userService;
+	@Autowired
+	private OauthClientDetailsService oauthClientDetailsService;
 
 	@Override
 	public Result loadUserByUsername(String username) {
-		return ResultUtil.ok(userDetailsService.loadUserByUsername(username));
+		return ResultUtil.ok(userService.loadUserByUsername(username));
+	}
+
+	@Override
+	public Result loadClientByClientId(String clientId) {
+		return ResultUtil.ok(oauthClientDetailsService.loadClientByClientId(clientId));
 	}
 }

@@ -1,6 +1,7 @@
 package com.nice.sboot.auth.service;
 
 import com.nice.sboot.auth.entity.SysUser;
+import com.nice.sboot.auth.pojo.bo.UserBO;
 
 /**
  * 用户服务
@@ -9,5 +10,17 @@ import com.nice.sboot.auth.entity.SysUser;
  */
 public interface UserService {
 
+	/**
+	 * 根据名称获取SysUser
+	 * @param username
+	 * @return
+	 */
 	SysUser getByUsername(String username);
+
+	/**
+	 * 根据名称获取UserBO
+	 * @param username
+	 * @return
+	 */
+	UserBO loadUserByUsername(String username);
 }

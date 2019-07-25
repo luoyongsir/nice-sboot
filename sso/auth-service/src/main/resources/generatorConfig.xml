@@ -51,25 +51,25 @@
         </javaClientGenerator>
 
         <!-- 要生成哪些表(更改tableName和domainObjectName就可以) -->
-        <table tableName="oauth_client_details" enableCountByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" enableUpdateByExample="fasle" selectByExampleQueryId="false">
-            <generatedKey column="ID" sqlStatement="JDBC"/>
-        </table>
+        <!--<table tableName="oauth_client_details" enableCountByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" enableUpdateByExample="fasle" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="ID" sqlStatement="JDBC"/>-->
+        <!--</table>-->
 
-        <table tableName="sys_user%" enableCountByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" enableUpdateByExample="fasle" selectByExampleQueryId="false">
-            <generatedKey column="ID" sqlStatement="JDBC"/>
-        </table>
+        <!--<table tableName="sys_user%" enableCountByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" enableUpdateByExample="fasle" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="ID" sqlStatement="JDBC"/>-->
+        <!--</table>-->
 
-        <table tableName="sys_role%" enableCountByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" enableUpdateByExample="fasle" selectByExampleQueryId="false">
-            <generatedKey column="ID" sqlStatement="JDBC"/>
-        </table>
+        <!--<table tableName="sys_role%" enableCountByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" enableUpdateByExample="fasle" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="ID" sqlStatement="JDBC"/>-->
+        <!--</table>-->
 
-        <table tableName="sys_permission" enableCountByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" enableUpdateByExample="fasle" selectByExampleQueryId="false">
-            <generatedKey column="ID" sqlStatement="JDBC"/>
-        </table>
+        <!--<table tableName="sys_permission" enableCountByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" enableUpdateByExample="fasle" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="ID" sqlStatement="JDBC"/>-->
+        <!--</table>-->
 
     </context>
 </generatorConfiguration>

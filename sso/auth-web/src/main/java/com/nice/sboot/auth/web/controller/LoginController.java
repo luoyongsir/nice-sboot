@@ -1,0 +1,23 @@
+package com.nice.sboot.auth.web.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+/**
+ * @author luoyong-014
+ * @date 2019/7/25 18:03
+ */
+@Controller
+public class LoginController {
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
+
+}

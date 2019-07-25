@@ -3,10 +3,10 @@ spring:
   profiles:
     active: @profiles.active@
   application:
-    name: auth-service
+    name: auth-web
   cloud:
     config:
-      name: ${spring.application.name},application-service
+      name: ${spring.application.name},application-web
       profile: @profiles.active@
       username: abc
       password: 123
@@ -22,9 +22,6 @@ spring:
   cloud:
     config:
       uri: http://127.0.0.1:9999
-
-server:
-  port: 8084
 
 ---
 # 测试环境配置

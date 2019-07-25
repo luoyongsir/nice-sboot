@@ -12,12 +12,12 @@
         <result column="access_token_validity" jdbcType="INTEGER" property="accessTokenValidity" />
         <result column="refresh_token_validity" jdbcType="INTEGER" property="refreshTokenValidity" />
         <result column="additional_information" jdbcType="VARCHAR" property="additionalInformation" />
-        <result column="autoapprove" jdbcType="VARCHAR" property="autoapprove" />
+        <result column="auto_approve" jdbcType="VARCHAR" property="autoApprove" />
     </resultMap>
     <sql id="Base_Column_List">
         client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, 
         authorities, access_token_validity, refresh_token_validity, additional_information, 
-        autoapprove
+        auto_approve
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select 
@@ -33,11 +33,11 @@
         insert into oauth_client_details (client_id, resource_ids, client_secret, 
             scope, authorized_grant_types, web_server_redirect_uri, 
             authorities, access_token_validity, refresh_token_validity, 
-            additional_information, autoapprove)
+            additional_information, auto_approve)
         values (#{clientId,jdbcType=VARCHAR}, #{resourceIds,jdbcType=VARCHAR}, #{clientSecret,jdbcType=VARCHAR}, 
             #{scope,jdbcType=VARCHAR}, #{authorizedGrantTypes,jdbcType=VARCHAR}, #{webServerRedirectUri,jdbcType=VARCHAR}, 
             #{authorities,jdbcType=VARCHAR}, #{accessTokenValidity,jdbcType=INTEGER}, #{refreshTokenValidity,jdbcType=INTEGER}, 
-            #{additionalInformation,jdbcType=VARCHAR}, #{autoapprove,jdbcType=VARCHAR})
+            #{additionalInformation,jdbcType=VARCHAR}, #{autoApprove,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.nice.sboot.auth.entity.OauthClientDetails">
         insert into oauth_client_details
@@ -72,8 +72,8 @@
             <if test="additionalInformation != null">
                 additional_information,
             </if>
-            <if test="autoapprove != null">
-                autoapprove,
+            <if test="autoApprove != null">
+                auto_approve,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -107,8 +107,8 @@
             <if test="additionalInformation != null">
                 #{additionalInformation,jdbcType=VARCHAR},
             </if>
-            <if test="autoapprove != null">
-                #{autoapprove,jdbcType=VARCHAR},
+            <if test="autoApprove != null">
+                #{autoApprove,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -142,8 +142,8 @@
             <if test="additionalInformation != null">
                 additional_information = #{additionalInformation,jdbcType=VARCHAR},
             </if>
-            <if test="autoapprove != null">
-                autoapprove = #{autoapprove,jdbcType=VARCHAR},
+            <if test="autoApprove != null">
+                auto_approve = #{autoApprove,jdbcType=VARCHAR},
             </if>
         </set>
         where client_id = #{clientId,jdbcType=VARCHAR}
@@ -159,7 +159,7 @@
             access_token_validity = #{accessTokenValidity,jdbcType=INTEGER},
             refresh_token_validity = #{refreshTokenValidity,jdbcType=INTEGER},
             additional_information = #{additionalInformation,jdbcType=VARCHAR},
-            autoapprove = #{autoapprove,jdbcType=VARCHAR}
+            auto_approve = #{autoApprove,jdbcType=VARCHAR}
         where client_id = #{clientId,jdbcType=VARCHAR}
     </update>
 </mapper>

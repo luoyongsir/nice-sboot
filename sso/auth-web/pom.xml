@@ -6,7 +6,7 @@
         <artifactId>sboot-dependency</artifactId>
         <version>0.0.1</version>
     </parent>
-    <artifactId>auth-service</artifactId>
+    <artifactId>auth-web</artifactId>
     <version>${cur.version}</version>
 
     <dependencies>
@@ -19,10 +19,18 @@
             <groupId>com.nice.sboot</groupId>
             <artifactId>sboot-base</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.nice.sboot</groupId>
+            <artifactId>sboot-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.nice.sboot</groupId>
+            <artifactId>swagger-module</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -36,23 +44,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
@@ -73,8 +64,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
         </dependency>
 
     </dependencies>
@@ -96,7 +87,6 @@
                         <includes>
                             <include>config/bootstrap.yml</include>
                             <include>xml/logback-spring.xml</include>
-                            <include>db/*</include>
                         </includes>
                         <filtering>true</filtering>
                     </resource>
@@ -123,14 +113,6 @@
     <build>
         <resources>
             <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-                <!-- 是否替换资源中的属性 -->
-                <filtering>false</filtering>
-            </resource>
-            <resource>
                 <directory>src/main/resources</directory>
                 <excludes>
                     <exclude>**/**</exclude>
@@ -153,7 +135,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.nice.sboot.demo.BootDemoStrap</mainClass>
+                    <mainClass>com.nice.sboot.demo.web.BootDemoWeb</mainClass>
                     <layout>JAR</layout>
                 </configuration>
                 <executions>
@@ -185,33 +167,7 @@
                 </executions>
             </plugin>
 
-            <!-- generator插件 -->
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.7</version>
-                <configuration>
-                    <overwrite>true</overwrite>
-                    <verbose>true</verbose>
-                </configuration>
-
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.16</version>
-                    </dependency>
-
-                    <!-- 自定义插件 -->
-                    <dependency>
-                        <groupId>com.mybatis.generator</groupId>
-                        <artifactId>mybatis-generator-ext</artifactId>
-                        <version>1.0.1-RELEASE</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-
         </plugins>
-        <finalName>auth-service</finalName>
+        <finalName>auth-web</finalName>
     </build>
 </project>

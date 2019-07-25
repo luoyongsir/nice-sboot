@@ -5,13 +5,13 @@ import com.nice.sboot.auth.entity.OauthClientDetails;
 /**
  * This interface corresponds to the database table oauth_client_details
  * @author luoyong
- * @date 2019/07/24 18:47
+ * @date 2019/07/25 18:38
  */
 public interface OauthClientDetailsMapper {
     /**
      * 根据主键删除数据库记录
      * @author luoyong
-     * @date 2019/07/24 18:47
+     * @date 2019/07/25 18:38
      * @param clientId
      * @return 
      */
@@ -20,7 +20,7 @@ public interface OauthClientDetailsMapper {
     /**
      * 新增记录
      * @author luoyong
-     * @date 2019/07/24 18:47
+     * @date 2019/07/25 18:38
      * @param record
      * @return 
      */
@@ -29,7 +29,7 @@ public interface OauthClientDetailsMapper {
     /**
      * 新增记录
      * @author luoyong
-     * @date 2019/07/24 18:47
+     * @date 2019/07/25 18:38
      * @param record
      * @return 
      */
@@ -38,7 +38,7 @@ public interface OauthClientDetailsMapper {
     /**
      * 根据主键查询记录
      * @author luoyong
-     * @date 2019/07/24 18:47
+     * @date 2019/07/25 18:38
      * @param clientId
      * @return 
      */
@@ -47,7 +47,7 @@ public interface OauthClientDetailsMapper {
     /**
      * 根据主键修改数据库记录
      * @author luoyong
-     * @date 2019/07/24 18:47
+     * @date 2019/07/25 18:38
      * @param record
      * @return 
      */
@@ -56,7 +56,7 @@ public interface OauthClientDetailsMapper {
     /**
      * 根据主键修改数据库记录
      * @author luoyong
-     * @date 2019/07/24 18:47
+     * @date 2019/07/25 18:38
      * @param record
      * @return 
      */

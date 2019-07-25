@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * This class corresponds to the database table oauth_client_details
  * @author luoyong
- * @date 2019/07/24 18:47
+ * @date 2019/07/25 18:38
  */
 public class OauthClientDetails implements Serializable {
     private String clientId;
@@ -28,9 +28,9 @@ public class OauthClientDetails implements Serializable {
 
     private String additionalInformation;
 
-    private String autoapprove;
+    private String autoApprove;
 
-    private static final long serialVersionUID = 486311200631351131L;
+    private static final long serialVersionUID = 755880017521443341L;
 
     public String getClientId() {
         return clientId;
@@ -112,12 +112,12 @@ public class OauthClientDetails implements Serializable {
         this.additionalInformation = additionalInformation;
     }
 
-    public String getAutoapprove() {
-        return autoapprove;
+    public String getAutoApprove() {
+        return autoApprove;
     }
 
-    public void setAutoapprove(String autoapprove) {
-        this.autoapprove = autoapprove;
+    public void setAutoApprove(String autoApprove) {
+        this.autoApprove = autoApprove;
     }
 
     @Override
@@ -136,7 +136,7 @@ public class OauthClientDetails implements Serializable {
         sb.append(", accessTokenValidity=").append(accessTokenValidity);
         sb.append(", refreshTokenValidity=").append(refreshTokenValidity);
         sb.append(", additionalInformation=").append(additionalInformation);
-        sb.append(", autoapprove=").append(autoapprove);
+        sb.append(", autoApprove=").append(autoApprove);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
