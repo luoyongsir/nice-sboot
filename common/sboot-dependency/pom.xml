@@ -52,6 +52,12 @@
 
             <dependency>
                 <groupId>com.nice.sboot</groupId>
+                <artifactId>auth-common</artifactId>
+                <version>${cur.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.nice.sboot</groupId>
                 <artifactId>sboot-base</artifactId>
                 <version>${nice-base.version}</version>
             </dependency>
@@ -138,7 +144,7 @@
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>2.0.1</version>
+                <version>2.1.0</version>
             </dependency>
 
             <dependency>
