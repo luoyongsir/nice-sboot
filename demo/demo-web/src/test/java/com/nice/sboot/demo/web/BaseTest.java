@@ -1,4 +1,4 @@
-package com.nice.sboot.demo.service;
+package com.nice.sboot.demo.web;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
