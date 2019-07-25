@@ -3,6 +3,7 @@
 
 spring:
   profiles: pro
-  dubbo:
-    registry:
-      address: zookeeper://localhost:2181
+
+dubbo:
+  registry:
+    address: zookeeper://localhost:2181
