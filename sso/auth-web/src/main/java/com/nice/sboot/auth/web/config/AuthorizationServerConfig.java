@@ -19,7 +19,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  */
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {// @formatter:off
 
 	@Autowired
 	private ClientDetailsServiceImpl clientDetailsService;
@@ -31,13 +31,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	 */
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) {
-		security.allowFormAuthenticationForClients();
-		security.tokenKeyAccess("isAuthenticated()");
-
 		// 开启/oauth/token_key验证端口无权限访问
-//		security.tokenKeyAccess("permitAll()")
+		security.tokenKeyAccess("permitAll()")
 				// 开启/oauth/check_token验证端口认证权限访问
-//				.checkTokenAccess("isAuthenticated()");
+				.checkTokenAccess("isAuthenticated()")
+				.allowFormAuthenticationForClients();
 	}
 
 	/**
@@ -80,11 +78,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		converter.setSigningKey("nice");
 
 		// 导入证书
-		//		KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("keystore.jks"),
-		//				"mypass".toCharArray());
-		//		converter.setKeyPair(keyStoreKeyFactory.getKeyPair("mytest"));
+//		KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("keystore.jks"),
+//				"mypass".toCharArray());
+//		converter.setKeyPair(keyStoreKeyFactory.getKeyPair("mytest"));
 
 		return converter;
 	}
 
-}
+}// @formatter:on

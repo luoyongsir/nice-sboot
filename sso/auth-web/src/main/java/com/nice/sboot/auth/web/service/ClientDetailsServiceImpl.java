@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * 客户端细节服务
@@ -36,6 +37,10 @@ public class ClientDetailsServiceImpl implements ClientDetailsService {
 		OauthClientDetails data = result.getData();
 		BaseClientDetails details = new BaseClientDetails(clientId, data.getResourceIds(), data.getScope(),
 				data.getAuthorizedGrantTypes(), data.getAuthorities(), data.getWebServerRedirectUri());
+		details.setClientSecret(data.getClientSecret());
+		details.setAutoApproveScopes(StringUtils.commaDelimitedListToSet(data.getAutoApprove()));
+		details.setAccessTokenValiditySeconds(data.getAccessTokenValidity());
+		details.setRefreshTokenValiditySeconds(data.getRefreshTokenValidity());
 		return details;
 	}
 }
