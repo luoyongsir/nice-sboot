@@ -12,3 +12,6 @@ spring:
         max-idle: 8
         max-active: 32
         max-wait: 600000ms
+
+  thymeleaf:
+    cache: false
