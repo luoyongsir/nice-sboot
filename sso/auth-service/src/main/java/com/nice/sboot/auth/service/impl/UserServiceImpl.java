@@ -4,18 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.nice.sboot.auth.entity.SysPermission;
 import com.nice.sboot.auth.entity.SysUser;
 import com.nice.sboot.auth.mapper.SysUserMapper;
-import com.nice.sboot.auth.pojo.bo.UserBO;
+import com.nice.sboot.auth.pojo.dto.UserDTO;
 import com.nice.sboot.auth.service.PermissionService;
 import com.nice.sboot.auth.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,8 +28,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private SysUserMapper sysUserMapper;
 	@Autowired
-	private PasswordEncoder passwordEncoder;
-	@Autowired
 	private PermissionService permissionService;
 
 	@Override
@@ -41,25 +36,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserBO loadUserByUsername(String username) {
+	public UserDTO loadUserByUsername(String username) {
 		SysUser sysUser = getByUsername(username);
 		if (null == sysUser) {
 			LOG.warn("用户{}不存在", username);
 			return null;
 		}
 		List<SysPermission> permissionList = permissionService.findByUserId(sysUser.getId());
-		List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
-		if (!CollectionUtils.isEmpty(permissionList)) {
-			for (SysPermission sysPermission : permissionList) {
-				authorityList.add(new SimpleGrantedAuthority(sysPermission.getCode()));
-			}
-		}
 
-		UserBO userBO = new UserBO(sysUser.getUsername(), passwordEncoder.encode(sysUser.getPassword()), authorityList);
-		userBO.setNickname(sysUser.getNickname());
-
-		LOG.info("登录成功！用户: {}", JSON.toJSONString(userBO));
-
-		return userBO;
+		UserDTO userDTO = new UserDTO();
+		BeanUtils.copyProperties(sysUser, userDTO);
+		userDTO.setPermissionList(permissionList);
+		LOG.info("登录成功！用户: {}", JSON.toJSONString(userDTO));
+		return userDTO;
 	}
 }
