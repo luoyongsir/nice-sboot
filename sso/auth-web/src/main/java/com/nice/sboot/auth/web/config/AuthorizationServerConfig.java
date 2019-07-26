@@ -14,7 +14,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 /**
- * @author luoyong-014
+ * @author luoyong
  * @date 2019/7/25 16:40
  */
 @Configuration

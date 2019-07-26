@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * @author luoyong-014
+ * @author luoyong
  * @date 2019/7/25 18:03
  */
 @Controller

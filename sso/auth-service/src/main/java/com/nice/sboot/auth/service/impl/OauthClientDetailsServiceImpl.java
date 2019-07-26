@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 客户端详情
- * @author luoyong-014
+ * @author luoyong
  * @date 2019/7/25 17:02
  */
 @Service

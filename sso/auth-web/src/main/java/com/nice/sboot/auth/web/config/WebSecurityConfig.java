@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * @author luoyong-014
+ * @author luoyong
  * @date 2019/7/25 16:39
  */
 @Configuration

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 调用用户认证服务
- * @author luoyong-014
+ * @author luoyong
  * @date 2019/7/25 16:18
  */
 @Component
@@ -18,7 +18,7 @@ public class AuthConsumer {
 
 	/**
 	 * 根据用户名称查找用户
-	 * @author luoyong-014
+	 * @author luoyong
 	 * @date 2019/7/25 16:18
 	 * @param username
 	 * @return
@@ -29,7 +29,7 @@ public class AuthConsumer {
 
 	/**
 	 * 根据客户端id，查询客户端详情
-	 * @author luoyong-014
+	 * @author luoyong
 	 * @date 2019/7/25 16:57
 	 * @param clientId
 	 * @return
