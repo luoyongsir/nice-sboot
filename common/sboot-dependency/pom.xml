@@ -37,7 +37,7 @@
         <dubbo.version>2.7.0</dubbo.version>
         <swagger.version>2.9.2</swagger.version>
         <curator.version>4.2.0</curator.version>
-        <zookeeper.version>3.4.13</zookeeper.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
     </properties>
 
     <!-- 统一依赖管理 -->
