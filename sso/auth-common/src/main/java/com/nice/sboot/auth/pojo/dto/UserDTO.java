@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author luoyong-014
+ * @author luoyong
  * @date 2019/7/26 14:54
  */
 public class UserDTO implements Serializable {
