@@ -1,4 +1,4 @@
-package com.nice.sboot.auth.web.config;
+package com.nice.sboot.web.module.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

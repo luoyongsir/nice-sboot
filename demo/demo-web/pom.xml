@@ -25,6 +25,10 @@
         </dependency>
         <dependency>
             <groupId>com.nice.sboot</groupId>
+            <artifactId>sboot-web-module</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.nice.sboot</groupId>
             <artifactId>swagger-module</artifactId>
         </dependency>
 
