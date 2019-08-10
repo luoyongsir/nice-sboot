@@ -1,0 +1,27 @@
+/**/*.class
+
+/**/.sonar
+
+# Package Files #
+*.jar
+*.war
+*.zip
+*.rar
+/**/target
+/**/lib/
+
+# Idea #
+/**/.idea
+/**/*.iml
+
+# Eclipse #
+/**/.settings
+/**/.project
+/**/.classpath
+
+# MyEclipse #
+/**/.myeclipse/profiler
+/**/.mymetadata
+
+
+/**/.flattened-pom.xml

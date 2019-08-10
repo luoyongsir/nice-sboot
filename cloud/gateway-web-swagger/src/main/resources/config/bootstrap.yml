@@ -1,0 +1,26 @@
+
+logging:
+  config: classpath:xml/logback-spring.xml
+
+server:
+  port: 8888
+
+spring:
+  application:
+    name: gateway-web-swagger
+  profiles:
+    active: @profiles.active@
+  cloud:
+    gateway:
+      locator:
+        enabled: true
+      routes:
+      - id: demo-web
+        uri: http://127.0.0.1:8080/demo
+        predicates:
+        - Path=http://127.0.0.1:8080/demo/**
+      - id: auth-web
+        uri: http://127.0.0.1:8081/auth
+        predicates:
+        - Path=http://127.0.0.1:8081/auth/**
+

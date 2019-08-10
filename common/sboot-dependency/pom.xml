@@ -24,6 +24,7 @@
         <cur.version>0.0.1-${repo}</cur.version>
 
         <nice-config.version>0.0.1-${repo}</nice-config.version>
+        <nice-gateway-swagger.version>0.0.1-${repo}</nice-gateway-swagger.version>
 
 
         <nice-base.version>0.0.1</nice-base.version>
