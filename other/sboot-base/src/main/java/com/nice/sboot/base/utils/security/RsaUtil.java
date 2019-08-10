@@ -12,7 +12,7 @@ import java.security.spec.X509EncodedKeySpec;
 
 /**
  * RSA加密/解密的工具类
- * 支持Hex与Base64两种编码方式
+ * 支持Hex与Base64两种编码方式，参考 EncodeUtil
  * @author luoyong
  * @date 2019/6/19 18:34
  */
