@@ -69,7 +69,7 @@ public class CodeMsgToJavaTask extends Task {
 		bud.append("package com.nice.sboot.result;").append(System.lineSeparator());
 		bud.append("// @formatter:off").append(System.lineSeparator());
 		bud.append("/**").append(System.lineSeparator());
-		bud.append(" * 该类在 maven clean 阶段自动生成").append(System.lineSeparator());
+		bud.append(" * 该类在 maven clean 阶段根据 code-msg.properties 自动生成，禁止手动修改").append(System.lineSeparator());
 		bud.append(" * 如果有修改 code-msg.properties 请执行 maven clean").append(System.lineSeparator());
 		bud.append(" * @author luoyong").append(System.lineSeparator());
 		bud.append(" */").append(System.lineSeparator());
@@ -112,7 +112,7 @@ public class CodeMsgToJavaTask extends Task {
 		bud.append("		return msg;").append(System.lineSeparator());
 		bud.append("	}").append(System.lineSeparator()).append(System.lineSeparator());
 		bud.append("	/**").append(System.lineSeparator());
-		bud.append("	 * 根据 code 获取消息").append(System.lineSeparator());
+		bud.append("	 * 根据 code 获取 msg").append(System.lineSeparator());
 		bud.append("	 */").append(System.lineSeparator());
 		bud.append("	public static String getMsg(int code) {").append(System.lineSeparator());
 		bud.append("		for (CodeMsgEnum codeMsgEnum : CodeMsgEnum.values()) {").append(System.lineSeparator());
