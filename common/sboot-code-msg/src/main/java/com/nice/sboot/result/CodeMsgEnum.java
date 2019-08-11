@@ -1,7 +1,7 @@
 package com.nice.sboot.result;
 // @formatter:off
 /**
- * 该类在 maven clean 阶段自动生成
+ * 该类在 maven clean 阶段根据 code-msg.properties 自动生成，禁止手动修改
  * 如果有修改 code-msg.properties 请执行 maven clean
  * @author luoyong
  */
@@ -34,7 +34,7 @@ public enum CodeMsgEnum {
 	}
 
 	/**
-	 * 根据 code 获取消息
+	 * 根据 code 获取 msg
 	 */
 	public static String getMsg(int code) {
 		for (CodeMsgEnum codeMsgEnum : CodeMsgEnum.values()) {
