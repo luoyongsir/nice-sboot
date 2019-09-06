@@ -29,7 +29,7 @@ public final class ResultUtil {
 	 * @param <T>
 	 * @return
 	 */
-	public static <T> Result<T> ok(T data) {
+	public static <T> Result<T> success(T data) {
 		return result(CodeMsgEnum.SUCCESS, data);
 	}
 
@@ -80,7 +80,7 @@ public final class ResultUtil {
 	 * @return
 	 */
 	public static <T> Result<T> result(int code, String msg, T data) {
-		if (msg == null || "".equals(msg.trim())) {
+		if (msg == null) {
 			return new Result<>(code, CodeMsgEnum.getMsg(code), data);
 		} else {
 			return new Result<>(code, msg, data);
