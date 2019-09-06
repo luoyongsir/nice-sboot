@@ -52,8 +52,8 @@ public class UserBO extends User implements Serializable {
 		if (this == o) {return true;}
 		if (o == null || getClass() != o.getClass()) {return false;}
 		if (!super.equals(o)) {return false;}
-		UserBO userBO = (UserBO) o;
-		return Objects.equals(nickname, userBO.nickname) && Objects.equals(mobile, userBO.mobile);
+		UserBO bo = (UserBO) o;
+		return Objects.equals(nickname, bo.nickname) && Objects.equals(mobile, bo.mobile);
 	}
 
 	@Override
