@@ -66,8 +66,35 @@ public class CodeMsgToJavaTask extends Task {
 
 	private void createFile() {
 		StringBuilder bud = new StringBuilder(10240);
+		budHeader(bud);
+
+		// 构建排序好的map，保证每次生成的代码一致
+		Map<String, String> map = buildTreeMap();
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			String key = entry.getKey();
+			String val = entry.getValue();
+			int code = Integer.parseInt(key.substring(key.indexOf("_") + 1));
+
+			bud.append(",").append(System.lineSeparator());
+			bud.append("	").append(key).append("(").append(code).append(", ").append("\"").append(val).append("\")");
+		}
+		bud.append(";").append(System.lineSeparator()).append(System.lineSeparator());
+
+		budFooter(bud);
+
+		File outFile = new File(this.outputDirString + File.separator + "CodeMsgEnum.java");
+		try (BufferedWriter writer = Files.newBufferedWriter(outFile.toPath(), StandardCharsets.UTF_8)) {
+			writer.append(bud);
+		} catch (IOException e) {
+			throw new BuildException("输出文件出错" + outFile.toPath(), e);
+		}
+	}
+
+	private void budHeader(StringBuilder bud) {
 		bud.append("package com.nice.sboot.result;").append(System.lineSeparator());
 		bud.append("// @formatter:off").append(System.lineSeparator());
+		bud.append("import java.util.HashMap;").append(System.lineSeparator());
+		bud.append("import java.util.Map;").append(System.lineSeparator()).append(System.lineSeparator());
 		bud.append("/**").append(System.lineSeparator());
 		bud.append(" * 该类在 maven clean 阶段根据 code-msg.properties 自动生成，禁止手动修改").append(System.lineSeparator());
 		bud.append(" * 如果有修改 code-msg.properties 请执行 maven clean").append(System.lineSeparator());
@@ -75,30 +102,11 @@ public class CodeMsgToJavaTask extends Task {
 		bud.append(" */").append(System.lineSeparator());
 		bud.append("public enum CodeMsgEnum {").append(System.lineSeparator());
 		bud.append("	// 枚举").append(System.lineSeparator());
+		bud.append("	FAIL(0, \"失败\"),").append(System.lineSeparator());
+		bud.append("	SUCCESS(1, \"成功\")");
+	}
 
-		// 构建排序好的map，保证每次生成的代码一致
-		Map<String, String> map = buildTreeMap();
-		int i = 0;
-		for (Map.Entry<String, String> entry : map.entrySet()) {
-			String key = entry.getKey();
-			String val = entry.getValue();
-			int code = Integer.parseInt(key.substring(key.indexOf("_") + 1));
-
-			if ("SUCCESS_1".equals(key)) {
-				key = "SUCCESS";
-			} else if ("FAIL_0".equals(key)) {
-				key = "FAIL";
-			}
-
-			if (i > 0) {
-				bud.append(",").append(System.lineSeparator());
-			} else {
-				i++;
-			}
-			bud.append("	").append(key).append("(").append(code).append(", ").append("\"").append(val).append("\")");
-		}
-		bud.append(";").append(System.lineSeparator()).append(System.lineSeparator());
-
+	private void budFooter(StringBuilder bud) {
 		bud.append("	private int code;").append(System.lineSeparator());
 		bud.append("	private String msg;").append(System.lineSeparator()).append(System.lineSeparator());
 		bud.append("	CodeMsgEnum(int code, String msg) {").append(System.lineSeparator());
@@ -111,25 +119,20 @@ public class CodeMsgToJavaTask extends Task {
 		bud.append("	public String getMsg() {").append(System.lineSeparator());
 		bud.append("		return msg;").append(System.lineSeparator());
 		bud.append("	}").append(System.lineSeparator()).append(System.lineSeparator());
+		bud.append("	private static Map<Integer, String> msgMap;").append(System.lineSeparator());
+		bud.append("	static {").append(System.lineSeparator());
+		bud.append("		msgMap = new HashMap<>((int) (CodeMsgEnum.values().length / 0.75) + 1);").append(System.lineSeparator());
+		bud.append("		for (CodeMsgEnum codeMsgEnum : CodeMsgEnum.values()) {").append(System.lineSeparator());
+		bud.append("			msgMap.put(codeMsgEnum.getCode(), codeMsgEnum.getMsg());").append(System.lineSeparator());
+		bud.append("		}").append(System.lineSeparator());
+		bud.append("	}").append(System.lineSeparator()).append(System.lineSeparator());
 		bud.append("	/**").append(System.lineSeparator());
 		bud.append("	 * 根据 code 获取 msg").append(System.lineSeparator());
 		bud.append("	 */").append(System.lineSeparator());
 		bud.append("	public static String getMsg(int code) {").append(System.lineSeparator());
-		bud.append("		for (CodeMsgEnum codeMsgEnum : CodeMsgEnum.values()) {").append(System.lineSeparator());
-		bud.append("			if (codeMsgEnum.getCode() == code) {").append(System.lineSeparator());
-		bud.append("				return codeMsgEnum.getMsg();").append(System.lineSeparator());
-		bud.append("			}").append(System.lineSeparator());
-		bud.append("		}").append(System.lineSeparator());
-		bud.append("		return null;").append(System.lineSeparator());
+		bud.append("		return msgMap.get(code);").append(System.lineSeparator());
 		bud.append("	}").append(System.lineSeparator());
-
 		bud.append("}// @formatter:on").append(System.lineSeparator());
-		File outFile = new File(this.outputDirString + File.separator + "CodeMsgEnum.java");
-		try (BufferedWriter writer = Files.newBufferedWriter(outFile.toPath(), StandardCharsets.UTF_8)) {
-			writer.append(bud);
-		} catch (IOException e) {
-			throw new BuildException("输出文件出错" + outFile.toPath(), e);
-		}
 	}
 
 	private Map<String, String> buildTreeMap() {
