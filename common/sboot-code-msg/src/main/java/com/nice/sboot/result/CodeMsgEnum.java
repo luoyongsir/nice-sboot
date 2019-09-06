@@ -1,5 +1,8 @@
 package com.nice.sboot.result;
 // @formatter:off
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 该类在 maven clean 阶段根据 code-msg.properties 自动生成，禁止手动修改
  * 如果有修改 code-msg.properties 请执行 maven clean
@@ -33,15 +36,18 @@ public enum CodeMsgEnum {
 		return msg;
 	}
 
+	private static Map<Integer, String> msgMap;
+	static {
+		msgMap = new HashMap<>((int) (CodeMsgEnum.values().length / 0.75) + 1);
+		for (CodeMsgEnum codeMsgEnum : CodeMsgEnum.values()) {
+			msgMap.put(codeMsgEnum.getCode(), codeMsgEnum.getMsg());
+		}
+	}
+
 	/**
 	 * 根据 code 获取 msg
 	 */
 	public static String getMsg(int code) {
-		for (CodeMsgEnum codeMsgEnum : CodeMsgEnum.values()) {
-			if (codeMsgEnum.getCode() == code) {
-				return codeMsgEnum.getMsg();
-			}
-		}
-		return null;
+		return msgMap.get(code);
 	}
 }// @formatter:on
