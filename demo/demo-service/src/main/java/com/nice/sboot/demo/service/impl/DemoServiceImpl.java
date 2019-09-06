@@ -51,7 +51,7 @@ public class DemoServiceImpl implements DemoService {
 		list = coffeeMapper.findAllWithParam(param.getPageNum(), param.getPageSize());
 		PageInfo page = new PageInfo(list);
 		LOG.info("PageInfo: {}", page);
-		return ResultUtil.ok(page);
+		return ResultUtil.success(page);
 	}
 
 	@Bean

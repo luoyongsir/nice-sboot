@@ -23,11 +23,11 @@ public class AuthProviderImpl implements AuthProvider {
 
 	@Override
 	public Result loadUserByUsername(String username) {
-		return ResultUtil.ok(userService.loadUserByUsername(username));
+		return ResultUtil.success(userService.loadUserByUsername(username));
 	}
 
 	@Override
 	public Result loadClientByClientId(String clientId) {
-		return ResultUtil.ok(oauthClientDetailsService.loadClientByClientId(clientId));
+		return ResultUtil.success(oauthClientDetailsService.loadClientByClientId(clientId));
 	}
 }

@@ -29,7 +29,7 @@
 
         <nice-base.version>0.0.1</nice-base.version>
         <nice-redis.version>0.0.1</nice-redis.version>
-        <code-msg.version>0.0.1</code-msg.version>
+        <code-msg.version>0.0.2</code-msg.version>
         <code-msg-task.version>0.0.2</code-msg-task.version>
         <web-module.version>0.0.1</web-module.version>
         <swagger-module.version>0.0.1</swagger-module.version>
@@ -236,7 +236,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
-                <version>1.2.58</version>
+                <version>1.2.60</version>
             </dependency>
 
         </dependencies>
