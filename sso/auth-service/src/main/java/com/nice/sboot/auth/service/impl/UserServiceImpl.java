@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public SysUser getByUsername(String username) {
+		// 如果数据库里手机号、邮箱地址都是唯一的，可以支持通过手机号、邮箱地址登录
 		return sysUserMapper.findByUsername(username);
 	}
 
