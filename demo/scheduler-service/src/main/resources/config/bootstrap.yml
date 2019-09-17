@@ -1,0 +1,52 @@
+
+spring:
+  profiles:
+    active: @profiles.active@
+  application:
+    name: scheduler-service
+  cloud:
+    config:
+      name: ${spring.application.name},application-service
+      profile: @profiles.active@
+      username: abc
+      password: 123
+
+---
+# 本地环境配置
+dubbo:
+  registry:
+    group: dubbo-env
+
+spring:
+  profiles: env
+  cloud:
+    config:
+      uri: http://127.0.0.1:9999
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+---
+# 测试环境配置
+spring:
+  profiles: test
+  cloud:
+    config:
+      uri: http://127.0.0.1:9999
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+---
+# 生产环境配置
+spring:
+  profiles: pro
+  cloud:
+    config:
+      uri: http://127.0.0.1:9999

@@ -40,6 +40,7 @@
         <swagger.version>2.9.2</swagger.version>
         <curator.version>4.2.0</curator.version>
         <zookeeper.version>3.4.14</zookeeper.version>
+        <elastic-job.version>2.1.5</elastic-job.version>
     </properties>
 
     <!-- 统一依赖管理 -->
@@ -237,6 +238,24 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>1.2.60</version>
+            </dependency>
+
+            <!-- elastic-job -->
+            <dependency>
+                <groupId>com.dangdang</groupId>
+                <artifactId>elastic-job-lite-core</artifactId>
+                <version>${elastic-job.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.dangdang</groupId>
+                <artifactId>elastic-job-lite-spring</artifactId>
+                <version>${elastic-job.version}</version>
             </dependency>
 
         </dependencies>

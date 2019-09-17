@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:reg="http://www.dangdang.com/schema/ddframe/reg"
+       xmlns:job="http://www.dangdang.com/schema/ddframe/job"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.dangdang.com/schema/ddframe/reg
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd
+                        http://www.dangdang.com/schema/ddframe/job
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd">
+
+    <job:simple id="demoJob" class="com.nice.sboot.scheduler.job.demo.DemoJob"
+                registry-center-ref="regCenter" cron="0 0/2 * * * ?" sharding-total-count="1"
+                misfire="false" description="两分钟处理一次"/>
+
+</beans>
