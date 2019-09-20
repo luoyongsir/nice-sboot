@@ -65,8 +65,12 @@ public class CodeMsgToJavaTask extends Task {
 	}
 
 	private void createFile() {
+		String pn = this.outputDirString;
+		pn = pn.substring(pn.indexOf("java") + 5);
+		pn = pn.replace(File.separatorChar, '.');
+
 		StringBuilder bud = new StringBuilder(10240);
-		budHeader(bud);
+		budHeader(bud, pn);
 
 		// 构建排序好的map，保证每次生成的代码一致
 		Map<String, String> map = buildTreeMap();
@@ -90,8 +94,8 @@ public class CodeMsgToJavaTask extends Task {
 		}
 	}
 
-	private void budHeader(StringBuilder bud) {
-		bud.append("package com.nice.sboot.result;").append(System.lineSeparator());
+	private void budHeader(StringBuilder bud, String pn) {
+		bud.append("package ").append(pn).append(";").append(System.lineSeparator());
 		bud.append("// @formatter:off").append(System.lineSeparator());
 		bud.append("import java.util.HashMap;").append(System.lineSeparator());
 		bud.append("import java.util.Map;").append(System.lineSeparator()).append(System.lineSeparator());
