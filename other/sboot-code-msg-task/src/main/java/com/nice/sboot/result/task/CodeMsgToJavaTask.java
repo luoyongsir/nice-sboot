@@ -94,14 +94,14 @@ public class CodeMsgToJavaTask extends Task {
 		}
 	}
 
-	private void budHeader(StringBuilder bud, String pn) {
+	private void budHeader(StringBuilder bud, String pn) {// @formatter:off
 		bud.append("package ").append(pn).append(";").append(System.lineSeparator());
 		bud.append("// @formatter:off").append(System.lineSeparator());
 		bud.append("import java.util.HashMap;").append(System.lineSeparator());
 		bud.append("import java.util.Map;").append(System.lineSeparator()).append(System.lineSeparator());
 		bud.append("/**").append(System.lineSeparator());
-		bud.append(" * 该类在 maven clean 阶段根据 code-msg.properties 自动生成，禁止手动修改").append(System.lineSeparator());
-		bud.append(" * 如果有修改 code-msg.properties 请执行 maven clean").append(System.lineSeparator());
+		bud.append(" * 该类在 maven pre-clean/validate 阶段根据配置文件自动生成，禁止手动修改").append(System.lineSeparator());
+		bud.append(" * 如果有修改配置文件请执行 maven clean").append(System.lineSeparator());
 		bud.append(" * @author luoyong").append(System.lineSeparator());
 		bud.append(" */").append(System.lineSeparator());
 		bud.append("public enum CodeMsgEnum {").append(System.lineSeparator());
@@ -137,17 +137,24 @@ public class CodeMsgToJavaTask extends Task {
 		bud.append("		return msgMap.get(code);").append(System.lineSeparator());
 		bud.append("	}").append(System.lineSeparator());
 		bud.append("}// @formatter:on").append(System.lineSeparator());
-	}
+	}// @formatter:on
 
 	private Map<String, String> buildTreeMap() {
 		Comparator comparator = (Comparator<String>) (k1, k2) -> {
 			Integer code1 = Integer.parseInt(k1.substring(k1.indexOf("_") + 1));
 			Integer code2 = Integer.parseInt(k2.substring(k2.indexOf("_") + 1));
+			if (!Objects.equals(k1, k2) && Objects.equals(code1, code2)) {
+				throw new RuntimeException("code重复，请修改：" + k1 + " 或 " + k2);
+			}
 			return code1.compareTo(code2);
 		};
 		Map<String, String> map = new TreeMap<>(comparator);
 		for (Map.Entry<Object, Object> entry : getProperties().entrySet()) {
-			map.put((String) entry.getKey(), (String) entry.getValue());
+			String key = (String) entry.getKey();
+			if (!key.contains("_")) {
+				key = "CODE_" + key;
+			}
+			map.put(key.toUpperCase(), (String) entry.getValue());
 		}
 		return map;
 	}

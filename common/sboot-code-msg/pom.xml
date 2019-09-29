@@ -27,34 +27,35 @@
                 <version>1.8</version>
                 <executions>
                     <execution>
-                        <id>deleteJavaCode</id>
-                        <phase>clean</phase>
+                        <id>pre-clean-run</id>
+                        <phase>pre-clean</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target name="delete" description="删除java代码">
-                                <delete file="src/main/java/com/nice/sboot/result/CodeMsgEnum.java"/>
-                            </target>
+                            <target name="codeMsgToJava"/>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>codeMsgToJava</id>
-                        <phase>clean</phase>
+                        <id>validate-run</id>
+                        <phase>validate</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target name="codeMsgToJava">
-                                <taskdef name="codeMsgToJava" classname="com.nice.sboot.result.task.CodeMsgToJavaTask"
-                                         classpathref="maven.plugin.classpath"/>
-                                <codeMsgToJava outputdir="src/main/java/com/nice/sboot/result">
-                                    <fileset dir="src/main/resources" includes="**/*.properties"/>
-                                </codeMsgToJava>
-                            </target>
+                            <target name="codeMsgToJava"/>
                         </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <target name="codeMsgToJava">
+                        <taskdef name="codeMsgToJava" classname="com.nice.sboot.result.task.CodeMsgToJavaTask"
+                                 classpathref="maven.plugin.classpath"/>
+                        <codeMsgToJava outputdir="src/main/java/com/nice/sboot/result">
+                            <fileset dir="src/main/resources" includes="**/*.properties"/>
+                        </codeMsgToJava>
+                    </target>
+                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>com.nice.sboot</groupId>
