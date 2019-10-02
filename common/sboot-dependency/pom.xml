@@ -34,9 +34,9 @@
         <web-module.version>0.0.1</web-module.version>
         <swagger-module.version>0.0.1</swagger-module.version>
 
-        <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
-        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
-        <dubbo.version>2.7.0</dubbo.version>
+        <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
+        <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+        <dubbo.version>2.7.3</dubbo.version>
         <swagger.version>2.9.2</swagger.version>
         <curator.version>4.2.0</curator.version>
         <zookeeper.version>3.4.14</zookeeper.version>
