@@ -41,6 +41,9 @@
         <curator.version>4.2.0</curator.version>
         <zookeeper.version>3.4.14</zookeeper.version>
         <elastic-job.version>2.1.5</elastic-job.version>
+        <thumbnailator.version>0.4.8</thumbnailator.version>
+        <commons-io.version>2.6</commons-io.version>
+        <commons-fileupload.version>1.4</commons-fileupload.version>
     </properties>
 
     <!-- 统一依赖管理 -->
@@ -237,7 +240,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
-                <version>1.2.60</version>
+                <version>1.2.61</version>
             </dependency>
 
             <!-- elastic-job -->
@@ -256,6 +259,25 @@
                 <groupId>com.dangdang</groupId>
                 <artifactId>elastic-job-lite-spring</artifactId>
                 <version>${elastic-job.version}</version>
+            </dependency>
+
+            <!-- 图片处理 -->
+            <dependency>
+                <groupId>net.coobird</groupId>
+                <artifactId>thumbnailator</artifactId>
+                <version>${thumbnailator.version}</version>
+            </dependency>
+
+            <!-- commons控件 -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons-fileupload.version}</version>
             </dependency>
 
         </dependencies>
