@@ -2,10 +2,10 @@
 spring:
   datasource:
     druid:
-      url: jdbc:mysql://localhost:3306/test
-      username: root
-      password: fI1jQenplbnfUS5plboe3ZabIM8/S8f0FLUn52cTq3cHsINUSi0pEOGYvRENDNbpY+fNXjAjnqj/+pbv8z/k5Q==
-      public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJPBhbJk7I8jDi9AEFyu4WNK7RhbsPdI1+0Jws3D/nZiH1F/kdLIXGNmPYkq/urxVxd641Tea5ZKpxObpvB3KIUCAwEAAQ==
+      url: jdbc:mysql://192.168.3.9:3306/permission
+      username: nice
+      password: 2rnvlfFuexEfGoZpsyWSzmS7JQploxTe6ArGVCNToEBPbNMrMQflK1VwHMNZGjcVZKm9DOPDP19QLPBeOJ2LHg==
+      public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAO3zDIbucfWyB1WxUMdbETe0rc68K8EoohVFAbAY4x29Y7kMQJK3NOEBzG0aLkN815j3C+8xXxbkbiuFan4zgW8CAwEAAQ==
       initial-size: 5
       max-active: 100
       min-idle: 5
@@ -35,11 +35,11 @@ spring:
           slow-sql-millis: 2000
 
   redis:
-    password: pwd
-    timeout: 3000
+    password: luoyong123
+    timeout: PT3S
     cluster:
       max-redirects: 3
-      nodes: 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005,127.0.0.1:7006
+      nodes: 192.168.3.9:7001,192.168.3.9:7002,192.168.3.9:7003,192.168.3.9:7004,192.168.3.9:7005,192.168.3.9:7006
     lettuce:
       pool:
         min-idle: 2

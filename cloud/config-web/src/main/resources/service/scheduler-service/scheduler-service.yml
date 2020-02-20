@@ -4,7 +4,7 @@ elastic:
     namespace: scheduler/nice
 
 zookeeper:
-  address: 127.0.0.1:2181
+  address: 192.168.3.9:2181
 
 # dubbo 通用配置
 dubbo:
