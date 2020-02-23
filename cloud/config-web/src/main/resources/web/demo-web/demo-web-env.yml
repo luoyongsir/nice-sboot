@@ -3,11 +3,11 @@ spring:
   profiles: env
 
   redis:
-    password: pwd
-    timeout: 3000
+    password: luoyong123
+    timeout: PT3S
     cluster:
       max-redirects: 3
-      nodes: 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005,127.0.0.1:7006
+      nodes: 192.168.3.9:7001,192.168.3.9:7002,192.168.3.9:7003,192.168.3.9:7004,192.168.3.9:7005,192.168.3.9:7006
     lettuce:
       pool:
         min-idle: 2

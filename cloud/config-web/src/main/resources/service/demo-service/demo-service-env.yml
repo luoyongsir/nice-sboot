@@ -37,7 +37,7 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://testdb:123456a@localhost:27017/testdb
+      uri: mongodb://192.168.3.9:27017/testdb
 
   redis:
     password: luoyong123
