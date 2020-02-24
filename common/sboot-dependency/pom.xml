@@ -26,7 +26,6 @@
         <nice-config.version>0.0.1-${repo}</nice-config.version>
         <nice-gateway-swagger.version>0.0.1-${repo}</nice-gateway-swagger.version>
 
-
         <nice-base.version>0.0.1</nice-base.version>
         <nice-redis.version>0.0.1</nice-redis.version>
         <code-msg.version>0.0.4</code-msg.version>
@@ -192,7 +191,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.1.17</version>
+                <version>1.1.21</version>
             </dependency>
 
             <dependency>
@@ -234,13 +233,13 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>27.1-jre</version>
+                <version>28.2-jre</version>
             </dependency>
 
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
-                <version>1.2.61</version>
+                <version>1.2.62</version>
             </dependency>
 
             <!-- elastic-job -->

@@ -1,4 +1,4 @@
-package com.nice.sboot.demo;
+package com.nice.sboot.auth;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.Banner;
@@ -8,15 +8,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * 服务启动类
  * @author luoyong
- * @date 2019/6/2 16:53
+ * @date 2019/7/24 18:48
  */
 @SpringBootApplication
-@MapperScan("com.nice.sboot.demo.mapper")
-public class BootDemoStrap {
+@MapperScan("com.nice.sboot.auth.mapper")
+public class BootAuthService {
 
 	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(BootDemoStrap.class);
+		SpringApplication app = new SpringApplication(BootAuthService.class);
 		app.setBannerMode(Banner.Mode.OFF);
 		app.run(args);
 	}
+
 }

@@ -140,7 +140,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.nice.sboot.demo.web.BootDemoWeb</mainClass>
+                    <mainClass>com.nice.sboot.auth.web.BootAuthWeb</mainClass>
                     <layout>JAR</layout>
                 </configuration>
                 <executions>
