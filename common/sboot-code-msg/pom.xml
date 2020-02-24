@@ -51,7 +51,7 @@
                     <target name="codeMsgToJava">
                         <taskdef name="codeMsgToJava" classname="com.nice.sboot.result.task.CodeMsgToJavaTask"
                                  classpathref="maven.plugin.classpath"/>
-                        <codeMsgToJava outputdir="src/main/java/com/nice/sboot/result">
+                        <codeMsgToJava outputdir="src/main/java/com/nice/sboot/result" author="luoyong">
                             <fileset dir="src/main/resources" includes="**/*.properties"/>
                         </codeMsgToJava>
                     </target>

@@ -18,6 +18,7 @@ import java.util.*;
 public class CodeMsgToJavaTask extends Task {
 
 	private String outputDirString = null;
+	private String author = "code-msg-task";
 	private List<FileSet> fileSets = new LinkedList<>();
 
 	public void setOutputdir(File outputDir) {
@@ -27,6 +28,12 @@ public class CodeMsgToJavaTask extends Task {
 		this.outputDirString = outputDir.toString();
 		if (this.outputDirString.indexOf(32) != -1) {
 			this.outputDirString = ('"' + this.outputDirString + '"');
+		}
+	}
+
+	public void setAuthor(String author) {
+		if (author != null) {
+			this.author = author;
 		}
 	}
 
@@ -102,7 +109,7 @@ public class CodeMsgToJavaTask extends Task {
 		bud.append("/**").append(System.lineSeparator());
 		bud.append(" * 该类在 maven pre-clean/validate 阶段根据配置文件自动生成，禁止手动修改").append(System.lineSeparator());
 		bud.append(" * 如果有修改配置文件请执行 maven clean").append(System.lineSeparator());
-		bud.append(" * @author luoyong").append(System.lineSeparator());
+		bud.append(" * @author ").append(this.author).append(System.lineSeparator());
 		bud.append(" */").append(System.lineSeparator());
 		bud.append("public enum CodeMsgEnum {").append(System.lineSeparator());
 		bud.append("	// 枚举").append(System.lineSeparator());

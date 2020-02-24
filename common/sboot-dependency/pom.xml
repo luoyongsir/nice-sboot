@@ -29,8 +29,8 @@
 
         <nice-base.version>0.0.1</nice-base.version>
         <nice-redis.version>0.0.1</nice-redis.version>
-        <code-msg.version>0.0.3</code-msg.version>
-        <code-msg-task.version>0.0.3</code-msg-task.version>
+        <code-msg.version>0.0.4</code-msg.version>
+        <code-msg-task.version>0.0.4</code-msg-task.version>
         <web-module.version>0.0.1</web-module.version>
         <swagger-module.version>0.0.1</swagger-module.version>
 
