@@ -13,18 +13,19 @@ show_log=$2
 findJava(){
     arr1=`grep "JAVA_HOME=" /etc/profile | awk -F'=' '{print $2}'`
     if [ "$arr1" ]; then
-        arr1=$arr1/bin/java
+        arr1=`echo $arr1`/bin/java
     fi
 
     arr2=`echo $JAVA_HOME`
     if [ "$arr2" ]; then
-        arr2=$arr2/bin/java
+        arr2=`echo $arr2`/bin/java
     fi
 
     array=($arr1 $arr2 `which java` java /data/app/jdk1.8.0/bin/java)
     for i in "${!array[@]}"
     do
         java_dir=${array[$i]}
+        echo -e "[INFO] Find java_dir: $java_dir \n[INFO] i: $i "
         if [ "$java_dir" ]; then
             java_ver=$($java_dir -version 2>&1 | awk -F '"' '/version/ {print $2}')
             if [[ "$java_ver" < "1.8" ]]; then
