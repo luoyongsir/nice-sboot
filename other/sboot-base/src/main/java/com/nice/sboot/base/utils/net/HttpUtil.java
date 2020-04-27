@@ -4,6 +4,7 @@ import com.nice.sboot.base.comm.Const;
 import com.nice.sboot.base.comm.MediaTypes;
 import com.nice.sboot.base.utils.collect.MapUtil;
 import com.nice.sboot.base.utils.text.Charsets;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.*;
 import org.apache.http.client.config.AuthSchemes;
 import org.apache.http.client.config.CookieSpecs;
@@ -59,6 +60,12 @@ public final class HttpUtil {
 	private static SSLConnectionSocketFactory socketFactory;
 	private static PoolingHttpClientConnectionManager connManager;
 
+	/** Create global default request configuration */
+	private static RequestConfig defaultRequestConfig = RequestConfig.custom().setCookieSpec(CookieSpecs.DEFAULT)
+			.setTargetPreferredAuthSchemes(Arrays.asList(AuthSchemes.NTLM, AuthSchemes.DIGEST))
+			.setProxyPreferredAuthSchemes(Arrays.asList(AuthSchemes.BASIC)).setExpectContinueEnabled(true)
+			.setConnectionRequestTimeout(30000).setConnectTimeout(30000).setSocketTimeout(30000).build();
+
 	static {
 		// connManager = new PoolingHttpClientConnectionManager();
 		connManager = new PoolingHttpClientConnectionManager(getRegistry());
@@ -90,19 +97,13 @@ public final class HttpUtil {
 				.register("https", SSLConnectionSocketFactory.getSocketFactory()).build();
 	}
 
-	/** Create global default request configuration */
-	private static RequestConfig defaultRequestConfig = RequestConfig.custom().setCookieSpec(CookieSpecs.DEFAULT)
-			.setTargetPreferredAuthSchemes(Arrays.asList(AuthSchemes.NTLM, AuthSchemes.DIGEST))
-			.setProxyPreferredAuthSchemes(Arrays.asList(AuthSchemes.BASIC)).setExpectContinueEnabled(true)
-			.setConnectionRequestTimeout(30000).setConnectTimeout(30000).setSocketTimeout(30000).build();
-
 	/**
 	 * 超时设置（单位毫秒）默认30秒
 	 * @param connectionRequestTimeout 连接请求超时
 	 * @param connectTimeout 连接超时时间
 	 * @param socketTimeout 传输超时时间
 	 */
-	public static void initConfig(Integer connectionRequestTimeout, Integer connectTimeout, Integer socketTimeout) {
+	public static void setTimeout(Integer connectionRequestTimeout, Integer connectTimeout, Integer socketTimeout) {
 		RequestConfig.Builder builder = RequestConfig.copy(defaultRequestConfig);
 		if (connectionRequestTimeout != null) {
 			builder.setConnectionRequestTimeout(connectionRequestTimeout);
@@ -114,6 +115,20 @@ public final class HttpUtil {
 			builder.setSocketTimeout(socketTimeout);
 		}
 		HttpUtil.defaultRequestConfig = builder.build();
+	}
+
+	/**
+	 * 设置默认代理
+	 * @param hostname
+	 * @param port
+	 */
+	public static void setProxy(String hostname, int port) {
+		if (StringUtils.isNotBlank(hostname)) {
+			RequestConfig.Builder builder = RequestConfig.copy(defaultRequestConfig);
+			HttpHost proxy = new HttpHost(hostname, port);
+			builder.setProxy(proxy);
+			HttpUtil.defaultRequestConfig = builder.build();
+		}
 	}
 
 	public static CloseableHttpClient getHttpClient() {
