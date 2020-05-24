@@ -29,7 +29,7 @@ public final class ResultUtil {
 	 * @param <T>
 	 * @return
 	 */
-	public static <T> Result<T> success(T data) {
+	public static <T> Result<T> ok(T data) {
 		return result(CodeMsgEnum.SUCCESS, data);
 	}
 
