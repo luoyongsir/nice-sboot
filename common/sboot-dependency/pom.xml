@@ -88,12 +88,12 @@
                 <version>${web-module.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.nice.sboot</groupId>
-                <artifactId>swagger-module</artifactId>
-                <version>${swagger-module.version}</version>
-                <scope>${scope.type}</scope>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.nice.sboot</groupId>-->
+<!--                <artifactId>swagger-module</artifactId>-->
+<!--                <version>${swagger-module.version}</version>-->
+<!--                <scope>${scope.type}</scope>-->
+<!--            </dependency>-->
 
             <!-- 项目包 end -->
 

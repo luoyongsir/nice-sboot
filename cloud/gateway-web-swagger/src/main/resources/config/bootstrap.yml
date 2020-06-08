@@ -16,11 +16,11 @@ spring:
         enabled: true
       routes:
       - id: demo-web
-        uri: http://127.0.0.1:8080/demo
+        uri: http://www.temp.com/api
         predicates:
-        - Path=http://127.0.0.1:8080/demo/**
+        - Path=http://www.temp.com/api/**
       - id: auth-web
-        uri: http://127.0.0.1:8081/auth
+        uri: http://www.temp.com/auth
         predicates:
-        - Path=http://127.0.0.1:8081/auth/**
+        - Path=http://www.temp.com/auth/**
 
