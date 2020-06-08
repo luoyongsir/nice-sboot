@@ -28,8 +28,8 @@
             <artifactId>sboot-web-module</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.nice.sboot</groupId>
-            <artifactId>swagger-module</artifactId>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
         </dependency>
 
         <dependency>
@@ -61,6 +61,10 @@
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.javakaffee</groupId>
+            <artifactId>kryo-serializers</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
