@@ -35,8 +35,9 @@
 
         <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
-        <dubbo.version>2.7.6</dubbo.version>
-        <swagger.version>2.9.2</swagger.version>
+        <dubbo.version>2.7.7</dubbo.version>
+        <swagger-annotations.version>2.1.2</swagger-annotations.version>
+        <springdoc.version>1.4.0</springdoc.version>
         <curator.version>4.2.0</curator.version>
         <fastjson.version>1.2.68</fastjson.version>
         <zookeeper.version>3.4.14</zookeeper.version>
@@ -147,6 +148,12 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <!--  dubbo 采用 kryo 序列化 -->
+            <dependency>
+                <groupId>de.javakaffee</groupId>
+                <artifactId>kryo-serializers</artifactId>
+                <version>0.43</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.apache.zookeeper</groupId>
@@ -219,15 +226,15 @@
             </dependency>
 
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
                 <scope>${scope.type}</scope>
             </dependency>
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger.version}</version>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotations.version}</version>
                 <scope>${scope.type}</scope>
             </dependency>
 
