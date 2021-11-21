@@ -1,9 +1,0 @@
-
-# 所有service项目公用配置
-
-spring:
-  profiles: test
-
-dubbo:
-  registry:
-    address: zookeeper://localhost:2181

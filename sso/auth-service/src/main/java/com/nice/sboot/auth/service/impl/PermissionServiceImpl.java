@@ -8,8 +8,6 @@ import com.nice.sboot.auth.mapper.SysRolePermissionMapper;
 import com.nice.sboot.auth.mapper.SysUserRoleMapper;
 import com.nice.sboot.auth.service.PermissionService;
 import com.nice.sboot.base.utils.collect.ListUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +21,6 @@ import java.util.stream.Collectors;
  */
 @Service
 public class PermissionServiceImpl implements PermissionService {
-
-	private static final Logger LOG = LoggerFactory.getLogger(PermissionServiceImpl.class.getName());
 
 	@Autowired
 	private SysUserRoleMapper sysUserRoleMapper;

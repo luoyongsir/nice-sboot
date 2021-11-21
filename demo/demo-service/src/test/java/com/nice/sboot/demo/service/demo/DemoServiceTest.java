@@ -3,7 +3,7 @@ package com.nice.sboot.demo.service.demo;
 import com.nice.sboot.demo.pojo.bo.PageParamBO;
 import com.nice.sboot.demo.service.BaseTest;
 import com.nice.sboot.demo.service.DemoService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -21,8 +21,8 @@ public class DemoServiceTest extends BaseTest {
 		demoService.findAllWithParam(bo);
 	}
 
-//	@Test
-//	public void testMongo() {
-//		demoService.testMongo();
-//	}
+	//	@Test
+	//	public void testMongo() {
+	//		demoService.testMongo();
+	//	}
 }

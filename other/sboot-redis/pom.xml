@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.nice.sboot</groupId>
         <artifactId>sboot-dependency</artifactId>
-        <version>0.0.1</version>
+        <version>1.0.0</version>
     </parent>
     <artifactId>sboot-redis</artifactId>
     <version>${nice-redis.version}</version>

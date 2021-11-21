@@ -1,9 +1,0 @@
-
-# 所有service项目公用配置
-
-spring:
-  profiles: env
-
-dubbo:
-  registry:
-    address: zookeeper://192.168.3.9:2181

@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.nice.sboot</groupId>
         <artifactId>sboot-dependency</artifactId>
-        <version>0.0.1</version>
+        <version>1.0.0</version>
     </parent>
     <artifactId>demo-common</artifactId>
     <version>${cur.version}</version>
@@ -22,8 +22,13 @@
         </dependency>
 
         <dependency>
-            <groupId>io.swagger.core.v3</groupId>
-            <artifactId>swagger-annotations</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-micro-spring-boot-starter</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>

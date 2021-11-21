@@ -1,0 +1,40 @@
+server:
+  port: 8888
+
+spring:
+  profiles:
+    active: @profiles.active@
+  application:
+    name: sboot-doc
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+#      discovery:
+#        namespace: ${spring.profiles.active}
+
+knife4j:
+  enableAggregation: true
+  nacos:
+    enable: true
+    serviceUrl: http://${spring.cloud.nacos.server-addr}/nacos
+    routeAuth:
+      enable: true
+      username: ${spring.cloud.nacos.username}
+      password: ${spring.cloud.nacos.password}
+    routes:
+      - name: demo服务
+        serviceName: demo-service
+        groupName: DEFAULT_GROUP
+#        namespaceId: ${spring.cloud.nacos.discovery.namespace}
+        location: /v3/api-docs?group=default
+        swaggerVersion: 3.0
+        servicePath: /demo
+      - name: 认证服务
+        serviceName: auth-service
+        groupName: DEFAULT_GROUP
+#        namespaceId: ${spring.cloud.nacos.discovery.namespace}
+        location: /v3/api-docs?group=default
+        swaggerVersion: 3.0
+        servicePath: /auth

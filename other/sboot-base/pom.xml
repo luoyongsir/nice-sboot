@@ -4,13 +4,18 @@
     <parent>
         <groupId>com.nice.sboot</groupId>
         <artifactId>sboot-dependency</artifactId>
-        <version>0.0.1</version>
+        <version>1.0.0</version>
     </parent>
     <artifactId>sboot-base</artifactId>
     <version>${nice-base.version}</version>
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -31,7 +36,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <optional>true</optional>
+            <version>31.0.1-jre</version>
         </dependency>
 
         <dependency>

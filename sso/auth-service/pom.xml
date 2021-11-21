@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.nice.sboot</groupId>
         <artifactId>sboot-dependency</artifactId>
-        <version>0.0.1</version>
+        <version>1.0.0</version>
     </parent>
     <artifactId>auth-service</artifactId>
     <version>${cur.version}</version>
@@ -19,14 +19,34 @@
             <groupId>com.nice.sboot</groupId>
             <artifactId>sboot-base</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.nice.sboot</groupId>
+            <artifactId>sboot-web-module</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-micro-spring-boot-starter</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-client</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.security.oauth.boot</groupId>
@@ -56,27 +76,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.javakaffee</groupId>
-            <artifactId>kryo-serializers</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-recipes</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
@@ -86,9 +85,9 @@
     <profiles>
         <!-- 本地环境 -->
         <profile>
-            <id>env</id>
+            <id>local</id>
             <properties>
-                <profiles.active>env</profiles.active>
+                <profiles.active>local</profiles.active>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -98,9 +97,8 @@
                     <resource>
                         <directory>src/main/resources</directory>
                         <includes>
-                            <include>config/bootstrap.yml</include>
-                            <include>xml/logback-spring.xml</include>
-                            <include>db/*</include>
+                            <include>bootstrap.yml</include>
+                            <include>logback-spring.xml</include>
                         </includes>
                         <filtering>true</filtering>
                     </resource>
@@ -137,7 +135,9 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <excludes>
-                    <exclude>**/**</exclude>
+                    <exclude>*.xml</exclude>
+                    <exclude>*.yml</exclude>
+                    <exclude>service.sh</exclude>
                 </excludes>
             </resource>
         </resources>
@@ -175,7 +175,7 @@
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
                     <descriptors>
-                        <descriptor>src/main/resources/xml/assembly.xml</descriptor>
+                        <descriptor>src/main/resources/assembly.xml</descriptor>
                     </descriptors>
                 </configuration>
                 <executions>

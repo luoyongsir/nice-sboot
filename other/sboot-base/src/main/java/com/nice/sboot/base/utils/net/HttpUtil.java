@@ -4,6 +4,7 @@ import com.nice.sboot.base.comm.Const;
 import com.nice.sboot.base.comm.MediaTypes;
 import com.nice.sboot.base.utils.collect.MapUtil;
 import com.nice.sboot.base.utils.text.Charsets;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.*;
 import org.apache.http.client.config.AuthSchemes;
@@ -32,8 +33,6 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -54,9 +53,9 @@ import java.util.Map;
  * @author luoyong
  * @date 2019/6/19 18:34
  */
+@Slf4j
 public final class HttpUtil {
 
-	private static final Logger LOG = LoggerFactory.getLogger(HttpUtil.class.getName());
 	private static SSLConnectionSocketFactory socketFactory;
 	private static PoolingHttpClientConnectionManager connManager;
 
@@ -90,7 +89,7 @@ public final class HttpUtil {
 					.register("http", PlainConnectionSocketFactory.getSocketFactory()).register("https", socketFactory)
 					.build();
 		} catch (NoSuchAlgorithmException | KeyStoreException | KeyManagementException e) {
-			LOG.error("ssl 连接出错：", e);
+			log.error("ssl 连接出错：", e);
 		}
 		return RegistryBuilder.<ConnectionSocketFactory>create()
 				.register("http", PlainConnectionSocketFactory.getSocketFactory())
@@ -317,10 +316,10 @@ public final class HttpUtil {
 				// 销毁
 				EntityUtils.consume(entity);
 			} else {
-				LOG.info("HttpClient请求返回状态：" + status);
+				log.info("HttpClient请求返回状态：" + status);
 			}
 		} catch (IOException e) {
-			LOG.error("HttpClient请求失败：", e);
+			log.error("HttpClient请求失败：", e);
 		}
 		return res;
 	}
@@ -348,7 +347,7 @@ public final class HttpUtil {
 				}
 			}
 		} catch (IOException e) {
-			LOG.error("HttpClient download 请求失败：", e);
+			log.error("HttpClient download 请求失败：", e);
 		}
 	}
 

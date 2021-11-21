@@ -1,8 +1,9 @@
 package com.nice.sboot.base.utils.security;
 
+import com.nice.sboot.base.exception.ExceptionFactory;
 import com.nice.sboot.base.exception.RunException;
-import com.nice.sboot.base.utils.text.Charsets;
 import com.nice.sboot.base.utils.num.RandomUtil;
+import com.nice.sboot.base.utils.text.Charsets;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -86,7 +87,7 @@ public final class AesUtil {
 			cipher.init(mode, secretKey);
 			return cipher.doFinal(input);
 		} catch (GeneralSecurityException e) {
-			throw new RunException(e);
+			throw ExceptionFactory.create(e);
 		}
 	}
 
@@ -106,7 +107,7 @@ public final class AesUtil {
 			cipher.init(mode, secretKey, ivSpec);
 			return cipher.doFinal(input);
 		} catch (GeneralSecurityException e) {
-			throw new RunException(e);
+			throw ExceptionFactory.create(e);
 		}
 	}
 
@@ -127,7 +128,7 @@ public final class AesUtil {
 			SecretKey secretKey = keyGenerator.generateKey();
 			return secretKey.getEncoded();
 		} catch (GeneralSecurityException e) {
-			throw new RunException(e);
+			throw ExceptionFactory.create(e);
 		}
 	}
 

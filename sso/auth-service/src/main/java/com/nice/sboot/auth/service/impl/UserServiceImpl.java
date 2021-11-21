@@ -7,10 +7,10 @@ import com.nice.sboot.auth.mapper.SysUserMapper;
 import com.nice.sboot.auth.pojo.dto.UserDTO;
 import com.nice.sboot.auth.service.PermissionService;
 import com.nice.sboot.auth.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,9 +21,8 @@ import java.util.List;
  * @date 2019/7/25 10:54
  */
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
-
-	private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class.getName());
 
 	@Autowired
 	private SysUserMapper sysUserMapper;
@@ -40,15 +39,15 @@ public class UserServiceImpl implements UserService {
 	public UserDTO loadUserByUsername(String username) {
 		SysUser sysUser = getByUsername(username);
 		if (null == sysUser) {
-			LOG.warn("用户{}不存在", username);
-			return null;
+			log.warn("用户{}不存在", username);
+			throw new UsernameNotFoundException(username);
 		}
 		List<SysPermission> permissionList = permissionService.findByUserId(sysUser.getId());
 
 		UserDTO userDTO = new UserDTO();
 		BeanUtils.copyProperties(sysUser, userDTO);
 		userDTO.setPermissionList(permissionList);
-		LOG.info("登录成功！用户: {}", JSON.toJSONString(userDTO));
+		log.info("登录成功！用户: {}", JSON.toJSONString(userDTO));
 		return userDTO;
 	}
 }
