@@ -44,7 +44,7 @@
         <zookeeper.version>3.4.14</zookeeper.version>
         <elastic-job.version>2.1.5</elastic-job.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
-        <commons-io.version>2.6</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <commons-fileupload.version>1.4</commons-fileupload.version>
     </properties>
 
