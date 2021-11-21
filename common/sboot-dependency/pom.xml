@@ -35,7 +35,7 @@
 
         <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
-        <dubbo.version>2.7.7</dubbo.version>
+        <dubbo.version>2.7.13</dubbo.version>
         <swagger-annotations.version>2.1.2</swagger-annotations.version>
         <springdoc.version>1.4.0</springdoc.version>
         <curator.version>4.2.0</curator.version>
