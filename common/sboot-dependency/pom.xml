@@ -30,7 +30,6 @@
         <nice-redis.version>1.0.0</nice-redis.version>
         <code-msg.version>1.0.0</code-msg.version>
         <code-msg-task.version>1.0.0</code-msg-task.version>
-        <web-module.version>1.0.0</web-module.version>
 
         <spring-boot.version>2.2.13.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
@@ -110,12 +109,6 @@
                 <artifactId>sboot-code-msg</artifactId>
                 <version>${code-msg.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.nice.sboot</groupId>
-                <artifactId>sboot-web-module</artifactId>
-                <version>${web-module.version}</version>
-            </dependency>
-
 
             <!-- 项目包 end -->
 
