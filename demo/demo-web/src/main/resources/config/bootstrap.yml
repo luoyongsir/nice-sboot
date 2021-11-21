@@ -29,6 +29,14 @@ management:
       exposure:
         include: "*"
 
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui: /api/swagger-ui.html
+#  paths-to-match: /api/**
+#  packages-to-scan: com.nice.sboot.demo.web.controller
+
 ---
 # 测试环境配置
 spring:

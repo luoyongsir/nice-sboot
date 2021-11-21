@@ -5,16 +5,31 @@
         <format>zip</format>
     </formats>
     <includeBaseDirectory>true</includeBaseDirectory>
+    <baseDirectory>${project.artifactId}</baseDirectory>
+
     <fileSets>
         <fileSet>
             <directory>${basedir}/src/main/resources</directory>
             <includes>
-                <include>service.sh</include>
                 <include>config/bootstrap.yml</include>
                 <include>xml/logback-spring.xml</include>
             </includes>
             <filtered>true</filtered>
+            <outputDirectory>/classes</outputDirectory>
+        </fileSet>
+
+        <fileSet>
+            <directory>${basedir}/src/main/resources</directory>
+            <includes>
+                <include>service.sh</include>
+            </includes>
+            <filtered>true</filtered>
             <outputDirectory>/</outputDirectory>
+        </fileSet>
+
+        <fileSet>
+            <directory>${project.build.directory}/lib</directory>
+            <outputDirectory>/lib</outputDirectory>
         </fileSet>
 
         <fileSet>

@@ -19,10 +19,4 @@ public interface DemoService {
 	 */
 	Result findAllWithParam(PageParamBO param);
 
-	/**
-	 * 测试MongoDB
-	 * @author luoyong
-	 * @date 2019/7/3 14:30
-	 */
-	void testMongo();
 }

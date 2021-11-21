@@ -35,14 +35,15 @@
 
         <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
-        <dubbo.version>2.7.6</dubbo.version>
-        <swagger.version>2.9.2</swagger.version>
+        <dubbo.version>2.7.13</dubbo.version>
+        <swagger-annotations.version>2.1.2</swagger-annotations.version>
+        <springdoc.version>1.4.0</springdoc.version>
         <curator.version>4.2.0</curator.version>
         <fastjson.version>1.2.68</fastjson.version>
         <zookeeper.version>3.4.14</zookeeper.version>
         <elastic-job.version>2.1.5</elastic-job.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
-        <commons-io.version>2.6</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <commons-fileupload.version>1.4</commons-fileupload.version>
     </properties>
 
@@ -87,12 +88,12 @@
                 <version>${web-module.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.nice.sboot</groupId>
-                <artifactId>swagger-module</artifactId>
-                <version>${swagger-module.version}</version>
-                <scope>${scope.type}</scope>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.nice.sboot</groupId>-->
+<!--                <artifactId>swagger-module</artifactId>-->
+<!--                <version>${swagger-module.version}</version>-->
+<!--                <scope>${scope.type}</scope>-->
+<!--            </dependency>-->
 
             <!-- 项目包 end -->
 
@@ -146,6 +147,12 @@
                         <artifactId>log4j</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <!--  dubbo 采用 kryo 序列化 -->
+            <dependency>
+                <groupId>de.javakaffee</groupId>
+                <artifactId>kryo-serializers</artifactId>
+                <version>0.43</version>
             </dependency>
 
             <dependency>
@@ -219,15 +226,15 @@
             </dependency>
 
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
                 <scope>${scope.type}</scope>
             </dependency>
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger.version}</version>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotations.version}</version>
                 <scope>${scope.type}</scope>
             </dependency>
 

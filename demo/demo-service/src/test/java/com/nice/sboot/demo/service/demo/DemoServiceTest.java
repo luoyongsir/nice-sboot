@@ -21,8 +21,8 @@ public class DemoServiceTest extends BaseTest {
 		demoService.findAllWithParam(bo);
 	}
 
-	@Test
-	public void testMongo() {
-		demoService.testMongo();
-	}
+//	@Test
+//	public void testMongo() {
+//		demoService.testMongo();
+//	}
 }

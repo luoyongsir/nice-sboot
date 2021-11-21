@@ -57,5 +57,7 @@ dubbo:
     check: false
   protocol:
     name: dubbo
+    serialization: kryo
+#    optimizer: 实现性能更佳
     port: -1
     threads: 300

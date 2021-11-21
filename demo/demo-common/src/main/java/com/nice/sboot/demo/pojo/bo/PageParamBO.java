@@ -1,6 +1,6 @@
 package com.nice.sboot.demo.pojo.bo;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,6 +10,7 @@ import java.util.Objects;
  * @author luoyong
  * @date 2019/6/27 10:20
  */
+@Schema(name = "PageParamBO", description = "分页请求参数")
 public class PageParamBO implements Serializable {
 
 	private static final long serialVersionUID = 5934926768926264314L;
@@ -17,13 +18,13 @@ public class PageParamBO implements Serializable {
 	/**
 	 * 页码数 从1开始
 	 */
-	@ApiModelProperty(name = "pageNum", value = "页码数，从1开始，默认值：1", required = true, dataType = "int")
+	@Schema(name = "pageNum", description = "页码数，从1开始，默认值：1", required = true, type = "int")
 	private Integer pageNum;
 
 	/**
 	 * 每页数量
 	 */
-	@ApiModelProperty(name = "pageSize", value = "每页数量，默认值：10", required = true, dataType = "int")
+	@Schema(name = "pageSize", description = "每页数量，默认值：10", defaultValue = "10", required = true, type = "int")
 	private Integer pageSize;
 
 	public PageParamBO() {
