@@ -15,6 +15,9 @@ import java.util.zip.GZIPOutputStream;
  */
 public final class ZipUtil {
 
+	private ZipUtil() {
+	}
+
 	/**
 	 * 压缩Gzip
 	 *
@@ -30,7 +33,8 @@ public final class ZipUtil {
 	 * @return
 	 */
 	public static byte[] gzipBytes(final String input) {
-		try (ByteArrayOutputStream bos = new ByteArrayOutputStream(); GZIPOutputStream gzip = new GZIPOutputStream(bos)) {
+		try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
+				GZIPOutputStream gzip = new GZIPOutputStream(bos)) {
 			gzip.write(input.getBytes(Charsets.UTF_8));
 			gzip.finish();
 			return bos.toByteArray();
@@ -41,7 +45,7 @@ public final class ZipUtil {
 
 	/**
 	 * 解压Gzip
-	 * 
+	 *
 	 * @return
 	 */
 	public static String unGzip(final String input) {
@@ -67,8 +71,5 @@ public final class ZipUtil {
 		} catch (Exception e) {
 			throw new RunException("ZIP 解压出错：", e);
 		}
-	}
-
-	private ZipUtil() {
 	}
 }

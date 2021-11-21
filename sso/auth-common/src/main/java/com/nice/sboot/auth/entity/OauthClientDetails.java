@@ -15,28 +15,17 @@ import java.io.Serializable;
 @Setter
 @ToString
 public class OauthClientDetails implements Serializable {
-    private String clientId;
-
-    private String resourceIds;
-
-    private String clientSecret;
-
-    private String scope;
-
-    private String authorizedGrantTypes;
-
-    private String webServerRedirectUri;
-
-    private String authorities;
-
-    private Integer accessTokenValidity;
-
-    private Integer refreshTokenValidity;
-
-    private String additionalInformation;
-
-    private String autoApprove;
-
-    private static final long serialVersionUID = 755880017521443341L;
+	private static final long serialVersionUID = 755880017521443341L;
+	private String clientId;
+	private String resourceIds;
+	private String clientSecret;
+	private String scope;
+	private String authorizedGrantTypes;
+	private String webServerRedirectUri;
+	private String authorities;
+	private Integer accessTokenValidity;
+	private Integer refreshTokenValidity;
+	private String additionalInformation;
+	private String autoApprove;
 
 }

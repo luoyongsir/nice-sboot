@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/order")
 public class OrderController {
 
-    @GetMapping("/list")
-    public String list() {
-        return "order/list";
-    }
+	@GetMapping("/list")
+	public String list() {
+		return "order/list";
+	}
 
 }

@@ -22,6 +22,9 @@ import java.nio.file.StandardOpenOption;
  */
 public final class FileUtil {
 
+	private FileUtil() {
+	}
+
 	/**
 	 * 简单写入String到File.
 	 */
@@ -144,8 +147,5 @@ public final class FileUtil {
 
 	private static Path getPath(String filePath) {
 		return Paths.get(filePath);
-	}
-
-	private FileUtil() {
 	}
 }

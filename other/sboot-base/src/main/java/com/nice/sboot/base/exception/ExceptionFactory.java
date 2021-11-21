@@ -8,6 +8,9 @@ package com.nice.sboot.base.exception;
  */
 public final class ExceptionFactory {
 
+	private ExceptionFactory() {
+	}
+
 	public static RunException create(Throwable cause) {
 		return new RunException(cause);
 	}
@@ -18,8 +21,5 @@ public final class ExceptionFactory {
 
 	public static RunException create(String message, Throwable cause) {
 		return new RunException(message, cause);
-	}
-
-	private ExceptionFactory() {
 	}
 }

@@ -1,9 +1,9 @@
 package com.nice.sboot.base.utils.security;
 
 import com.nice.sboot.base.exception.RunException;
+import com.nice.sboot.base.utils.num.RandomUtil;
 import com.nice.sboot.base.utils.text.Charsets;
 import com.nice.sboot.base.utils.text.EncodeUtil;
-import com.nice.sboot.base.utils.num.RandomUtil;
 
 import javax.crypto.Cipher;
 import java.security.*;
@@ -23,6 +23,9 @@ public final class RsaUtil {
 	private static final int DEFAULT_RSA_KEY_SIZE = 2048;
 
 	private static SecureRandom random = RandomUtil.secureRandom();
+
+	private RsaUtil() {
+	}
 
 	/**
 	 * 使用RSA加密无编码的原始字节数组, 返回无编码的字节数组结果.
@@ -85,8 +88,5 @@ public final class RsaUtil {
 		} catch (GeneralSecurityException e) {
 			throw new RunException(e);
 		}
-	}
-
-	private RsaUtil() {
 	}
 }

@@ -10,6 +10,9 @@ import com.google.common.io.BaseEncoding;
  */
 public final class EncodeUtil {
 
+	private EncodeUtil() {
+	}
+
 	/**
 	 * Hex编码, 将byte[]编码为String，默认为ABCDEF为大写字母.
 	 */
@@ -56,8 +59,5 @@ public final class EncodeUtil {
 	 */
 	public static byte[] decodeBase64UrlSafe(CharSequence input) {
 		return BaseEncoding.base64Url().decode(input);
-	}
-
-	private EncodeUtil() {
 	}
 }

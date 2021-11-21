@@ -15,14 +15,11 @@ import java.io.Serializable;
 @Setter
 @ToString
 public class SysUserRole implements Serializable {
-    private Integer id;
-
-    /** 用户ID */
-    private Integer userId;
-
-    /** 角色ID */
-    private Integer roleId;
-
-    private static final long serialVersionUID = -656722076262318352L;
+	private static final long serialVersionUID = -656722076262318352L;
+	private Integer id;
+	/** 用户ID */
+	private Integer userId;
+	/** 角色ID */
+	private Integer roleId;
 
 }

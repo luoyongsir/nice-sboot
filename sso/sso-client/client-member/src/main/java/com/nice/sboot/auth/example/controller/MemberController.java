@@ -18,36 +18,36 @@ import java.security.Principal;
 @RequestMapping("/member")
 public class MemberController {
 
-    @GetMapping("/list")
-    public String list() {
+	@GetMapping("/list")
+	public String list() {
 
-        return "member/list";
-    }
+		return "member/list";
+	}
 
-    @GetMapping("/info")
-    @ResponseBody
-    public Principal info(Principal principal) {
-        return principal;
-    }
+	@GetMapping("/info")
+	@ResponseBody
+	public Principal info(Principal principal) {
+		return principal;
+	}
 
-    @GetMapping("/me")
-    @ResponseBody
-    public Authentication me(Authentication authentication) {
-        return authentication;
-    }
+	@GetMapping("/me")
+	@ResponseBody
+	public Authentication me(Authentication authentication) {
+		return authentication;
+	}
 
-    @PreAuthorize("hasAuthority('member:save')")
-    @ResponseBody
-    @PostMapping("/add")
-    public String add() {
+	@PreAuthorize("hasAuthority('member:save')")
+	@ResponseBody
+	@PostMapping("/add")
+	public String add() {
 
-        return "add";
-    }
+		return "add";
+	}
 
-    @PreAuthorize("hasAuthority('member:detail')")
-    @ResponseBody
-    @GetMapping("/detail")
-    public String detail() {
-        return "detail";
-    }
+	@PreAuthorize("hasAuthority('member:detail')")
+	@ResponseBody
+	@GetMapping("/detail")
+	public String detail() {
+		return "detail";
+	}
 }

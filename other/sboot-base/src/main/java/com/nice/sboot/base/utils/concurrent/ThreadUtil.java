@@ -13,6 +13,9 @@ import java.util.concurrent.TimeUnit;
  */
 public final class ThreadUtil {
 
+	private ThreadUtil() {
+	}
+
 	/**
 	 * sleep等待, 单位为毫秒.
 	 */
@@ -85,8 +88,5 @@ public final class ThreadUtil {
 		} else {
 			return Const.EMPTY;
 		}
-	}
-
-	private ThreadUtil() {
 	}
 }

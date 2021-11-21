@@ -17,18 +17,13 @@ import java.util.Date;
 @Setter
 @ToString
 public class Coffee implements Serializable {
+	private static final long serialVersionUID = -717111033660533872L;
 	private Long id;
-
 	/** 咖啡名称 */
 	private String name;
-
 	/** 咖啡价格 */
 	private Money price;
-
 	private Date createTime;
-
 	private Date updateTime;
-
-	private static final long serialVersionUID = -717111033660533872L;
 
 }

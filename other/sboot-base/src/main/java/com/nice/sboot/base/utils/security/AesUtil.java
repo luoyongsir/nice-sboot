@@ -1,7 +1,6 @@
 package com.nice.sboot.base.utils.security;
 
 import com.nice.sboot.base.exception.ExceptionFactory;
-import com.nice.sboot.base.exception.RunException;
 import com.nice.sboot.base.utils.num.RandomUtil;
 import com.nice.sboot.base.utils.text.Charsets;
 
@@ -28,6 +27,9 @@ public final class AesUtil {
 	private static final int DEFAULT_IV_SIZE = 16;
 
 	private static SecureRandom random = RandomUtil.secureRandom();
+
+	private AesUtil() {
+	}
 
 	/**
 	 * 使用AES加密原始字符串.
@@ -139,8 +141,5 @@ public final class AesUtil {
 		byte[] bytes = new byte[DEFAULT_IV_SIZE];
 		random.nextBytes(bytes);
 		return bytes;
-	}
-
-	private AesUtil() {
 	}
 }

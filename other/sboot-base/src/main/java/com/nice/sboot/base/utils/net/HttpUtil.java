@@ -74,6 +74,9 @@ public final class HttpUtil {
 		connManager.setDefaultMaxPerRoute(10);
 	}
 
+	private HttpUtil() {
+	}
+
 	/**
 	 * https 的支持
 	 *
@@ -349,8 +352,5 @@ public final class HttpUtil {
 		} catch (IOException e) {
 			log.error("HttpClient download 请求失败：", e);
 		}
-	}
-
-	private HttpUtil() {
 	}
 }

@@ -13,6 +13,9 @@ public final class StringBud {
 
 	private static ThreadLocal<StringBuilder> localBud = ThreadLocal.withInitial(() -> new StringBuilder(512));
 
+	private StringBud() {
+	}
+
 	/**
 	 * 重置StringBuilder内部的writerIndex, 而char[]保留不动.
 	 */
@@ -71,8 +74,5 @@ public final class StringBud {
 			}
 		}
 		return bud.toString();
-	}
-
-	private StringBud() {
 	}
 }

@@ -16,24 +16,16 @@ import java.util.Date;
 @Setter
 @ToString
 public class SysRole implements Serializable {
-    private Integer id;
-
-    /** 角色名称 */
-    private String roleName;
-
-    private String roleCode;
-
-    /** 角色描述 */
-    private String roleDescription;
-
-    private String createUser;
-
-    private Date createTime;
-
-    private String updateUser;
-
-    private Date updateTime;
-
-    private static final long serialVersionUID = -736553213445164044L;
+	private static final long serialVersionUID = -736553213445164044L;
+	private Integer id;
+	/** 角色名称 */
+	private String roleName;
+	private String roleCode;
+	/** 角色描述 */
+	private String roleDescription;
+	private String createUser;
+	private Date createTime;
+	private String updateUser;
+	private Date updateTime;
 
 }

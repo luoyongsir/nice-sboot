@@ -12,6 +12,9 @@ import java.util.Map;
  */
 public final class MapUtil {
 
+	private MapUtil() {
+	}
+
 	/**
 	 * 判断是否为空.
 	 */
@@ -63,8 +66,5 @@ public final class MapUtil {
 			return (int) ((float) expectedSize / loadFactor + 1.0F);
 		}
 		return Integer.MAX_VALUE;
-	}
-
-	private MapUtil() {
 	}
 }

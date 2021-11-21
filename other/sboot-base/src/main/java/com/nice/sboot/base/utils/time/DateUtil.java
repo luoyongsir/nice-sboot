@@ -22,12 +22,26 @@ import java.util.Date;
  */
 public final class DateUtil {
 
-	private static final Logger LOG = LoggerFactory.getLogger(DateUtil.class.getName());
-
 	public static final String DATE = "yyyy-MM-dd";
 	public static final String DATEMIN = "yyyy-MM-dd HH:mm";
 	public static final String DATENUM = "yyyyMMddHHmmss";
 	public static final String DATETIME = "yyyy-MM-dd HH:mm:ss";
+	private static final Logger LOG = LoggerFactory.getLogger(DateUtil.class.getName());
+	/** 多种格式兼容解析日期*/
+	private static final String[] PARSE_PATTERNS = new String[]{
+			// 中划线分隔符
+			"yyyy-MM-dd", "yyyy-MM-dd HH:mm", "yyyy-MM-dd HH:mm:ss",
+			// 斜杠分隔符
+			"yyyy/MM/dd", "yyyy/MM/dd HH:mm", "yyyy/MM/dd HH:mm:ss",
+			// 中文风格
+			"yyyy年MM月dd日", "yyyy年MM月dd日 HH时mm分", "yyyy年MM月dd日 HH时mm分ss秒",
+			// 时分秒
+			"HH", "HH:mm", "HH:mm:ss",
+			// 无分隔符
+			"yyyyMMdd", "yyyyMMddHHmm", "yyyyMMddHHmmss"};
+
+	private DateUtil() {
+	}
 
 	/**
 	 * LocalDate 转 Date
@@ -94,21 +108,5 @@ public final class DateUtil {
 	 */
 	public static String format(final long date, final String pattern) {
 		return FastDateFormat.getInstance(pattern).format(date);
-	}
-
-	/** 多种格式兼容解析日期*/
-	private static final String[] PARSE_PATTERNS = new String[]{
-			// 中划线分隔符
-			"yyyy-MM-dd", "yyyy-MM-dd HH:mm", "yyyy-MM-dd HH:mm:ss",
-			// 斜杠分隔符
-			"yyyy/MM/dd", "yyyy/MM/dd HH:mm", "yyyy/MM/dd HH:mm:ss",
-			// 中文风格
-			"yyyy年MM月dd日", "yyyy年MM月dd日 HH时mm分", "yyyy年MM月dd日 HH时mm分ss秒",
-			// 时分秒
-			"HH", "HH:mm", "HH:mm:ss",
-			// 无分隔符
-			"yyyyMMdd", "yyyyMMddHHmm", "yyyyMMddHHmmss"};
-
-	private DateUtil() {
 	}
 }

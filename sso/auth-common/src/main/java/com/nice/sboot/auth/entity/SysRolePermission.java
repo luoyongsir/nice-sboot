@@ -15,14 +15,11 @@ import java.io.Serializable;
 @Setter
 @ToString
 public class SysRolePermission implements Serializable {
-    private Integer id;
-
-    /** 角色ID */
-    private Integer roleId;
-
-    /** 权限ID */
-    private Integer permissionId;
-
-    private static final long serialVersionUID = -545871720371550383L;
+	private static final long serialVersionUID = -545871720371550383L;
+	private Integer id;
+	/** 角色ID */
+	private Integer roleId;
+	/** 权限ID */
+	private Integer permissionId;
 
 }

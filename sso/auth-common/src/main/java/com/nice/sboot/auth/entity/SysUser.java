@@ -16,31 +16,21 @@ import java.util.Date;
 @Setter
 @ToString
 public class SysUser implements Serializable {
-    private Integer id;
-
-    /** 账号 */
-    private String username;
-
-    /** 密码 */
-    private String password;
-
-    /** 昵称 */
-    private String nickname;
-
-    /** 邮箱 */
-    private String email;
-
-    /** 状态（0：锁定，1：解锁） */
-    private Byte status;
-
-    private String createUser;
-
-    private Date createTime;
-
-    private String updateUser;
-
-    private Date updateTime;
-
-    private static final long serialVersionUID = 417687107621748588L;
+	private static final long serialVersionUID = 417687107621748588L;
+	private Integer id;
+	/** 账号 */
+	private String username;
+	/** 密码 */
+	private String password;
+	/** 昵称 */
+	private String nickname;
+	/** 邮箱 */
+	private String email;
+	/** 状态（0：锁定，1：解锁） */
+	private Byte status;
+	private String createUser;
+	private Date createTime;
+	private String updateUser;
+	private Date updateTime;
 
 }

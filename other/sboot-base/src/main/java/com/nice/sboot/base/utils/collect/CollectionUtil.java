@@ -8,6 +8,9 @@ import java.util.Collection;
  */
 public final class CollectionUtil {
 
+	private CollectionUtil() {
+	}
+
 	/**
 	 * 判断是否为空.
 	 */
@@ -20,8 +23,5 @@ public final class CollectionUtil {
 	 */
 	public static boolean isNotEmpty(Collection<?> collection) {
 		return !isEmpty(collection);
-	}
-
-	private CollectionUtil() {
 	}
 }

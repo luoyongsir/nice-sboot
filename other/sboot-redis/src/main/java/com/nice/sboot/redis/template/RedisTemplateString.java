@@ -17,6 +17,13 @@ import java.util.Objects;
  */
 public class RedisTemplateString extends AbstractTemplate {
 
+	private static final String OK = "OK";
+	private static final String ONE = "1";
+	/**
+	 * 锁的默认过期时间，单位毫秒
+	 */
+	private static final long DEFAULT_LOCK_TIME_OUT = 30 * 1000L;
+	private static final long DEFAULT_TRY_LOCK_TIME_OUT = 1000L;
 	public RedisTemplateString(LettuceConnectionFactory lettuceConnectionFactory) {
 		super();
 		template.setConnectionFactory(lettuceConnectionFactory);
@@ -24,15 +31,6 @@ public class RedisTemplateString extends AbstractTemplate {
 		template.afterPropertiesSet();
 		serializer = (RedisSerializer<Object>) template.getDefaultSerializer();
 	}
-
-	private static final String OK = "OK";
-	private static final String ONE = "1";
-
-	/**
-	 * 锁的默认过期时间，单位毫秒
-	 */
-	private static final long DEFAULT_LOCK_TIME_OUT = 30 * 1000L;
-	private static final long DEFAULT_TRY_LOCK_TIME_OUT = 1000L;
 
 	/**
 	 * 尝试获取分布式锁，默认过期时间30秒

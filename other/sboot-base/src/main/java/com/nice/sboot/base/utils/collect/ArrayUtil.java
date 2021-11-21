@@ -12,6 +12,9 @@ import java.util.Collection;
  */
 public final class ArrayUtil {
 
+	private ArrayUtil() {
+	}
+
 	/**
 	 * 从collection转为Array 建议用如下方式，性能最佳
 	 * String[] array = list.toArray(new String[0]);
@@ -34,8 +37,5 @@ public final class ArrayUtil {
 	 */
 	public static <T> T[] concat(T[] array, T element) {
 		return ObjectArrays.concat(array, element);
-	}
-
-	private ArrayUtil() {
 	}
 }

@@ -10,6 +10,9 @@ import java.util.List;
  */
 public final class ListUtil {
 
+	private ListUtil() {
+	}
+
 	/**
 	 * 判断是否为空.
 	 */
@@ -36,8 +39,5 @@ public final class ListUtil {
 	 */
 	public static <E> ArrayList<E> newArrayList(int initialCapacity) {
 		return new ArrayList<>(initialCapacity);
-	}
-
-	private ListUtil() {
 	}
 }
