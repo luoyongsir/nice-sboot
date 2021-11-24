@@ -5,6 +5,7 @@
         <groupId>com.nice.sboot</groupId>
         <artifactId>sboot-dependency</artifactId>
         <version>1.0.0</version>
+        <relativePath/>
     </parent>
     <artifactId>sboot-base</artifactId>
     <version>${nice-base.version}</version>
