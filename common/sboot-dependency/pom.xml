@@ -23,9 +23,6 @@
         <!-- 公用的当前版本号 -->
         <cur.version>1.0.0-${repo}</cur.version>
 
-        <nice-config.version>0.0.1-${repo}</nice-config.version>
-        <nice-gateway-swagger.version>0.0.1-${repo}</nice-gateway-swagger.version>
-
         <nice-base.version>1.0.0</nice-base.version>
         <nice-redis.version>1.0.0</nice-redis.version>
         <code-msg.version>1.0.0</code-msg.version>
@@ -34,7 +31,6 @@
         <spring-boot.version>2.2.13.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
-        <dubbo.version>3.0.3</dubbo.version>
         <knife4j.version>3.0.3</knife4j.version>
         <swagger-annotations.version>2.1.11</swagger-annotations.version>
         <springdoc.version>1.5.12</springdoc.version>
@@ -122,37 +118,6 @@
                         <artifactId>HikariCP</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-spring-boot-starter</artifactId>
-                <version>${dubbo.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>${dubbo.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>servlet-api</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <!--  dubbo 采用 kryo 序列化 -->
-            <dependency>
-                <groupId>de.javakaffee</groupId>
-                <artifactId>kryo-serializers</artifactId>
-                <version>0.45</version>
             </dependency>
 
             <dependency>

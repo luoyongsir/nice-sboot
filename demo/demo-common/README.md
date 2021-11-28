@@ -1,7 +1,7 @@
 # demo-common
 
 ### 项目功能
-  1. 提供 dubbo 接口定义
+  1. 提供远程调用接口定义
   2. service 和 web 共用的相关 POJO
 
 ### 分层领域模型规约
