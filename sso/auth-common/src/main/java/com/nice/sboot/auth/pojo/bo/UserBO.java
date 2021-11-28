@@ -1,17 +1,24 @@
 package com.nice.sboot.auth.pojo.bo;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Objects;
 
 /**
  * 大部分时候直接用User，不必扩展
  * @author luoyong
  * @date 2019/7/25 11:01
  */
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 public class UserBO extends User implements Serializable {
 
 	private static final long serialVersionUID = 6903341955087107114L;
@@ -29,44 +36,5 @@ public class UserBO extends User implements Serializable {
 			boolean credentialsNonExpired, boolean accountNonLocked,
 			Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {return true;}
-		if (o == null || getClass() != o.getClass()) {return false;}
-		if (!super.equals(o)) {return false;}
-		UserBO bo = (UserBO) o;
-		return Objects.equals(nickname, bo.nickname) && Objects.equals(mobile, bo.mobile);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(super.hashCode(), nickname, mobile);
-	}
-
-	@Override
-	public String toString() {
-		final StringBuilder sb = new StringBuilder("UserBO{");
-		sb.append("nickname='").append(nickname).append('\'');
-		sb.append(", mobile='").append(mobile).append('\'');
-		sb.append('}');
-		return sb.toString();
 	}
 }

@@ -17,9 +17,28 @@ import java.util.*;
  */
 public class CodeMsgToJavaTask extends Task {
 
+	private static Properties properties = new Properties();
 	private String outputDirString = null;
 	private String author = "code-msg-task";
 	private List<FileSet> fileSets = new LinkedList<>();
+
+	/**
+	 * 读取配置文件
+	 *
+	 * @param file
+	 */
+	private static void load(File file) {
+		try (InputStream is = new FileInputStream(file);
+				InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8)) {
+			getProperties().load(isr);
+		} catch (IOException e) {
+			throw new RuntimeException("读取配置文件" + file.getName() + "出现异常", e);
+		}
+	}
+
+	private static Properties getProperties() {
+		return properties;
+	}
 
 	public void setOutputdir(File outputDir) {
 		if (!outputDir.exists()) {
@@ -164,25 +183,5 @@ public class CodeMsgToJavaTask extends Task {
 			map.put(key.toUpperCase(), (String) entry.getValue());
 		}
 		return map;
-	}
-
-	/**
-	 * 读取配置文件
-	 *
-	 * @param file
-	 */
-	private static void load(File file) {
-		try (InputStream is = new FileInputStream(file);
-				InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8)) {
-			getProperties().load(isr);
-		} catch (IOException e) {
-			throw new RuntimeException("读取配置文件" + file.getName() + "出现异常", e);
-		}
-	}
-
-	private static Properties properties = new Properties();
-
-	private static Properties getProperties() {
-		return properties;
 	}
 }

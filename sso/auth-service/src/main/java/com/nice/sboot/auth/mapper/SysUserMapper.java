@@ -8,59 +8,59 @@ import com.nice.sboot.auth.entity.SysUser;
  * @date 2019/07/24 18:47
  */
 public interface SysUserMapper {
-    /**
-     * 根据主键删除数据库记录
-     * @author luoyong
-     * @date 2019/07/24 18:47
-     * @param id
-     * @return 
-     */
-    int deleteByPrimaryKey(Integer id);
+	/**
+	 * 根据主键删除数据库记录
+	 * @author luoyong
+	 * @date 2019/07/24 18:47
+	 * @param id
+	 * @return
+	 */
+	int deleteByPrimaryKey(Integer id);
 
-    /**
-     * 新增记录
-     * @author luoyong
-     * @date 2019/07/24 18:47
-     * @param record
-     * @return 
-     */
-    int insert(SysUser record);
+	/**
+	 * 新增记录
+	 * @author luoyong
+	 * @date 2019/07/24 18:47
+	 * @param record
+	 * @return
+	 */
+	int insert(SysUser record);
 
-    /**
-     * 新增记录
-     * @author luoyong
-     * @date 2019/07/24 18:47
-     * @param record
-     * @return 
-     */
-    int insertSelective(SysUser record);
+	/**
+	 * 新增记录
+	 * @author luoyong
+	 * @date 2019/07/24 18:47
+	 * @param record
+	 * @return
+	 */
+	int insertSelective(SysUser record);
 
-    /**
-     * 根据主键查询记录
-     * @author luoyong
-     * @date 2019/07/24 18:47
-     * @param id
-     * @return 
-     */
-    SysUser selectByPrimaryKey(Integer id);
+	/**
+	 * 根据主键查询记录
+	 * @author luoyong
+	 * @date 2019/07/24 18:47
+	 * @param id
+	 * @return
+	 */
+	SysUser selectByPrimaryKey(Integer id);
 
-    /**
-     * 根据主键修改数据库记录
-     * @author luoyong
-     * @date 2019/07/24 18:47
-     * @param record
-     * @return 
-     */
-    int updateByPrimaryKeySelective(SysUser record);
+	/**
+	 * 根据主键修改数据库记录
+	 * @author luoyong
+	 * @date 2019/07/24 18:47
+	 * @param record
+	 * @return
+	 */
+	int updateByPrimaryKeySelective(SysUser record);
 
-    /**
-     * 根据主键修改数据库记录
-     * @author luoyong
-     * @date 2019/07/24 18:47
-     * @param record
-     * @return 
-     */
-    int updateByPrimaryKey(SysUser record);
+	/**
+	 * 根据主键修改数据库记录
+	 * @author luoyong
+	 * @date 2019/07/24 18:47
+	 * @param record
+	 * @return
+	 */
+	int updateByPrimaryKey(SysUser record);
 
 	/**
 	 * 根据名字查询用户

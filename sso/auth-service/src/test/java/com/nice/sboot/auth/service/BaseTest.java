@@ -1,24 +1,22 @@
-package com.nice.sboot.demo.service;
+package com.nice.sboot.auth.service;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * @author luoyong
  * @date 2019/6/2 14:33
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
+@Slf4j
 public class BaseTest {
-
-	protected static final Logger LOG = LoggerFactory.getLogger(BaseTest.class.getName());
 
 	@Test
 	public void baseTest() {
-		LOG.info(" SpringRunner BaseTest ");
+		log.info(" SpringRunner BaseTest ");
 	}
 }

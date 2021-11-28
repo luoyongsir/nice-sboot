@@ -1,0 +1,60 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: @profiles.active@
+  application:
+    name: demo-service
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      config:
+        file-extension: yaml
+        namespace: @profiles.active@
+
+  datasource:
+    schema: classpath:db/schema.sql
+    data: classpath:db/data.sql
+    initialization-mode: always
+    druid:
+      connection-properties: "config.decrypt=true;config.decrypt.key=${spring.datasource.druid.public-key}"
+      initial-size: 5
+      max-active: 100
+      min-idle: 5
+      max-wait: 60000
+      async-init: true
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      filters: config,stat,slf4j
+
+mybatis:
+  mapper-locations: classpath*:com/nice/sboot/**/*.xml
+  #  config-location: classpath:xml/mybatis-config.xml
+  type-aliases-package: com.nice.sboot.demo.entity
+  type-handlers-package: com.nice.sboot.demo.handler
+  configuration:
+    call-setters-on-nulls: true
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helper-dialect: h2
+  #  reasonable: true
+  #  page-size-zero: true
+  #  offset-as-page-num: true
+  support-methods-arguments: true
+
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

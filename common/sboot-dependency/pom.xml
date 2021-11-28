@@ -1,45 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.12.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <groupId>com.nice.sboot</groupId>
     <artifactId>sboot-dependency</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <name>sboot-dependency</name>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-
         <!-- 不同环境编译类别不同 provided / compile -->
         <scope.type>compile</scope.type>
         <!-- SNAPSHOT / RELEASE -->
         <repo>SNAPSHOT</repo>
 
         <!-- 公用的当前版本号 -->
-        <cur.version>0.0.1-${repo}</cur.version>
+        <cur.version>1.0.0-${repo}</cur.version>
 
-        <nice-config.version>0.0.1-${repo}</nice-config.version>
-        <nice-gateway-swagger.version>0.0.1-${repo}</nice-gateway-swagger.version>
+        <nice-base.version>1.0.0</nice-base.version>
+        <nice-redis.version>1.0.0</nice-redis.version>
+        <code-msg.version>1.0.0</code-msg.version>
+        <code-msg-task.version>1.0.0</code-msg-task.version>
 
-        <nice-base.version>0.0.1</nice-base.version>
-        <nice-redis.version>0.0.1</nice-redis.version>
-        <code-msg.version>0.0.4</code-msg.version>
-        <code-msg-task.version>0.0.4</code-msg-task.version>
-        <web-module.version>0.0.1</web-module.version>
-        <swagger-module.version>0.0.1</swagger-module.version>
-
-        <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
-        <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
-        <dubbo.version>2.7.13</dubbo.version>
-        <swagger-annotations.version>2.1.2</swagger-annotations.version>
-        <springdoc.version>1.4.0</springdoc.version>
+        <spring-boot.version>2.2.13.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
+        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
+        <knife4j.version>3.0.3</knife4j.version>
+        <swagger-annotations.version>2.1.11</swagger-annotations.version>
+        <springdoc.version>1.5.12</springdoc.version>
         <curator.version>4.2.0</curator.version>
-        <fastjson.version>1.2.68</fastjson.version>
+        <fastjson.version>1.2.78</fastjson.version>
         <zookeeper.version>3.4.14</zookeeper.version>
         <elastic-job.version>2.1.5</elastic-job.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
@@ -50,60 +46,6 @@
     <!-- 统一依赖管理 -->
     <dependencyManagement>
         <dependencies>
-            <!-- 项目包 begin -->
-
-            <dependency>
-                <groupId>com.nice.sboot</groupId>
-                <artifactId>demo-common</artifactId>
-                <version>${cur.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.nice.sboot</groupId>
-                <artifactId>auth-common</artifactId>
-                <version>${cur.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.nice.sboot</groupId>
-                <artifactId>sboot-base</artifactId>
-                <version>${nice-base.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.nice.sboot</groupId>
-                <artifactId>sboot-redis</artifactId>
-                <version>${nice-redis.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.nice.sboot</groupId>
-                <artifactId>sboot-code-msg</artifactId>
-                <version>${code-msg.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.nice.sboot</groupId>
-                <artifactId>sboot-web-module</artifactId>
-                <version>${web-module.version}</version>
-            </dependency>
-
-<!--            <dependency>-->
-<!--                <groupId>com.nice.sboot</groupId>-->
-<!--                <artifactId>swagger-module</artifactId>-->
-<!--                <version>${swagger-module.version}</version>-->
-<!--                <scope>${scope.type}</scope>-->
-<!--            </dependency>-->
-
-            <!-- 项目包 end -->
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -111,6 +53,60 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-micro-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+                <scope>${scope.type}</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+                <scope>${scope.type}</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>2.0.3</version>
+            </dependency>
+
+            <!-- 项目包 begin -->
+
+            <dependency>
+                <groupId>com.nice.sboot</groupId>
+                <artifactId>demo-common</artifactId>
+                <version>${cur.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nice.sboot</groupId>
+                <artifactId>auth-common</artifactId>
+                <version>${cur.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nice.sboot</groupId>
+                <artifactId>sboot-base</artifactId>
+                <version>${nice-base.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nice.sboot</groupId>
+                <artifactId>sboot-redis</artifactId>
+                <version>${nice-redis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.nice.sboot</groupId>
+                <artifactId>sboot-code-msg</artifactId>
+                <version>${code-msg.version}</version>
+            </dependency>
+
+            <!-- 项目包 end -->
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -125,98 +121,26 @@
             </dependency>
 
             <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-spring-boot-starter</artifactId>
-                <version>${dubbo.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>${dubbo.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>servlet-api</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <!--  dubbo 采用 kryo 序列化 -->
-            <dependency>
-                <groupId>de.javakaffee</groupId>
-                <artifactId>kryo-serializers</artifactId>
-                <version>0.43</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.zookeeper</groupId>
-                <artifactId>zookeeper</artifactId>
-                <version>${zookeeper.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.netty</groupId>
-                        <artifactId>netty</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-log4j12</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.curator</groupId>
-                <artifactId>curator-framework</artifactId>
-                <version>${curator.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.apache.zookeeper</groupId>
-                        <artifactId>zookeeper</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.curator</groupId>
-                <artifactId>curator-recipes</artifactId>
-                <version>${curator.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.curator</groupId>
-                <artifactId>curator-client</artifactId>
-                <version>${curator.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.1.22</version>
+                <version>1.2.8</version>
             </dependency>
 
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>2.1.2</version>
+                <version>2.2.0</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>1.2.13</version>
+                <version>1.4.0</version>
             </dependency>
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper</artifactId>
-                <version>5.1.11</version>
+                <version>5.3.0</version>
             </dependency>
 
             <dependency>
@@ -226,53 +150,9 @@
             </dependency>
 
             <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
-                <version>${springdoc.version}</version>
-                <scope>${scope.type}</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.swagger.core.v3</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>${swagger-annotations.version}</version>
-                <scope>${scope.type}</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>30.0-jre</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
-            </dependency>
-
-            <!-- elastic-job -->
-            <dependency>
-                <groupId>com.dangdang</groupId>
-                <artifactId>elastic-job-lite-core</artifactId>
-                <version>${elastic-job.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.dangdang</groupId>
-                <artifactId>elastic-job-lite-spring</artifactId>
-                <version>${elastic-job.version}</version>
-            </dependency>
-
-            <!-- 图片处理 -->
-            <dependency>
-                <groupId>net.coobird</groupId>
-                <artifactId>thumbnailator</artifactId>
-                <version>${thumbnailator.version}</version>
             </dependency>
 
             <!-- commons控件 -->
@@ -292,16 +172,11 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.1.5.RELEASE</version>
-            </plugin>
             <!-- assembly插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.3.0</version>
             </plugin>
         </plugins>
     </build>

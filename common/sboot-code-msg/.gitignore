@@ -32,3 +32,4 @@
 /**/.flattened-pom.xml
 /**/.sonar
 hs_err_pid*
+/src/main/java/com/nice/sboot/result/CodeMsgEnum.java

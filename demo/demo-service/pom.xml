@@ -1,16 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.nice.sboot</groupId>
         <artifactId>sboot-dependency</artifactId>
-        <version>0.0.1</version>
+        <version>1.0.0</version>
+        <relativePath/>
     </parent>
     <artifactId>demo-service</artifactId>
     <version>${cur.version}</version>
 
     <dependencies>
-
         <dependency>
             <groupId>com.nice.sboot</groupId>
             <artifactId>demo-common</artifactId>
@@ -19,7 +19,10 @@
             <groupId>com.nice.sboot</groupId>
             <artifactId>sboot-base</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-micro-spring-boot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -30,8 +33,16 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-client</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -57,35 +68,14 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.javakaffee</groupId>
-            <artifactId>kryo-serializers</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-recipes</artifactId>
-        </dependency>
-
     </dependencies>
 
     <profiles>
         <!-- 本地环境 -->
         <profile>
-            <id>env</id>
+            <id>local</id>
             <properties>
-                <profiles.active>env</profiles.active>
+                <profiles.active>local</profiles.active>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -95,8 +85,8 @@
                     <resource>
                         <directory>src/main/resources</directory>
                         <includes>
-                            <include>config/bootstrap.yml</include>
-                            <include>xml/logback-spring.xml</include>
+                            <include>bootstrap.yml</include>
+                            <include>logback-spring.xml</include>
                             <include>db/*</include>
                         </includes>
                         <filtering>true</filtering>
@@ -172,7 +162,7 @@
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
                     <descriptors>
-                        <descriptor>src/main/resources/xml/assembly.xml</descriptor>
+                        <descriptor>src/main/resources/assembly.xml</descriptor>
                     </descriptors>
                 </configuration>
                 <executions>
@@ -184,32 +174,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-
-            <!-- generator插件 -->
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.7</version>
-                <configuration>
-                    <overwrite>true</overwrite>
-                    <verbose>true</verbose>
-                </configuration>
-
-                <dependencies>
-                    <dependency>
-                        <groupId>com.h2database</groupId>
-                        <artifactId>h2</artifactId>
-                        <version>1.4.199</version>
-                    </dependency>
-
-                    <!-- 自定义插件 -->
-                    <dependency>
-                        <groupId>com.mybatis.generator</groupId>
-                        <artifactId>mybatis-generator-ext</artifactId>
-                        <version>1.0.1-RELEASE</version>
-                    </dependency>
-                </dependencies>
             </plugin>
 
         </plugins>

@@ -1,5 +1,0 @@
-
-# 所有service项目公用配置
-
-logging:
-  config: classpath:xml/logback-spring.xml
