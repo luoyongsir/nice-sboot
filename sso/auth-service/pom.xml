@@ -186,32 +186,6 @@
                 </executions>
             </plugin>
 
-            <!-- generator插件 -->
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.7</version>
-                <configuration>
-                    <overwrite>true</overwrite>
-                    <verbose>true</verbose>
-                </configuration>
-
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.16</version>
-                    </dependency>
-
-                    <!-- 自定义插件 -->
-                    <dependency>
-                        <groupId>com.mybatis.generator</groupId>
-                        <artifactId>mybatis-generator-ext</artifactId>
-                        <version>1.0.1-RELEASE</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-
         </plugins>
         <finalName>auth-service</finalName>
     </build>
