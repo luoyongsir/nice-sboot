@@ -28,9 +28,10 @@
         <code-msg.version>1.0.0</code-msg.version>
         <code-msg-task.version>1.0.0</code-msg-task.version>
 
-        <spring-boot.version>2.2.13.RELEASE</spring-boot.version>
+        <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
+        <mysql.version>8.0.27</mysql.version>
         <knife4j.version>3.0.3</knife4j.version>
         <swagger-annotations.version>2.1.11</swagger-annotations.version>
         <springdoc.version>1.5.12</springdoc.version>
