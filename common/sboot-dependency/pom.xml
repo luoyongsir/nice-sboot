@@ -36,7 +36,7 @@
         <swagger-annotations.version>2.1.11</swagger-annotations.version>
         <springdoc.version>1.5.12</springdoc.version>
         <curator.version>4.2.0</curator.version>
-        <fastjson.version>1.2.78</fastjson.version>
+        <fastjson.version>1.2.79</fastjson.version>
         <zookeeper.version>3.4.14</zookeeper.version>
         <elastic-job.version>2.1.5</elastic-job.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
