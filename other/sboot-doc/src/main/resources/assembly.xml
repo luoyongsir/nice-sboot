@@ -10,8 +10,6 @@
             <directory>${basedir}/src/main/resources</directory>
             <includes>
                 <include>service.sh</include>
-                <include>bootstrap.yml</include>
-                <include>logback-spring.xml</include>
             </includes>
             <filtered>true</filtered>
             <outputDirectory>/</outputDirectory>

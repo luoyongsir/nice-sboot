@@ -10,7 +10,7 @@
             </encoder>
         </appender>
 
-        <logger name="com.nice.sboot.demo.mapper" level="debug" additivity="false">
+        <logger name="com.nice.sboot.*.mapper" level="debug" additivity="false">
             <appender-ref ref="STDOUT"/>
         </logger>
 
@@ -20,11 +20,11 @@
         </root>
     </springProfile>
 
-    <springProfile name="test,pro">
+    <springProfile name="dev,test,prod">
         <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
-        <property name="LOG_HOME" value="../logs"/>
+        <property name="LOG_HOME" value="./logs"/>
         <!--项目名称 -->
-        <property resource="config/bootstrap.yml"/>
+        <property resource="bootstrap.yml"/>
         <springProperty scope="context" name="PRO_NAME" source="spring.application.name"/>
 
         <!-- 按照每天生成日志文件 -->
@@ -50,20 +50,15 @@
             <!-- 添加附加的appender,最多只能添加一个 -->
             <appender-ref ref="FILE"/>
         </appender>
-
-        <!-- additivity: 是否向上级loger传递打印信息。默认是true。 -->
-        <logger name="org.apache.zookeeper" level="ERROR" additivity="false">
-            <appender-ref ref="FILE"/>
-        </logger>
     </springProfile>
 
-    <springProfile name="test">
+    <springProfile name="dev,test">
         <root level="INFO">
             <appender-ref ref="ASYNC"/>
         </root>
     </springProfile>
 
-    <springProfile name="pro">
+    <springProfile name="prod">
         <root level="WARN">
             <appender-ref ref="ASYNC"/>
         </root>
