@@ -1,12 +1,11 @@
-package com.nice.sboot.result;
+package com.nice.sboot.base.result;
 // @formatter:off
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 该类在 maven pre-clean/validate 阶段根据配置文件自动生成，禁止手动修改
- * 如果有修改配置文件请执行 maven clean
- * @author luoyong
+ * @author: 罗勇
+ * @date: 2022-08-17 11:16
  */
 public enum CodeMsgEnum {
 	// 枚举
@@ -18,7 +17,23 @@ public enum CodeMsgEnum {
 	HTTP_403(403, "禁止访问"),
 	HTTP_404(404, "访问地址不存在"),
 	HTTP_412(412, "请求参数错误"),
-	HTTP_500(500, "服务器内部错误");
+	HTTP_500(500, "服务器内部错误"),
+
+	USER_NOT_EXIST(10201, "用户不存在"),
+	USER_ACCOUNT_LOCKED(10202, "用户账户被冻结"),
+	USER_ACCOUNT_INVALID(10203, "用户账户已作废"),
+
+	USERNAME_OR_PASSWORD_ERROR(10210, "用户名或密码错误"),
+	PASSWORD_ENTER_EXCEED_LIMIT(10211, "用户输入密码次数超限"),
+	CLIENT_AUTHENTICATION_FAILED(10212, "客户端认证失败"),
+	TOKEN_INVALID_OR_EXPIRED(10230, "token无效或已过期"),
+	TOKEN_ACCESS_FORBIDDEN(10231, "token已被禁止访问"),
+
+	SERVER_BUSY(10001, "服务端忙，请稍后重试"),
+	PARAM_ERROR(10021, "参数校验失败【{0}】"),
+	// 业务告警消息
+	MSG_ALARM(10031, "{0}"),
+	LINK_FAILURE(10032, "链接已失效，请联系管理人员！");
 
 	private int code;
 	private String msg;

@@ -35,8 +35,6 @@
 
         <nice-base.version>2.0.0</nice-base.version>
         <nice-redis.version>2.0.0</nice-redis.version>
-        <code-msg.version>2.0.0</code-msg.version>
-        <code-msg-task.version>2.0.0</code-msg-task.version>
 
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>

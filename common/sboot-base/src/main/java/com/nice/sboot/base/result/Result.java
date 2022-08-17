@@ -1,4 +1,4 @@
-package com.nice.sboot.result;
+package com.nice.sboot.base.result;
 
 import java.io.Serializable;
 
