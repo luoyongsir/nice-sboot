@@ -5,44 +5,54 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.12.RELEASE</version>
+        <version>2.6.8</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.nice.sboot</groupId>
     <artifactId>sboot-dependency</artifactId>
+    <version>2.0.0</version>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
-    <name>sboot-dependency</name>
+
+    <repositories>
+        <repository>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <properties>
+        <java.version>1.8</java.version>
         <!-- 不同环境编译类别不同 provided / compile -->
-        <scope.type>compile</scope.type>
-        <!-- SNAPSHOT / RELEASE -->
-        <repo>SNAPSHOT</repo>
+        <scope-type>compile</scope-type>
 
-        <!-- 公用的当前版本号 -->
-        <cur.version>1.0.0-${repo}</cur.version>
+        <nice-base.version>2.0.0</nice-base.version>
+        <nice-redis.version>2.0.0</nice-redis.version>
+        <code-msg.version>2.0.0</code-msg.version>
+        <code-msg-task.version>2.0.0</code-msg-task.version>
 
-        <nice-base.version>1.0.0</nice-base.version>
-        <nice-redis.version>1.0.0</nice-redis.version>
-        <code-msg.version>1.0.0</code-msg.version>
-        <code-msg-task.version>1.0.0</code-msg-task.version>
-
-        <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
-        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
+        <spring-cloud.version>2021.0.3</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
-        <mysql.version>8.0.27</mysql.version>
-        <knife4j.version>3.0.3</knife4j.version>
-        <swagger-annotations.version>2.1.11</swagger-annotations.version>
-        <springdoc.version>1.5.12</springdoc.version>
-        <curator.version>4.2.0</curator.version>
-        <logback.version>1.2.9</logback.version>
+        <nacos.version>2.0.4</nacos.version>
         <fastjson.version>1.2.83</fastjson.version>
-        <zookeeper.version>3.4.14</zookeeper.version>
-        <elastic-job.version>2.1.5</elastic-job.version>
-        <thumbnailator.version>0.4.8</thumbnailator.version>
-        <commons-io.version>2.7</commons-io.version>
-        <commons-fileupload.version>1.4</commons-fileupload.version>
+        <redisson.version>3.17.3</redisson.version>
+        <kaptcha.version>2.3.2</kaptcha.version>
+        <commons-io.version>2.11.0</commons-io.version>
+        <weixin-java.version>4.3.0</weixin-java.version>
+        <!-- 阿里云短信 -->
+        <aliyun.java.sdk.core.version>4.6.0</aliyun.java.sdk.core.version>
+        <aliyun.java.sdk.dysmsapi.version>2.2.1</aliyun.java.sdk.dysmsapi.version>
+
+
+        <knife4j.version>3.0.3</knife4j.version>
+        <springdoc.version>1.6.9</springdoc.version>
 
         <maven.test.skip>true</maven.test.skip>
     </properties>
@@ -64,22 +74,17 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-micro-spring-boot-starter</artifactId>
-                <version>${knife4j.version}</version>
-                <scope>${scope.type}</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-spring-boot-starter</artifactId>
-                <version>${knife4j.version}</version>
-                <scope>${scope.type}</scope>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
+                <scope>${scope-type}</scope>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.nacos</groupId>
                 <artifactId>nacos-client</artifactId>
-                <version>2.0.4</version>
+                <version>${nacos.version}</version>
             </dependency>
 
             <!-- 项目包 begin -->
@@ -89,11 +94,7 @@
                 <artifactId>demo-common</artifactId>
                 <version>${cur.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.nice.sboot</groupId>
-                <artifactId>auth-common</artifactId>
-                <version>${cur.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>com.nice.sboot</groupId>
                 <artifactId>sboot-base</artifactId>
@@ -113,38 +114,19 @@
             <!-- 项目包 end -->
 
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-jdbc</artifactId>
-                <version>${spring-boot.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.zaxxer</groupId>
-                        <artifactId>HikariCP</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>1.2.8</version>
             </dependency>
-
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>2.2.0</version>
+                <version>2.2.2</version>
             </dependency>
-
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>1.4.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper</artifactId>
-                <version>5.3.0</version>
+                <version>1.4.1</version>
             </dependency>
 
             <dependency>
@@ -158,29 +140,174 @@
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
-
-            <!-- commons控件 -->
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
             </dependency>
             <dependency>
-                <groupId>commons-fileupload</groupId>
-                <artifactId>commons-fileupload</artifactId>
-                <version>${commons-fileupload.version}</version>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>3.28.0-GA</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>31.0.1-jre</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.penggle</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-miniapp</artifactId>
+                <version>${weixin-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-pay</artifactId>
+                <version>${weixin-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun.java.sdk.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+                <version>${aliyun.java.sdk.dysmsapi.version}</version>
             </dependency>
 
         </dependencies>
     </dependencyManagement>
 
+    <profiles>
+        <!-- 本地环境 -->
+        <profile>
+            <id>local</id>
+            <properties>
+                <profiles.active>local</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <!-- 开发环境 -->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profiles.active>dev</profiles.active>
+            </properties>
+        </profile>
+        <!-- 测试环境 -->
+        <profile>
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+            </properties>
+        </profile>
+        <!-- 生产环境 -->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profiles.active>prod</profiles.active>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <excludeGroupIds>org.projectlombok,org.springdoc,io.springfox,com.github.xiaoymin,io.github.classgraph,org.springframework.plugin,io.swagger</excludeGroupIds>
+                            <excludes>
+                                <exclude>
+                                    <groupId>io.swagger.core.v3</groupId>
+                                    <artifactId>swagger-models</artifactId>
+                                </exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludeGroupIds>org.projectlombok</excludeGroupIds>
+                </configuration>
+            </plugin>
             <!-- assembly插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.3.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>enforce-banned-dependencies</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <exclude>log4j</exclude>
+                                        <exclude>com.zaxxer:HikariCP</exclude>
+                                    </excludes>
+                                </bannedDependencies>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.2.7</version>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
