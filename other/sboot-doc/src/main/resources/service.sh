@@ -8,6 +8,11 @@ cd $(dirname $0)
 p_dir=$( pwd -P )
 echo -e "[INFO] project dir: $p_dir \n"
 
+# config目录没用，为了nacos检查时不报错
+if [ ! -d "./config" ]; then
+  mkdir config
+fi
+
 show_log=$2
 
 findJava(){
@@ -21,7 +26,7 @@ findJava(){
         arr2=`echo $arr2`/bin/java
     fi
 
-    array=($arr1 $arr2 `which java` java /data/app/jdk1.8.0/bin/java)
+    array=($arr1 $arr2 `which java` java)
     for i in "${!array[@]}"
     do
         java_dir=${array[$i]}
@@ -65,8 +70,8 @@ initStartParam(){
        mkdir $log_home
     fi
 
-    log_cfg_file=$(find $PWD -name logback-spring.xml)
-    sed -i "s#<property name=\"LOG_HOME\" value=\".*\"\s*/>#<property name=\"LOG_HOME\" value=\"$log_home\" />#" $log_cfg_file
+#    log_cfg_file=$(find $PWD -name logback-spring.xml)
+#    sed -i "s#<property name=\"LOG_HOME\" value=\".*\"\s*/>#<property name=\"LOG_HOME\" value=\"$log_home\" />#" $log_cfg_file
 }
 
 start(){
