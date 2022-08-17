@@ -1,0 +1,36 @@
+# Compiled class file
+/**/*.class
+
+# Log file
+/**/*.log
+
+# Package Files #
+*.jar
+*.war
+*.zip
+*.rar
+*.nar
+*.ear
+*.tar.gz
+/**/target
+/**/lib/
+
+# Idea #
+/**/.idea
+/**/*.iml
+
+# Eclipse #
+/**/.settings
+/**/.project
+/**/.classpath
+
+# MyEclipse #
+/**/.myeclipse/profiler
+/**/.mymetadata
+
+# Other files
+/**/.flattened-pom.xml
+/**/.sonar
+hs_err_pid*
+/**/*-local.yml
+/**/pom.xml.versionsBackup
