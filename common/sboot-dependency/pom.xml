@@ -35,6 +35,7 @@
 
         <nice-base.version>2.0.0</nice-base.version>
         <nice-redis.version>2.0.0</nice-redis.version>
+        <nice-web-base.version>2.0.0</nice-web-base.version>
 
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
@@ -105,8 +106,8 @@
             </dependency>
             <dependency>
                 <groupId>com.nice.sboot</groupId>
-                <artifactId>sboot-code-msg</artifactId>
-                <version>${code-msg.version}</version>
+                <artifactId>sboot-web-base</artifactId>
+                <version>${nice-web-base.version}</version>
             </dependency>
 
             <!-- 项目包 end -->

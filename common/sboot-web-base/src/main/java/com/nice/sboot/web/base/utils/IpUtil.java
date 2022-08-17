@@ -1,4 +1,4 @@
-package com.nice.sboot.base.utils.net;
+package com.nice.sboot.web.base.utils;
 
 import com.nice.sboot.base.comm.Const;
 import com.nice.sboot.base.exception.RunException;

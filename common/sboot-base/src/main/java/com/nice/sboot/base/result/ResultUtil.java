@@ -16,12 +16,20 @@ public final class ResultUtil {
 	}
 
 	/**
-	 * @param data
+	 * @param msg
 	 * @param <T>
 	 * @return
 	 */
-	public static <T> Result<T> fail(T data) {
-		return result(CodeMsgEnum.FAIL, data);
+	public static <T> Result<T> fail(String msg) {
+		return result(CodeMsgEnum.FAIL.getCode(), msg, null);
+	}
+
+	/**
+	 * @param <T>
+	 * @return
+	 */
+	public static <T> Result<T> success() {
+		return result(CodeMsgEnum.SUCCESS);
 	}
 
 	/**
@@ -38,7 +46,7 @@ public final class ResultUtil {
 	 * @param <T>
 	 * @return
 	 */
-	public static <T> Result<T> code(int code) {
+	public static <T> Result<T> result(int code) {
 		return result(code, null, null);
 	}
 
@@ -48,18 +56,17 @@ public final class ResultUtil {
 	 * @param <T>
 	 * @return
 	 */
-	public static <T> Result<T> codeMsg(int code, String msg) {
+	public static <T> Result<T> result(int code, String msg) {
 		return result(code, msg, null);
 	}
 
 	/**
-	 * @param code
-	 * @param data
+	 * @param codeMsgEnum
 	 * @param <T>
 	 * @return
 	 */
-	public static <T> Result<T> codeData(int code, T data) {
-		return result(code, null, data);
+	public static <T> Result<T> result(CodeMsgEnum codeMsgEnum) {
+		return result(codeMsgEnum, null);
 	}
 
 	/**
@@ -84,6 +91,19 @@ public final class ResultUtil {
 			return new Result<>(code, CodeMsgEnum.getMsg(code), data);
 		} else {
 			return new Result<>(code, msg, data);
+		}
+	}
+
+	/**
+	 * @param status
+	 * @param <T>
+	 * @return
+	 */
+	public static <T> Result<T> judge(boolean status) {
+		if (status) {
+			return success();
+		} else {
+			return fail();
 		}
 	}
 }
