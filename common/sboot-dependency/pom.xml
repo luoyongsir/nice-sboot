@@ -35,7 +35,7 @@
         <swagger-annotations.version>2.1.11</swagger-annotations.version>
         <springdoc.version>1.5.12</springdoc.version>
         <curator.version>4.2.0</curator.version>
-        <fastjson.version>1.2.78</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <zookeeper.version>3.4.14</zookeeper.version>
         <elastic-job.version>2.1.5</elastic-job.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
@@ -75,7 +75,7 @@
             <dependency>
                 <groupId>com.alibaba.nacos</groupId>
                 <artifactId>nacos-client</artifactId>
-                <version>2.0.3</version>
+                <version>2.1.1</version>
             </dependency>
 
             <!-- 项目包 begin -->
@@ -123,24 +123,24 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.2.8</version>
+                <version>1.2.11</version>
             </dependency>
 
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>2.2.0</version>
+                <version>2.2.2</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>1.4.0</version>
+                <version>1.4.3</version>
             </dependency>
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper</artifactId>
-                <version>5.3.0</version>
+                <version>5.3.1</version>
             </dependency>
 
             <dependency>
@@ -176,7 +176,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.4.2</version>
             </plugin>
         </plugins>
     </build>
