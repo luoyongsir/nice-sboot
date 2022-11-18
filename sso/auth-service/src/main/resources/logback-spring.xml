@@ -10,7 +10,7 @@
         </root>
     </springProfile>
 
-    <springProfile name="test,pro">
+    <springProfile name="dev,test,pro">
         <property name="LOG_HOME" value="${LOG_PATH:-./logs}"/>
         <springProperty scope="context" name="APP_NAME" source="spring.application.name"/>
 
