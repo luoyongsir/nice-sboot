@@ -6,7 +6,7 @@ import com.nice.sboot.base.result.CodeMsgEnum;
  * @author: 罗勇
  * @date: 2022-04-17 20:35
  */
-public abstract class Assert {
+public final class Assert {
 
 	public static void isTrue(boolean expression) {
 		isTrue(expression, CodeMsgEnum.FAIL.getMsg());
