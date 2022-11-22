@@ -1,6 +1,6 @@
 package com.nice.sboot.base.exception;
 
-import com.nice.sboot.base.result.CodeMsgEnum;
+import com.nice.sboot.base.result.CodeMsg;
 
 /**
  * 异常Factory
@@ -17,19 +17,19 @@ public final class ExceptionFactory {
 		return new RunException(cause);
 	}
 
-	public static RunException create(CodeMsgEnum codeMsgEnum) {
-		return new RunException(codeMsgEnum);
+	public static RunException create(CodeMsg codeMsg) {
+		return new RunException(codeMsg);
 	}
 
-	public static RunException create(int code, String message) {
-		return new RunException(code, message);
+	public static RunException create(CodeMsg codeMsg, String message) {
+		return new RunException(codeMsg, message);
 	}
 
-	public static RunException create(String message) {
-		return new RunException(message);
+	public static RunException create(String msg) {
+		return new RunException(msg);
 	}
 
-	public static RunException create(String message, Throwable cause) {
-		return new RunException(message, cause);
+	public static RunException create(String msg, Throwable cause) {
+		return new RunException(msg, cause);
 	}
 }

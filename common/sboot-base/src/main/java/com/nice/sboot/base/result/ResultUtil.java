@@ -12,7 +12,7 @@ public final class ResultUtil {
 	 * @return
 	 */
 	public static <T> Result<T> fail() {
-		return result(CodeMsgEnum.FAIL, null);
+		return result(CodeMsgEnum.FAIL);
 	}
 
 	/**
@@ -21,7 +21,7 @@ public final class ResultUtil {
 	 * @return
 	 */
 	public static <T> Result<T> fail(String msg) {
-		return result(CodeMsgEnum.FAIL.getCode(), msg, null);
+		return result(CodeMsgEnum.FAIL.getCode(), msg);
 	}
 
 	/**
@@ -43,15 +43,6 @@ public final class ResultUtil {
 
 	/**
 	 * @param code
-	 * @param <T>
-	 * @return
-	 */
-	public static <T> Result<T> result(int code) {
-		return result(code, null, null);
-	}
-
-	/**
-	 * @param code
 	 * @param msg
 	 * @param <T>
 	 * @return
@@ -61,22 +52,22 @@ public final class ResultUtil {
 	}
 
 	/**
-	 * @param codeMsgEnum
+	 * @param codeMsg
 	 * @param <T>
 	 * @return
 	 */
-	public static <T> Result<T> result(CodeMsgEnum codeMsgEnum) {
-		return result(codeMsgEnum, null);
+	public static <T> Result<T> result(CodeMsg codeMsg) {
+		return result(codeMsg, null);
 	}
 
 	/**
-	 * @param codeMsgEnum
+	 * @param codeMsg
 	 * @param data
 	 * @param <T>
 	 * @return
 	 */
-	public static <T> Result<T> result(CodeMsgEnum codeMsgEnum, T data) {
-		return result(codeMsgEnum.getCode(), codeMsgEnum.getMsg(), data);
+	public static <T> Result<T> result(CodeMsg codeMsg, T data) {
+		return result(codeMsg.getCode(), codeMsg.getMsg(), data);
 	}
 
 	/**
@@ -87,11 +78,7 @@ public final class ResultUtil {
 	 * @return
 	 */
 	public static <T> Result<T> result(int code, String msg, T data) {
-		if (msg == null) {
-			return new Result<>(code, CodeMsgEnum.getMsg(code), data);
-		} else {
-			return new Result<>(code, msg, data);
-		}
+		return new Result<>(code, msg, data);
 	}
 
 	/**
@@ -105,5 +92,8 @@ public final class ResultUtil {
 		} else {
 			return fail();
 		}
+	}
+
+	private ResultUtil() {
 	}
 }

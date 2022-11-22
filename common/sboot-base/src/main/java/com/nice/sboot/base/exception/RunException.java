@@ -1,5 +1,6 @@
 package com.nice.sboot.base.exception;
 
+import com.nice.sboot.base.result.CodeMsg;
 import com.nice.sboot.base.result.CodeMsgEnum;
 
 /**
@@ -23,16 +24,16 @@ public class RunException extends RuntimeException {
 		super(cause);
 	}
 
-	public RunException(CodeMsgEnum codeMsgEnum) {
-		super();
-		this.code = codeMsgEnum.getCode();
-		this.msg = codeMsgEnum.getMsg();
+	public RunException(CodeMsg codeMsg) {
+		super(codeMsg.getMsg());
+		this.code = codeMsg.getCode();
+		this.msg = codeMsg.getMsg();
 	}
 
-	public RunException(int code, String message) {
+	public RunException(CodeMsg codeMsg, String message) {
 		super(message);
-		this.code = code;
-		this.msg = message;
+		this.code = codeMsg.getCode();
+		this.msg = codeMsg.getMsg();
 	}
 
 	public RunException(String message) {

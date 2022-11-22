@@ -7,7 +7,7 @@ import java.util.Map;
  * @author: 罗勇
  * @date: 2022-08-17 11:16
  */
-public enum CodeMsgEnum {
+public enum CodeMsgEnum implements CodeMsg {
 	// 枚举
 	FAIL(0, "失败"),
 	SUCCESS(1, "成功"),
@@ -43,10 +43,12 @@ public enum CodeMsgEnum {
 		this.msg = msg;
 	}
 
+	@Override
 	public int getCode() {
 		return code;
 	}
 
+	@Override
 	public String getMsg() {
 		return msg;
 	}

@@ -8,9 +8,16 @@ import com.nice.sboot.base.result.CodeMsgEnum;
  */
 public abstract class Assert {
 
+	public static void isTrue(boolean expression) {
+		isTrue(expression, CodeMsgEnum.FAIL.getMsg());
+	}
+
 	public static void isTrue(boolean expression, String message) {
 		if (!expression) {
-			throw ExceptionFactory.create(CodeMsgEnum.FAIL.getCode(), message);
+			throw ExceptionFactory.create(CodeMsgEnum.FAIL, message);
 		}
+	}
+
+	private Assert() {
 	}
 }
