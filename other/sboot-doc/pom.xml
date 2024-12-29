@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.nice.sboot</groupId>
         <artifactId>sboot-dependency</artifactId>
-        <version>2.0.0</version>
+        <version>3.0.0</version>
         <relativePath/>
     </parent>
     <artifactId>sboot-doc</artifactId>
@@ -27,12 +27,12 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-aggregation-spring-boot-starter</artifactId>
-            <version>2.0.9</version>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <version>4.5.0</version>
         </dependency>
-
     </dependencies>
 
     <build>

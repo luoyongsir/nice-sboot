@@ -42,7 +42,7 @@ public class ResourceServerManager implements ReactiveAuthorizationManager<Autho
 			return Mono.just(new AuthorizationDecision(true));
 		}
 		PathMatcher pathMatcher = new AntPathMatcher();
-		String method = request.getMethodValue();
+		String method = request.getMethod().toString();
 		String path = request.getURI().getPath();
 		// RESTFul接口权限设计 @link https://www.cnblogs.com/haoxianrui/p/14961707.html
 		String restfulPath = method + ":" + path;

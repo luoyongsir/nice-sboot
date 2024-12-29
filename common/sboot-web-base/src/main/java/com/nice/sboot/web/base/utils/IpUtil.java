@@ -3,9 +3,9 @@ package com.nice.sboot.web.base.utils;
 import com.nice.sboot.base.comm.Const;
 import com.nice.sboot.base.exception.RunException;
 import com.nice.sboot.base.utils.text.StringBud;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;

@@ -5,73 +5,58 @@ import com.nice.sboot.base.comm.MediaTypes;
 import com.nice.sboot.base.utils.collect.MapUtil;
 import com.nice.sboot.base.utils.text.Charsets;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.http.*;
-import org.apache.http.client.config.AuthSchemes;
-import org.apache.http.client.config.CookieSpecs;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.entity.GzipDecompressingEntity;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.config.Registry;
-import org.apache.http.config.RegistryBuilder;
-import org.apache.http.conn.socket.ConnectionSocketFactory;
-import org.apache.http.conn.socket.PlainConnectionSocketFactory;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.ssl.SSLContextBuilder;
-import org.apache.http.util.EntityUtils;
+import org.apache.hc.client5.http.ClientProtocolException;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.config.RequestConfig;
+import org.apache.hc.client5.http.entity.GzipDecompressingEntity;
+import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
+import org.apache.hc.client5.http.entity.mime.FileBody;
+import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder;
+import org.apache.hc.client5.http.entity.mime.StringBody;
+import org.apache.hc.client5.http.impl.classic.AbstractHttpClientResponseHandler;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
+import org.apache.hc.client5.http.ssl.DefaultClientTlsStrategy;
+import org.apache.hc.client5.http.ssl.TrustAllStrategy;
+import org.apache.hc.core5.http.*;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
+import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.apache.hc.core5.http.message.BasicNameValuePair;
+import org.apache.hc.core5.ssl.SSLContextBuilder;
+import org.apache.hc.core5.util.Timeout;
 
+import javax.net.ssl.SSLContext;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 /**
- * HttpClient工具类
- *
- * @author luoyong
- * @date 2019/6/19 18:34
+ * HttpClient5 工具类
+ * @author 罗勇
+ * @since 2024-12-29
  */
 @Slf4j
 public final class HttpUtil {
 
-	private static SSLConnectionSocketFactory socketFactory;
+	/** Create global default request configuration */
+	private static RequestConfig defaultRequestConfig = RequestConfig.custom().setExpectContinueEnabled(true)
+			.setConnectionRequestTimeout(Timeout.ofSeconds(60)).setResponseTimeout(Timeout.ofSeconds(60)).build();
 	private static PoolingHttpClientConnectionManager connManager;
 
-	/** Create global default request configuration */
-	private static RequestConfig defaultRequestConfig = RequestConfig.custom().setCookieSpec(CookieSpecs.DEFAULT)
-			.setTargetPreferredAuthSchemes(Arrays.asList(AuthSchemes.NTLM, AuthSchemes.DIGEST))
-			.setProxyPreferredAuthSchemes(Arrays.asList(AuthSchemes.BASIC)).setExpectContinueEnabled(true)
-			.setConnectionRequestTimeout(30000).setConnectTimeout(30000).setSocketTimeout(30000).build();
-
 	static {
-		// connManager = new PoolingHttpClientConnectionManager();
-		connManager = new PoolingHttpClientConnectionManager(getRegistry());
-		// 整个连接池最大连接数
-		connManager.setMaxTotal(100);
-		// 每路由最大连接数
-		connManager.setDefaultMaxPerRoute(10);
+		final DefaultClientTlsStrategy tlsStrategy = new DefaultClientTlsStrategy(getSslContext());
+		connManager = PoolingHttpClientConnectionManagerBuilder.create().setMaxConnTotal(200).setMaxConnPerRoute(20)
+				.setTlsSocketStrategy(tlsStrategy).build();
 	}
 
 	private HttpUtil() {
@@ -82,54 +67,13 @@ public final class HttpUtil {
 	 *
 	 * @return
 	 */
-	private static Registry<ConnectionSocketFactory> getRegistry() {
-		SSLContextBuilder builder = new SSLContextBuilder();
+	private static SSLContext getSslContext() {
 		// 全部信任 不做身份鉴定
 		try {
-			builder.loadTrustMaterial(null, (chain, authType) -> true);
-			socketFactory = new SSLConnectionSocketFactory(builder.build(), NoopHostnameVerifier.INSTANCE);
-			return RegistryBuilder.<ConnectionSocketFactory>create()
-					.register("http", PlainConnectionSocketFactory.getSocketFactory()).register("https", socketFactory)
-					.build();
+			return SSLContextBuilder.create().loadTrustMaterial(new TrustAllStrategy()).build();
 		} catch (NoSuchAlgorithmException | KeyStoreException | KeyManagementException e) {
 			log.error("ssl 连接出错：", e);
-		}
-		return RegistryBuilder.<ConnectionSocketFactory>create()
-				.register("http", PlainConnectionSocketFactory.getSocketFactory())
-				.register("https", SSLConnectionSocketFactory.getSocketFactory()).build();
-	}
-
-	/**
-	 * 超时设置（单位毫秒）默认30秒
-	 * @param connectionRequestTimeout 连接请求超时
-	 * @param connectTimeout 连接超时时间
-	 * @param socketTimeout 传输超时时间
-	 */
-	public static void setTimeout(Integer connectionRequestTimeout, Integer connectTimeout, Integer socketTimeout) {
-		RequestConfig.Builder builder = RequestConfig.copy(defaultRequestConfig);
-		if (connectionRequestTimeout != null) {
-			builder.setConnectionRequestTimeout(connectionRequestTimeout);
-		}
-		if (connectTimeout != null) {
-			builder.setConnectTimeout(connectTimeout);
-		}
-		if (socketTimeout != null) {
-			builder.setSocketTimeout(socketTimeout);
-		}
-		HttpUtil.defaultRequestConfig = builder.build();
-	}
-
-	/**
-	 * 设置默认代理
-	 * @param hostname
-	 * @param port
-	 */
-	public static void setProxy(String hostname, int port) {
-		if (StringUtils.isNotBlank(hostname)) {
-			RequestConfig.Builder builder = RequestConfig.copy(defaultRequestConfig);
-			HttpHost proxy = new HttpHost(hostname, port);
-			builder.setProxy(proxy);
-			HttpUtil.defaultRequestConfig = builder.build();
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -148,37 +92,6 @@ public final class HttpUtil {
 	 */
 	public static String get(final String url) {
 		HttpGet httpGet = new HttpGet(url);
-		return execute(httpGet);
-	}
-
-	/**
-	 * http get 请求
-	 *
-	 * @param url
-	 *            服务器地址
-	 * @param charset
-	 *            返回值编码格式
-	 * @return
-	 */
-	public static String get(final String url, final Charset charset) {
-		HttpGet httpGet = new HttpGet(url);
-		return execute(httpGet, charset);
-	}
-
-	/**
-	 * http get 请求
-	 *
-	 * @param url
-	 *            服务器地址
-	 * @param timeout
-	 *            请求超时时间
-	 * @return
-	 */
-	public static String get(final String url, final int timeout) {
-		RequestConfig requestConfig = RequestConfig.copy(defaultRequestConfig).setSocketTimeout(timeout)
-				.setConnectTimeout(timeout).setConnectionRequestTimeout(timeout).build();
-		HttpGet httpGet = new HttpGet(url);
-		httpGet.setConfig(requestConfig);
 		return execute(httpGet);
 	}
 
@@ -276,7 +189,7 @@ public final class HttpUtil {
 		HttpPost httpPost = new HttpPost(url);
 		FileBody file = new FileBody(new File(localPath));
 
-		ContentType textContentType = ContentType.create(MediaTypes.TEXT_PLAIN, Consts.UTF_8);
+		ContentType textContentType = ContentType.create(MediaTypes.TEXT_PLAIN, Charsets.UTF_8);
 		StringBody nameBody = new StringBody(username, textContentType);
 		StringBody pwdBody = new StringBody(pwd, textContentType);
 
@@ -292,35 +205,10 @@ public final class HttpUtil {
 	 * @param t
 	 * @return
 	 */
-	public static <T extends HttpRequestBase> String execute(T t) {
-		return execute(t, Charsets.UTF_8);
-	}
-
-	/**
-	 * 执行http请求
-	 *
-	 * @param t
-	 * @param charset
-	 * @return
-	 */
-	public static <T extends HttpRequestBase> String execute(T t, Charset charset) {
+	public static <T extends ClassicHttpRequest> String execute(T t) {
 		String res = Const.EMPTY;
-		// 创建httpClient实例.
-		try (CloseableHttpClient client = getHttpClient(); CloseableHttpResponse response = client.execute(t)) {
-			int status = response.getStatusLine().getStatusCode();
-			if (status >= HttpStatus.SC_OK && status < HttpStatus.SC_MULTIPLE_CHOICES) {
-				HttpEntity entity = response.getEntity();
-				// 如果响应结果是GZIP格式的，则进行解压缩
-				if (entity != null && entity.getContentType() != null && MediaTypes.X_GZIP
-						.equals(entity.getContentType().getValue())) {
-					entity = new GzipDecompressingEntity(entity);
-				}
-				res = EntityUtils.toString(entity, charset);
-				// 销毁
-				EntityUtils.consume(entity);
-			} else {
-				log.info("HttpClient请求返回状态：" + status);
-			}
+		try (CloseableHttpClient client = getHttpClient()) {
+			res = client.execute(t, new HttpClientResponseHandler());
 		} catch (IOException e) {
 			log.error("HttpClient请求失败：", e);
 		}
@@ -336,21 +224,57 @@ public final class HttpUtil {
 	 */
 	public static void download(final String url, File localFile) {
 		HttpGet httpGet = new HttpGet(url);
-		// 创建httpClient实例.
-		try (CloseableHttpClient client = getHttpClient();
-				CloseableHttpResponse response = client.execute(httpGet);
-				InputStream is = response.getEntity().getContent();
-				FileOutputStream fos = new FileOutputStream(localFile)) {
-			int status = response.getStatusLine().getStatusCode();
-			if (status >= HttpStatus.SC_OK && status < HttpStatus.SC_MULTIPLE_CHOICES) {
-				byte[] bytes = new byte[4096];
-				int len;
-				while ((len = is.read(bytes)) != -1) {
-					fos.write(bytes, 0, len);
-				}
-			}
-		} catch (IOException e) {
+		try (CloseableHttpClient client = getHttpClient()) {
+			client.execute(httpGet, new HttpClientDownloadHandler(localFile));
+		} catch (Exception e) {
 			log.error("HttpClient download 请求失败：", e);
 		}
 	}
+}
+
+class HttpClientResponseHandler extends AbstractHttpClientResponseHandler<String> {
+
+	/**
+	 * Returns the entity as a body as a String.
+	 */
+	@Override
+	public String handleEntity(final HttpEntity entity) throws IOException {
+		try {
+			// 如果响应结果是GZIP格式的，则进行解压缩
+			if (entity != null && entity.getContentType() != null && MediaTypes.X_GZIP.equals(
+					entity.getContentType())) {
+				HttpEntity entityNew = new GzipDecompressingEntity(entity);
+				return EntityUtils.toString(entityNew);
+			} else {
+				return EntityUtils.toString(entity);
+			}
+		} catch (final ParseException ex) {
+			throw new ClientProtocolException(ex);
+		}
+	}
+
+}
+
+class HttpClientDownloadHandler extends AbstractHttpClientResponseHandler<Void> {
+
+	private File localFile;
+
+	public HttpClientDownloadHandler(File localFile) {
+		this.localFile = localFile;
+	}
+
+	@Override
+	public Void handleEntity(final HttpEntity entity) throws IOException {
+		try (InputStream is = entity.getContent(); FileOutputStream fos = new FileOutputStream(localFile)) {
+			byte[] bytes = new byte[4096];
+			int len;
+			while ((len = is.read(bytes)) != -1) {
+				fos.write(bytes, 0, len);
+			}
+		} catch (IOException ex) {
+			throw new ClientProtocolException(ex);
+		}
+		return null;
+	}
+
 }

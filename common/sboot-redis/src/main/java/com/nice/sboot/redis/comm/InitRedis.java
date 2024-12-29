@@ -3,7 +3,7 @@ package com.nice.sboot.redis.comm;
 import com.nice.sboot.redis.template.RedisTemplateJdk;
 import com.nice.sboot.redis.template.RedisTemplateJson;
 import com.nice.sboot.redis.template.RedisTemplateString;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
@@ -17,7 +17,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 @Configuration
 public class InitRedis {
 
-	@Autowired
+	@Resource
 	private LettuceConnectionFactory lettuceConnectionFactory;
 
 	/**

@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.8</version>
+        <version>3.4.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.nice.sboot</groupId>
     <artifactId>sboot-dependency</artifactId>
-    <version>2.0.0</version>
+    <version>3.0.0</version>
     <packaging>pom</packaging>
 
     <repositories>
@@ -29,29 +29,29 @@
     </pluginRepositories>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <!-- 不同环境编译类别不同 provided / compile -->
         <scope-type>compile</scope-type>
 
-        <nice-base.version>2.0.0</nice-base.version>
-        <nice-redis.version>2.0.0</nice-redis.version>
-        <nice-web-base.version>2.0.0</nice-web-base.version>
+        <nice-base.version>3.0.0</nice-base.version>
+        <nice-redis.version>3.0.0</nice-redis.version>
+        <nice-web-base.version>3.0.0</nice-web-base.version>
 
-        <spring-cloud.version>2021.0.3</spring-cloud.version>
-        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
-        <nacos.version>2.0.4</nacos.version>
-        <fastjson.version>1.2.83</fastjson.version>
-        <redisson.version>3.17.3</redisson.version>
+        <spring-cloud.version>2024.0.0</spring-cloud.version>
+        <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
+        <nacos.version>2.4.3</nacos.version>
+        <fastjson.version>2.0.53</fastjson.version>
+        <redisson.version>3.41.0</redisson.version>
         <kaptcha.version>2.3.2</kaptcha.version>
-        <commons-io.version>2.11.0</commons-io.version>
+        <commons-io.version>2.18.0</commons-io.version>
         <weixin-java.version>4.3.0</weixin-java.version>
         <!-- 阿里云短信 -->
         <aliyun.java.sdk.core.version>4.6.0</aliyun.java.sdk.core.version>
         <aliyun.java.sdk.dysmsapi.version>2.2.1</aliyun.java.sdk.dysmsapi.version>
 
 
-        <knife4j.version>3.0.3</knife4j.version>
-        <springdoc.version>1.6.9</springdoc.version>
+<!--        <knife4j.version>3.0.3</knife4j.version>-->
+        <springdoc.version>2.7.0</springdoc.version>
 
         <maven.test.skip>true</maven.test.skip>
     </properties>
@@ -69,7 +69,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
+                <version>2023.0.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -80,6 +80,14 @@
                 <version>${springdoc.version}</version>
                 <scope>${scope-type}</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>2.7.0</version>
+                <scope>${scope-type}</scope>
+            </dependency>
+
             <dependency>
                 <groupId>com.alibaba.nacos</groupId>
                 <artifactId>nacos-client</artifactId>
@@ -135,11 +143,6 @@
             </dependency>
 
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
@@ -152,6 +155,11 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
             <dependency>
